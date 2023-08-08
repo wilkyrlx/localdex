@@ -1,14 +1,15 @@
 import express from 'express';
 import { MongoClient } from 'mongodb';
 import mongoDbAdminPassword from './private/secret';
+import cors from 'cors';
 
 const mongoUri = `mongodb+srv://dbAdmin:${mongoDbAdminPassword}@localdex-dev-cluster-0.3gefrrj.mongodb.net/?retryWrites=true&w=majority`;
 const dbName = 'LocalDex-Dev-Cluster-0';
-const collectionName = 'example_collection';
+const collectionName = 'dev_collection';
 
-const port = 3000;
+const port = 8080;
 const app = express();
-app.use(express.json());
+app.use(cors());
 
 // Connect to MongoDB Atlas
 MongoClient.connect(mongoUri)

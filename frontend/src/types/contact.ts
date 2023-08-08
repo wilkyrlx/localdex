@@ -50,3 +50,5 @@ interface Contact {
     dateLastInteracted?: Date;   // last time user interacted with contact, either in person or virtually. Generated from log
 
 }
+
+export default Contact;
