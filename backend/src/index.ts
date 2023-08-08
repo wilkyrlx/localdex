@@ -1,16 +1,17 @@
-const express = require('express');
-const MongoClient = require('mongodb').MongoClient;
+import express from 'express';
+import { MongoClient } from 'mongodb';
+import mongoDbAdminPassword from './private/secret';
 
-const app = express();
-const port = 3000;
-const mongoUri = "mongodb+srv://dbAdmin:localdex@localdex-dev-cluster-0.3gefrrj.mongodb.net/?retryWrites=true&w=majority";
+const mongoUri = `mongodb+srv://dbAdmin:${mongoDbAdminPassword}@localdex-dev-cluster-0.3gefrrj.mongodb.net/?retryWrites=true&w=majority`;
 const dbName = 'LocalDex-Dev-Cluster-0';
 const collectionName = 'example_collection';
 
+const port = 3000;
+const app = express();
 app.use(express.json());
 
 // Connect to MongoDB Atlas
-MongoClient.connect(mongoUri, { useUnifiedTopology: true })
+MongoClient.connect(mongoUri)
   .then(client => {
     console.log('Connected to MongoDB Atlas');
     const db = client.db(dbName);
