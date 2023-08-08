@@ -28,9 +28,9 @@ interface Contact {
     github?: string;
 
     // Education
-    highSchool?: string;
-    college?: string;
-    gradSchool?: string;
+    highSchool?: string;    // TODO: change to school object (school name + dates attended)
+    college?: string;       // TODO: change to school object (school name + dates attended)
+    gradSchool?: string;    // TODO: change to school object (school name + dates attended)
 
     // Work
     currentJob?: string;    // TODO: change to job object
@@ -39,6 +39,9 @@ interface Contact {
 
     // Relationships
     relationships?: string[];   // TODO: change to relationship object (ID + description)
+
+    // Groups
+    groups?: string[];          // TODO: change to group object (ID + description)
 
     // Interactions
     interactions?: string[];    // TODO: change to interaction object (Date + description)
