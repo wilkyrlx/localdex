@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom"
 import Contact from "../types/contact"
 
 function ContactView() {
@@ -10,6 +11,7 @@ function ContactView() {
         document.getElementById('email')!.innerHTML = contact.personalEmail || "No email"
         document.getElementById('phone')!.innerHTML = contact.primaryPhone || "No phone number"
         console.log(contact)
+        
     }
 
     return (
