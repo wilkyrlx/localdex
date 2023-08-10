@@ -1,4 +1,4 @@
-import ContactView from "../ContactView";
+import ContactView from "../contact/ContactView";
 
 function ContactsPage() {
     return (

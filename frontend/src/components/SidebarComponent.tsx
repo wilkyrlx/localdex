@@ -1,7 +1,10 @@
 import { Sidebar, Menu, MenuItem, SubMenu } from 'react-pro-sidebar';
 import { Link } from "react-router-dom";
 
-
+/**
+ * Navigation sidebar (sticky)
+ * Uses react-sidebar-pro (https://www.npmjs.com/package/react-pro-sidebar)
+ */
 function SidebarComponent() {
     return (
         <Sidebar>

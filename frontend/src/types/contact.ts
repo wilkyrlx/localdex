@@ -6,6 +6,7 @@ interface Contact {
     photoUri?: string[];
     notes?: string;
     birthday?: Date;
+    title?: string;         // description of user (i.e. "promoter", "landlord", "swe @ google")
 
     // Physical address
     address?: string[];     // TODO: change to address object (string + description tuple)
@@ -35,7 +36,6 @@ interface Contact {
     // Work
     currentJob?: string;    // TODO: change to job object
     pastJobs?: string[];    // TODO: change to job object
-    personalRelationshipRole?: string;      // description of iser's personal interactions with someone (i.e. "promoter", "landlord")
 
     // Relationships
     relationships?: string[];   // TODO: change to relationship object (ID + description)

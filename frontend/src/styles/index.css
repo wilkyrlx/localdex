@@ -4,13 +4,11 @@
 
 .sidebar {
     width: 250px;
-    /* Adjust the width as needed */
     position: fixed;
     top: 0;
     left: 0;
     bottom: 0;
     background-color: #f1f1f1;
-    /* Other styles */
 }
 
 .sidebar-link {
@@ -24,5 +22,10 @@
     /* Ensure main content doesn't overlap the sidebar */
     overflow-y: auto;
     /* Allow the main content to scroll if it overflows */
-    /* Other styles */
+}
+
+
+.contact-input-bar {
+    display: flex;
+    align-items: center;
 }
