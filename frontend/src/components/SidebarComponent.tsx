@@ -4,19 +4,25 @@ import { Link } from "react-router-dom";
 
 function SidebarComponent() {
     return (
-            <Sidebar>
-                <Menu>
-                    <MenuItem> Today </MenuItem>
+        <Sidebar>
+            <Menu>
+                <Link className='sidebar-link' to="/">
+                    <MenuItem> Home </MenuItem>
+                </Link>
+                <Link className='sidebar-link' to="/contact">
                     <MenuItem> Contacts </MenuItem>
+                </Link>
+                <Link className='sidebar-link' to="/map">
                     <MenuItem> Map </MenuItem>
-                    <MenuItem> Import </MenuItem>
-                    <MenuItem> Settings </MenuItem>
-                </Menu>
-                <ul>
-                    <li><Link to="/">Home</Link></li>
-                    <li><Link to="/about">About</Link></li>
-                </ul>
-            </Sidebar>
+                </Link>
+                <Link className='sidebar-link' to="/import">
+                    <MenuItem> Import Contacts </MenuItem>
+                </Link>
+                <Link className='sidebar-link' to="/about">
+                    <MenuItem> About </MenuItem>
+                </Link>
+            </Menu>
+        </Sidebar>
     );
 }
 

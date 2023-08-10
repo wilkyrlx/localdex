@@ -1,5 +1,4 @@
-// TODO: remove, temporary filler
-function Home() {
+function TodayPage() {
     return (
         <div>
             <h1>Home</h1>
@@ -8,4 +7,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default TodayPage;
