@@ -1,4 +1,4 @@
-interface Contact {
+interface ContactBase {
     // Contact information
     alias: string[];        // Array of aliases, if no first + last name, choose first alias
     firstName?: string;
@@ -54,4 +54,4 @@ interface Contact {
 
 }
 
-export default Contact;
+export default ContactBase;

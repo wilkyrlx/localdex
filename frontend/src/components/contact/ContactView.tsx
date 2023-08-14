@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom"
-import Contact from "../../types/contact"
+import Contact from "../../../../shared/types/Contact"
 import { SetStateAction, useState } from "react"
 import ContactInputBox from "./ContactInputBox"
 
@@ -12,11 +12,11 @@ function ContactView() {
         setFullNameValue(contact.alias[0])
         setEmailValue(contact.personalEmail || "No email")
         console.log(contact)
-
     }
 
     const [fullNameValue, setFullNameValue] = useState("");
     const [emailValue, setEmailValue] = useState("");
+
 
 
     return (
