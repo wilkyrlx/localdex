@@ -12,16 +12,17 @@ function ContactView() {
         const contact: Contact = data[Math.floor(Math.random() * data.length)]
         setFullNameValue(contact.alias[0])
         setEmailValue(contact.personalEmail || "No email")
-        console.log(contact)
-        setMiscJsonValue(data.stringify())
+        setMiscJsonValue(contact)
+        console.log(contact)        
     }
+
+    const dummyJson = {test: "test", number: 6, array: [1, 2, 3], object: {a: "a", b: "b"}, float: 3.14, bool: true}
 
     const [fullNameValue, setFullNameValue] = useState("");
     const [emailValue, setEmailValue] = useState("");
-    const [miscJsonValue, setMiscJsonValue] = useState("");
+    const [miscJsonValue, setMiscJsonValue] = useState<object>(dummyJson);
 
 
-    const dummyJson = {test: "test", number: 6, array: [1, 2, 3], object: {a: "a", b: "b"}, float: 3.14, bool: true}
 
     return (
         
@@ -30,7 +31,7 @@ function ContactView() {
             <button onClick={() => loadRandomContact()}>Load Random Contact</button>
             <ContactInputBox label={"Name"} textValue={fullNameValue} setValue={setFullNameValue}/>
             <ContactInputBox label={"Email"} textValue={emailValue} setValue={setEmailValue}/>
-            <ReactJson src={dummyJson} name={false} displayDataTypes={false} collapsed={1}/>
+            <ReactJson src={miscJsonValue} name={false} displayDataTypes={false} collapsed={1}/>
         </div>
     );
 }
