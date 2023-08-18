@@ -2,7 +2,7 @@ import Contact from "../../../../shared/types/Contact"
 import { useState } from "react"
 import ContactInputBox from "./ContactInputBox"
 import ReactJson from 'react-json-view'     // potential dependency issue, had to use --force to install
-
+import config from "../../util/config"
 
 function ContactView() {
 
@@ -10,15 +10,14 @@ function ContactView() {
         const response = await fetch('http://localhost:8080/data')
         const data = await response.json()
         const contact: Contact = data[Math.floor(Math.random() * data.length)]
-        setFullNameValue(contact.alias[0])
-        setEmailValue(contact.personalEmail || "No email")
         setMiscJsonValue(contact)
         console.log(contact)
     }
 
     const dummyJson = { test: "test", number: 6, array: [1, 2, 3], object: { a: "a", b: "b" }, float: 3.14, bool: true }
 
-    const [fullNameValue, setFullNameValue] = useState("");
+    const [firstNameValue, setFirstNameValue] = useState("");
+    const [lastNameValue, setLastNameValue] = useState("");
     const [notesValue, setNotesValue] = useState("");
     const [phoneNumberValue, setPhoneNumberValue] = useState("");
     const [relationshipsValue, setRelationshipsValue] = useState("");
@@ -34,7 +33,9 @@ function ContactView() {
     function saveContact() {
         const date = new Date()
         const contact = {
-            alias: [fullNameValue],
+            alias: [firstNameValue + " " + lastNameValue],
+            firstName: firstNameValue,
+            lastName: lastNameValue,
             personalEmail: emailValue,
             notes: notesValue,
             phoneNumber: phoneNumberValue,
@@ -58,7 +59,8 @@ function ContactView() {
             <h1>Contact View</h1>
             <button onClick={() => loadRandomContact()}>Load Random Contact</button>
             <button onClick={() => saveContact()}>Save Contact</button>
-            <ContactInputBox label={"Name"} textValue={fullNameValue} setValue={setFullNameValue} />
+            <ContactInputBox label={"First Name"} textValue={firstNameValue} setValue={setFirstNameValue} />
+            <ContactInputBox label={"Last Name"} textValue={lastNameValue} setValue={setLastNameValue} />
             <ContactInputBox label={"Notes"} textValue={notesValue} setValue={setNotesValue} />
             <ContactInputBox label={"Phone Number"} textValue={phoneNumberValue} setValue={setPhoneNumberValue} />
             <ContactInputBox label={"Relationships"} textValue={relationshipsValue} setValue={setRelationshipsValue} />
