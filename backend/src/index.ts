@@ -40,43 +40,48 @@ async function retrieveData(collection: any) {
 }
 
 
+async function main() {
+    await client.connect();
 
+    // Insert example data
+    app.post('/insert', (req, res) => {
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+        const data = req.body;
+        collection.insertOne(data)
+            .then(result => {
+                logger.info(`Inserted data: ${JSON.stringify(data)}`)
+                res.status(201).json(result);
+            })
+            .catch(error => {
+                logger.error(`Error inserting data, error: ${error}`)
+                logger.error(`Error inserting data, data: ${JSON.stringify(data)}`)
+                res.status(500).json({ error: `Error inserting data` });
+            });
+    });
 
-// Insert example data
-app.post('/insert', (req, res) => {
-    const db = client.db(dbName);
-    const collection = db.collection(collectionName);
-    const data = req.body;
-    collection.insertOne(data)
-        .then(result => {
-            logger.info(`Inserted data: ${JSON.stringify(data)}`)
-            res.status(201).json(result);
-        })
-        .catch(error => {
-            logger.error(`Error inserting data, error: ${error}`)
-            logger.error(`Error inserting data, data: ${JSON.stringify(data)}`)
-            res.status(500).json({ error: `Error inserting data` });
-        });
-});
+    // Retrieve example data
+    app.get('/data', (req, res) => {
+        const db = client.db(dbName);
+        const collection = db.collection(collectionName);
+        collection.find({}).toArray()
+            .then(data => {
+                res.status(200).json(data);
+            })
+            .catch(error => {
+                res.status(500).json({ error: `Error retrieving data: ${error}` });
+            });
+    });
 
-// Retrieve example data
-app.get('/data', (req, res) => {
-    const db = client.db(dbName);
-    const collection = db.collection(collectionName);
-    collection.find({}).toArray()
-        .then(data => {
-            res.status(200).json(data);
-        })
-        .catch(error => {
-            res.status(500).json({ error: `Error retrieving data: ${error}` });
-        });
-});
+    app.get('/helloWorld', (req, res) => {
+        res.status(200).json({ message: 'Hello World!' });
+    });
 
-app.get('/helloWorld', (req, res) => {
-    res.status(200).json({ message: 'Hello World!' });
-});
+    app.listen(port, () => {
+        console.log(`Server is running on http://localhost:${port}`);
+        logger.info(`Server is running on http://localhost:${port}`);
+    });
 
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-    logger.info(`Server is running on http://localhost:${port}`);
-});        
+}
+
+main().catch(console.error);
