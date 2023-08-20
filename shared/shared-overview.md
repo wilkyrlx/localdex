@@ -1,14 +1,9 @@
 Overview of all shared assets
 
 # config
-config-writer writes to a JSON file located in the src directory of both the frontend and backend. The file is named config.json.
+config-writer writes to a .env file at any number of specified paths. It can be called using the config scripts `npm run config:dev` and `npm run config:prod`
 
-A ts file should be created like so to provide easier reference:
-```ts
-import configJSON from "../config.json"
-const config = configJSON;
-export default config;
-```
+Refer to the `.env.dummy` to look at the desired layout for .env files
 
 # types
 - Contact: contact type that extends ContactBase, used by react frontend and node.js backend. Can contain additional, non-specified fields (i.e. fields not defined in ContactBase)

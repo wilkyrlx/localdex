@@ -2,11 +2,13 @@ import express from 'express';
 import { MongoClient } from 'mongodb';
 import cors from 'cors';
 import logger from './util/logger';
+import dotenv from 'dotenv';
 
+dotenv.config();
 
-const mongoUri = `mongodb+srv://dbAdmin:${"admin"}@localdex-dev-cluster-0.3gefrrj.mongodb.net/?retryWrites=true&w=majority`;
-const dbName = 'LocalDex-Dev-Cluster-0';
-const collectionName = 'dev_collection';
+const mongoUri: string = `mongodb+srv://dbAdmin:${process.env.MONGO_DB_ADMIN_PASSWORD}@localdex-dev-cluster-0.3gefrrj.mongodb.net/?retryWrites=true&w=majority`;
+const dbName: string = 'LocalDex-Dev-Cluster-0';
+const collectionName: string = process.env.MONGO_DB_COLLECTION_NAME || "dev_collection";
 
 const port = 8080;
 const app = express();
@@ -17,6 +19,7 @@ logger.info("=================== LOG BREAK ===================")
 logger.info("Starting server...")
 
 const client = new MongoClient(mongoUri);
+
 
 async function insertData(collection: any, data: any) {
     try {
@@ -77,6 +80,7 @@ async function main() {
         res.status(200).json({ message: 'Hello World!' });
     });
 
+    // FIXME: for some reason this is necessary for render deploy to work
     app.listen(port, () => {
         console.log(`Server is running on http://localhost:${port}`);
         logger.info(`Server is running on http://localhost:${port}`);

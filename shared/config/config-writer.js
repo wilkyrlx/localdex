@@ -1,27 +1,26 @@
 const fs = require('fs');
-const configProd = require('./config.prod.js');
-const configDev = require('./config.dev.js');
 const { argv } = require('process');
 
-// TODO: change to ts, use interface
-
-var data = null;
-if (argv[2] === 'prod') {
-    data = configProd
+let srcPath = __dirname + "/"
+if (argv[2] === 'dev') {
+    srcPath += '.env.dev'
 }
-else if (argv[2] === 'dev') {
-    data = configDev
+else if (argv[2] === 'prod') {
+    srcPath += '.env.prod'
 }
 
-const jsonData = JSON.stringify(data, null, 2); // Convert object to formatted JSON string
+const envDestPaths = [
+    '../../../backend/.env',
+    '../../../frontend/.env'
+];
 
-// works if called from frontend or backend
-const filePath = 'src\\config.json';
-
-fs.writeFile(filePath, jsonData, (err) => {
-    if (err) {
-        console.error('Error writing to JSON file:', err);
-    } else {
-        console.log('Data written to JSON file successfully');
-    }
-});
+envDestPaths.forEach((dest) => {
+    fs.copyFile(srcPath, __dirname + dest, (err) => {
+        if (err) {
+            console.error('Error writing to .env file:', err);
+        } else {
+            console.log(`Data written to .env files successfully in ${dest}`);
+        }
+    })
+}
+);
