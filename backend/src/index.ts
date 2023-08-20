@@ -2,7 +2,6 @@ import express from 'express';
 import { MongoClient } from 'mongodb';
 import cors from 'cors';
 import logger from './util/logger';
-// import config from './util/config';
 
 
 const mongoUri = `mongodb+srv://dbAdmin:${"admin"}@localdex-dev-cluster-0.3gefrrj.mongodb.net/?retryWrites=true&w=majority`;
