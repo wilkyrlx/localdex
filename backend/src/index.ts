@@ -68,12 +68,10 @@ app.get('/data', (req, res) => {
             res.status(200).json(data);
         })
         .catch(error => {
-            res.status(500).json({ error: 'Error retrieving data' });
+            res.status(500).json({ error: `Error retrieving data: ${error}` });
         });
 });
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server is running on http://localhost:${port}`);
-    logger.info(`Server is running on http://localhost:${port}`)
+app.get('/helloWorld', (req, res) => {
+    res.status(200).json({ message: 'Hello World!' });
 });
