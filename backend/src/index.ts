@@ -75,3 +75,8 @@ app.get('/data', (req, res) => {
 app.get('/helloWorld', (req, res) => {
     res.status(200).json({ message: 'Hello World!' });
 });
+
+app.listen(port, () => {
+    console.log(`Server is running on http://localhost:${port}`);
+    logger.info(`Server is running on http://localhost:${port}`);
+});        
