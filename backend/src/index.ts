@@ -1,13 +1,13 @@
 import express from 'express';
 import { MongoClient } from 'mongodb';
-import mongoDbAdminPassword from './private/secret';
 import cors from 'cors';
 import logger from './util/logger';
+import config from './util/config';
 
 
-const mongoUri = `mongodb+srv://dbAdmin:${mongoDbAdminPassword}@localdex-dev-cluster-0.3gefrrj.mongodb.net/?retryWrites=true&w=majority`;
+const mongoUri = `mongodb+srv://dbAdmin:${config.mongo_db_admin_password}@localdex-dev-cluster-0.3gefrrj.mongodb.net/?retryWrites=true&w=majority`;
 const dbName = 'LocalDex-Dev-Cluster-0';
-const collectionName = 'dev_collection';
+const collectionName = config.mongo_db_collection_name;
 
 const port = 8080;
 const app = express();

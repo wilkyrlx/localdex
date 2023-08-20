@@ -7,14 +7,12 @@ import config from "../../util/config"
 function ContactView() {
 
     async function loadRandomContact() {
-        const response = await fetch('http://localhost:8080/data')
+        const response = await fetch(config.backend_uri + '/data')
         const data = await response.json()
         const contact: Contact = data[Math.floor(Math.random() * data.length)]
         setMiscJsonValue(contact)
         console.log(contact)
     }
-
-    const dummyJson = { test: "test", number: 6, array: [1, 2, 3], object: { a: "a", b: "b" }, float: 3.14, bool: true }
 
     const [firstNameValue, setFirstNameValue] = useState("");
     const [lastNameValue, setLastNameValue] = useState("");
@@ -25,9 +23,7 @@ function ContactView() {
     const [dateLastUpdatedValue, setDateLastUpdatedValue] = useState("");
     const [dateLastInteractedValue, setDateLastInteractedValue] = useState("");
     const [emailValue, setEmailValue] = useState("");
-    const [miscJsonValue, setMiscJsonValue] = useState<object>(dummyJson);
-
-    const test = {_id: 1000, test: "test from react 2"}
+    const [miscJsonValue, setMiscJsonValue] = useState<object>({});
 
 
     function saveContact() {

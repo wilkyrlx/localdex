@@ -7,10 +7,10 @@ const { argv } = require('process');
 
 var data = null;
 if (argv[2] === 'prod') {
-    data = configDev
+    data = configProd
 }
 else if (argv[2] === 'dev') {
-    data = configProd
+    data = configDev
 }
 
 const jsonData = JSON.stringify(data, null, 2); // Convert object to formatted JSON string
