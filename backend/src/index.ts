@@ -5,7 +5,10 @@ import logger from './util/logger';
 import dotenv from 'dotenv';
 
 dotenv.config();
+logger.info("=================== LOG BREAK ===================")
+logger.info("Starting server...")
 
+// TODO: change admin password
 const mongoUri: string = `mongodb+srv://dbAdmin:${process.env.MONGO_DB_ADMIN_PASSWORD}@localdex-dev-cluster-0.3gefrrj.mongodb.net/?retryWrites=true&w=majority`;
 const dbName: string = 'LocalDex-Dev-Cluster-0';
 const collectionName: string = process.env.MONGO_DB_COLLECTION_NAME || "dev_collection";
@@ -15,11 +18,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-logger.info("=================== LOG BREAK ===================")
-logger.info("Starting server...")
-
 const client = new MongoClient(mongoUri);
-
 
 async function insertData(collection: any, data: any) {
     try {

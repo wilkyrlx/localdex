@@ -1,5 +1,3 @@
-import React from 'react';
-import ContactView from './components/contact/ContactView';
 import SidebarComponent from './components/SidebarComponent';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import TodayPage from './components/pages/TodayPage';
@@ -8,7 +6,15 @@ import ContactsPage from './components/pages/ContactsPage';
 import MapPage from './components/pages/MapPage';
 import ImportPage from './components/pages/ImportPage';
 
+function loadApp() {
+    // load dotenv
+    console.log("URI: " + process.env.REACT_APP_BACKEND_URI)
+    console.log("Version: " + process.env.NODE_ENV)
+}
+
 function App() {
+    loadApp();
+
     return (
         <div className="App">
             <BrowserRouter>

@@ -1,13 +1,13 @@
 import Contact from "../../../../shared/types/Contact"
 import { useState } from "react"
 import ContactInputBox from "./ContactInputBox"
-import ReactJson from 'react-json-view'     // potential dependency issue, had to use --force to install
-import config from "../../util/config"
+// import ReactJson from 'react-json-view'     // potential dependency issue, had to use --force to install
+import dotenv from 'dotenv'
 
 function ContactView() {
 
     async function loadRandomContact() {
-        const response = await fetch(config.backend_uri + '/data')
+        const response = await fetch(process.env.REACT_APP_BACKEND_URI+ '/data')
         const data = await response.json()
         const contact: Contact = data[Math.floor(Math.random() * data.length)]
         setMiscJsonValue(contact)
@@ -64,7 +64,7 @@ function ContactView() {
             <ContactInputBox label={"Date Added"} textValue={dateAddedValue} setValue={setDateAddedValue} />
             <ContactInputBox label={"Date Last Updated"} textValue={dateLastUpdatedValue} setValue={setDateLastUpdatedValue} />
             <ContactInputBox label={"Date Last Interacted"} textValue={dateLastInteractedValue} setValue={setDateLastInteractedValue} />
-            <ReactJson src={miscJsonValue} name={false} displayDataTypes={false} collapsed={1} />
+            {/* <ReactJson src={miscJsonValue} name={false} displayDataTypes={false} collapsed={1} /> */}
         </div>
     );
 }
