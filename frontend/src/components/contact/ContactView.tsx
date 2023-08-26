@@ -6,12 +6,10 @@ import dotenv from 'dotenv'
 
 function ContactView() {
 
-    async function loadRandomContact() {
-        const response = await fetch(process.env.REACT_APP_BACKEND_URI+ '/data')
+    async function loadData() {
+        const response = await fetch(process.env.REACT_APP_BACKEND_URI + '/data')
         const data = await response.json()
-        const contact: Contact = data[Math.floor(Math.random() * data.length)]
-        setMiscJsonValue(contact)
-        console.log(contact)
+        console.log(data)
     }
 
     const [firstNameValue, setFirstNameValue] = useState("");
@@ -46,14 +44,14 @@ function ContactView() {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(contact)
-        })
+        }).then(() => console.log("Contact added"))
     }
 
     return (
 
         <div>
             <h1>Contact View</h1>
-            <button onClick={() => loadRandomContact()}>Load Random Contact</button>
+            <button onClick={() => loadData()}>Load Random Contact</button>
             <button onClick={() => saveContact()}>Save Contact</button>
             <ContactInputBox label={"First Name"} textValue={firstNameValue} setValue={setFirstNameValue} />
             <ContactInputBox label={"Last Name"} textValue={lastNameValue} setValue={setLastNameValue} />
