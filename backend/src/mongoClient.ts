@@ -25,6 +25,16 @@ class DatabaseManager {
         return this.client.connect();
     }
 
+    async authenticateIP(req: any, res: any) {
+        if(req.ip == "IP") {
+            res.status(201).json({result: "good IP"})
+        }
+    }
+
+    /**
+     * adds a contact to the collection
+     * @param req.body - a Contact object 
+     */
     async insertData(req: any, res: any) {
         const collection = this.getCollection();
         const data = req.body;
@@ -38,6 +48,7 @@ class DatabaseManager {
             res.status(500).json({ error: 'Error inserting data' });
         }
     }
+
 
     async getData(req: any, res: any) {
         const collection = this.getCollection();
