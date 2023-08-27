@@ -21,6 +21,8 @@ function isAuthenticated(req: any, res: any, next: any) {
     if (req.ip == process.env.WHITELISTED_IP) {
         return next(); // User is authenticated, proceed to the next middleware/route handler
     } else {
+        console.log(req.clientIP)
+        console.log(req.headers)
         res.status(401).send({error: `this IP does not have access: ${req.ip}`});
     }
 }
