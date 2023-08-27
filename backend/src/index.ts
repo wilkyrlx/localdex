@@ -18,12 +18,10 @@ const databaseManager = new DatabaseManager();
 
 // TODO: change to something more secure than IP
 function isAuthenticated(req: any, res: any, next: any) {
-    if (req.ip == process.env.WHITELISTED_IP) {
+    if (req.headers['true-client-ip'] == process.env.WHITELISTED_IP) {
         return next(); // User is authenticated, proceed to the next middleware/route handler
     } else {
-        console.log(req.clientIP)
-        console.log(req.headers)
-        res.status(401).send({error: `this IP does not have access: ${req.ip}`});
+        res.status(401).send({error: `this IP does not have access: ${req.headers['true-client-ip']}`});
     }
 }
 
@@ -45,9 +43,7 @@ async function main() {
     // FIXME: for some reason this is necessary for render deploy to work
     app.listen(port, () => {
         console.log(`Server is running on port ${port}`);
-        logger.info(`Server is running ${port}`);
     });
 
 }
-console.log(process.env.WHITELISTED_IP)
 main().catch(console.error);
