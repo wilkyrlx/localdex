@@ -9,7 +9,7 @@ dotenv.config();
 logger.info("=================== LOG BREAK ===================")
 logger.info("Starting server...")
 
-const port = 8080;
+const port = process.env.PORT || 8080;
 const app = express();
 app.use(cors());
 app.use(express.json());
@@ -42,8 +42,8 @@ async function main() {
 
     // FIXME: for some reason this is necessary for render deploy to work
     app.listen(port, () => {
-        console.log(`Server is running`);
-        logger.info(`Server is running`);
+        console.log(`Server is running on port ${port}`);
+        logger.info(`Server is running ${port}`);
     });
 
 }
