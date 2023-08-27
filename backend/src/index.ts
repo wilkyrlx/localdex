@@ -27,6 +27,7 @@ function isAuthenticated(req: any, res: any, next: any) {
 
 
 async function main() {
+    
     await databaseManager.databaseConnect()
 
     // Insert example data
@@ -46,5 +47,5 @@ async function main() {
     });
 
 }
-
+console.log(process.env.WHITELISTED_IP)
 main().catch(console.error);
