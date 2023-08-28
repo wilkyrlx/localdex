@@ -27,7 +27,7 @@
     "start": "react-scripts start",
     "config:dev": "node ../shared/config/config-writer.js dev",
     "config:prod": "node ../shared/config/config-writer.js prod",
-    "build": "react-scripts build",
+    "build": "npm run config:prod && react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

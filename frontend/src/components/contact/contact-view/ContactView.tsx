@@ -1,4 +1,4 @@
-import Contact from "../../../../shared/types/Contact"
+import Contact from "../../../../../shared/types/Contact"
 import { useState } from "react"
 import ContactInputBox from "./ContactInputBox"
 // import ReactJson from 'react-json-view'     // potential dependency issue, had to use --force to install
@@ -14,6 +14,7 @@ function ContactView() {
 
     const [firstNameValue, setFirstNameValue] = useState("");
     const [lastNameValue, setLastNameValue] = useState("");
+    const [titleValue, setTitleValue] = useState("");
     const [notesValue, setNotesValue] = useState("");
     const [phoneNumberValue, setPhoneNumberValue] = useState("");
     const [relationshipsValue, setRelationshipsValue] = useState("");
@@ -32,13 +33,14 @@ function ContactView() {
             lastName: lastNameValue,
             personalEmail: emailValue,
             notes: notesValue,
+            title: titleValue,
             phoneNumber: phoneNumberValue,
             relationships: [relationshipsValue],
             dateAdded: date,
             dateLastUpdated: date,
             dateLastInteracted: date
         }
-        fetch('http://localhost:8080/insert', {
+        fetch(process.env.REACT_APP_BACKEND_URI + '/insertContact', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -56,6 +58,7 @@ function ContactView() {
             <ContactInputBox label={"First Name"} textValue={firstNameValue} setValue={setFirstNameValue} />
             <ContactInputBox label={"Last Name"} textValue={lastNameValue} setValue={setLastNameValue} />
             <ContactInputBox label={"Notes"} textValue={notesValue} setValue={setNotesValue} />
+            <ContactInputBox label={"Title"} textValue={titleValue} setValue={setTitleValue} />
             <ContactInputBox label={"Phone Number"} textValue={phoneNumberValue} setValue={setPhoneNumberValue} />
             <ContactInputBox label={"Relationships"} textValue={relationshipsValue} setValue={setRelationshipsValue} />
             <ContactInputBox label={"Email"} textValue={emailValue} setValue={setEmailValue} />
