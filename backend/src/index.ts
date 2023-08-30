@@ -17,7 +17,7 @@ app.use(express.json());
 const databaseManager = new DatabaseManager();
 
 function isAuthenticated(req: any, res: any, next: any) {
-    if (req.headers['localdex-api-key'] == process.env.LOCALDEX_API_CLIENT_KEY) {
+    if (req.headers['localdex-api-key'] == process.env.REACT_APP_LOCALDEX_API_KEY) {
         return next(); // User is authenticated, proceed to the next middleware/route handler
     } else {
         res.status(401).send({error: `this client does not have access: ${req.headers['localdex-api-key']}`});
@@ -27,6 +27,8 @@ function isAuthenticated(req: any, res: any, next: any) {
 
 async function main() {
     
+    // Connect to the MongoDB cluster
+    // remember to make sure IP is whitelisted on mongoDB if running locally - otherwise may see conn error
     await databaseManager.databaseConnect()
 
     // Insert example data

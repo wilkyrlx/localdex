@@ -39,13 +39,7 @@ function ContactView() {
             dateLastUpdated: date,
             dateLastInteracted: date
         }
-        fetch(process.env.REACT_APP_BACKEND_URI + '/insertContact', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(contact)
-        }).then(() => console.log("Contact added"))
+        apiService.insertContact(contact)
     }
 
     return (
