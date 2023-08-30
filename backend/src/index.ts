@@ -16,12 +16,11 @@ app.use(express.json());
 
 const databaseManager = new DatabaseManager();
 
-// TODO: change to something more secure than IP
 function isAuthenticated(req: any, res: any, next: any) {
-    if (req.headers['true-client-ip'] == process.env.WHITELISTED_IP) {
+    if (req.headers['localdex-api-key'] == process.env.LOCALDEX_API_CLIENT_KEY) {
         return next(); // User is authenticated, proceed to the next middleware/route handler
     } else {
-        res.status(401).send({error: `this IP does not have access: ${req.headers['true-client-ip']}`});
+        res.status(401).send({error: `this client does not have access: ${req.headers['localdex-api-key']}`});
     }
 }
 

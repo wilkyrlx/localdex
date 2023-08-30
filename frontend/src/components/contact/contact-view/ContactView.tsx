@@ -2,13 +2,12 @@ import Contact from "../../../../../shared/types/Contact"
 import { useState } from "react"
 import ContactInputBox from "./ContactInputBox"
 // import ReactJson from 'react-json-view'     // potential dependency issue, had to use --force to install
-import dotenv from 'dotenv'
+import apiService from "../../../api/apiService"
 
 function ContactView() {
 
     async function loadData() {
-        const response = await fetch(process.env.REACT_APP_BACKEND_URI + '/data')
-        const data = await response.json()
+        const data = await apiService.getData()
         console.log(data)
     }
 
@@ -53,9 +52,9 @@ function ContactView() {
 
         <div>
             <h1>Contact View</h1>
-            <button onClick={() => loadData()}>Load Data</button>
+            <button onClick={() => loadData()}>Print All</button>
             <button onClick={() => saveContact()}>Save Contact</button>
-            <button onClick={() => {}}>Update Contact</button>
+            <button onClick={() => {console.log("TODO: update")}}>Update Contact</button>
             <ContactInputBox label={"First Name"} textValue={firstNameValue} setValue={setFirstNameValue} />
             <ContactInputBox label={"Last Name"} textValue={lastNameValue} setValue={setLastNameValue} />
             <ContactInputBox label={"Notes"} textValue={notesValue} setValue={setNotesValue} />
@@ -66,7 +65,9 @@ function ContactView() {
             <ContactInputBox label={"Date Added"} textValue={dateAddedValue} setValue={setDateAddedValue} />
             <ContactInputBox label={"Date Last Updated"} textValue={dateLastUpdatedValue} setValue={setDateLastUpdatedValue} />
             <ContactInputBox label={"Date Last Interacted"} textValue={dateLastInteractedValue} setValue={setDateLastInteractedValue} />
-            {/* <ReactJson src={miscJsonValue} name={false} displayDataTypes={false} collapsed={1} /> */}
+            {/*
+            TODO: find stable react-json-view dependency or similar
+            <ReactJson src={miscJsonValue} name={false} displayDataTypes={false} collapsed={1} /> */}
         </div>
     );
 }
