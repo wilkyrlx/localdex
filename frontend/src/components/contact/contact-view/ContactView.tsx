@@ -53,8 +53,9 @@ function ContactView() {
 
         <div>
             <h1>Contact View</h1>
-            <button onClick={() => loadData()}>Load Random Contact</button>
+            <button onClick={() => loadData()}>Load Data</button>
             <button onClick={() => saveContact()}>Save Contact</button>
+            <button onClick={() => {}}>Update Contact</button>
             <ContactInputBox label={"First Name"} textValue={firstNameValue} setValue={setFirstNameValue} />
             <ContactInputBox label={"Last Name"} textValue={lastNameValue} setValue={setLastNameValue} />
             <ContactInputBox label={"Notes"} textValue={notesValue} setValue={setNotesValue} />

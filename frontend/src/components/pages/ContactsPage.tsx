@@ -3,11 +3,13 @@ import ContactView from "../contact/contact-view/ContactView";
 
 function ContactsPage() {
     return (
-        <div>
-            <h1>Contacts</h1>
-            <p>This is the contacts page</p>
-            <ContactList />
-            <ContactView />
+        <div className="contact-page-container">
+            <div className="scrollable-container" style={{width: "40%", resize: "horizontal"}}>
+                <ContactList />
+            </div>
+            <div className="scrollable-container" style={{flex: 1}} >
+                <ContactView />
+            </div>
         </div>
     );
 }

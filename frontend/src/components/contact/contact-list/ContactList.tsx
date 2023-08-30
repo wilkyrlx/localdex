@@ -12,8 +12,21 @@ function ContactList() {
         setContacts(data)
     }
 
+    function loadFakeContact() {
+        const date = new Date()
+        const fakeContact: Contact = {
+            firstName: "Fake Contact",
+            title: "Fake Contact Title",
+            alias: [],
+            dateAdded: date,
+            dateLastUpdated: date
+        }
+        setContacts([fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact])
+    }
+
     useEffect(() => {
-        loadData()
+        //loadData()
+        loadFakeContact()
     }, [])
 
     return(

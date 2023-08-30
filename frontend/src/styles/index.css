@@ -64,3 +64,16 @@
     font-size: 14px;
     color: #777777;
 }
+
+.contact-page-container {
+    display: flex;
+    height: 95vh; /* Take up 95% of the viewport height */
+    overflow: hidden; /* Prevent container from scrolling */
+}
+
+.scrollable-container {
+    overflow: auto; /* Enable scrolling within the div */
+    border: 1px solid #ccc; 
+    padding: 10px; 
+}
+
