@@ -44,17 +44,11 @@ class DatabaseManager {
     async updateContact(req: any, res: any) {
 
         const documentIdToUpdate = '64eac72400e15a6fc87c6fe1';
-        const updatedData = {
-            // Fields you want to update
-            firstName: 'Luke',
-            notes: 'new value 2',
-            // ...
-        };
         const collection = this.getCollection();
         const data = req.body;
         try {
-            const result = await collection.updateOne({ _id: new ObjectId(documentIdToUpdate) }, { $set: updatedData });
-            console.log(`${result.matchedCount} document(s) matched and ${result.modifiedCount} document(s) modified`);
+            const result = await collection.updateOne({ _id: new ObjectId(documentIdToUpdate) }, { $set: data });
+            console.log(`${result.matchedCount} document(s) matched and ${result.modifiedCount} document(s) modified, ID was ${new ObjectId(data._id)}`);
             res.status(201).json(result);
         } catch (error) {
             res.status(500).json({ error: 'Error updating data' });
