@@ -13,7 +13,7 @@ import { useAppContext } from './AppContext';
 function App() {
     const { message } = useAppContext();
 
-    console.log("Version: " + process.env.NODE_ENV)
+    console.log("Version: " + process.env.REACT_APP_NAME)
 
 
     return (

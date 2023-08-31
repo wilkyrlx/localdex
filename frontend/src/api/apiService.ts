@@ -32,6 +32,18 @@ class apiService {
         const data = await response.json()
         return data
     }
+
+    static async updateContact(contact: any) {
+        const response = await fetch(process.env.REACT_APP_BACKEND_URI + '/updateContact', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(contact)
+        })
+        const data = await response.json()
+        return data
+    }
 }
 
 export default apiService;

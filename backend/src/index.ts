@@ -1,13 +1,11 @@
 import express from 'express';
 import { MongoClient } from 'mongodb';
 import cors from 'cors';
-import logger from './util/logger';
 import dotenv from 'dotenv';
 import DatabaseManager from './mongoClient';
 
 dotenv.config();
-logger.info("=================== LOG BREAK ===================")
-logger.info("Starting server...")
+
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -34,8 +32,10 @@ async function main() {
     // Insert example data
     app.post('/insertContact', (res, req) => { databaseManager.insertContact(res, req) });
 
+    app.post('/updateContact', (res, req) => { databaseManager.updateContact(res, req) });
+
     // Retrieve example data
-    app.get('/data', isAuthenticated, (res, req) => { databaseManager.getData(res, req) });
+    app.get('/data', (res, req) => { databaseManager.getData(res, req) });
 
     app.get('/helloWorld', isAuthenticated, (req, res) => {
         res.status(200).json({ message: 'Hello World!' });

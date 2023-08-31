@@ -1,6 +1,5 @@
 import { MongoClient } from 'mongodb';
 import dotenv from 'dotenv';
-import logger from './util/logger';
 
 dotenv.config();
 
@@ -36,12 +35,21 @@ class DatabaseManager {
         const data = req.body;
         try {
             const result = await collection.insertOne(data);
-            logger.info(`Inserted data: ${JSON.stringify(data)}`);
             res.status(201).json(result);
         } catch (error) {
-            logger.error(`Error inserting data, error: ${error}`);
-            logger.error(`Error inserting data, data: ${JSON.stringify(data)}`);
             res.status(500).json({ error: 'Error inserting data' });
+        }
+    }
+
+    async updateContact(req: any, res: any) {
+        const collection = this.getCollection();
+        const data = req.body;
+        try {
+            console.log("updating contact");
+            const result = await collection.updateOne({ _id: data._id }, { $set: data });
+            res.status(201).json(result);
+        } catch (error) {
+            res.status(500).json({ error: 'Error updating data' });
         }
     }
 

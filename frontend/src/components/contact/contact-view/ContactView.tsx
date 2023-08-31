@@ -1,15 +1,18 @@
 import Contact from "../../../../../shared/types/Contact"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import ContactInputBox from "./ContactInputBox"
 // import ReactJson from 'react-json-view'     // potential dependency issue, had to use --force to install
 import apiService from "../../../api/apiService"
+import { useAppContext } from "../../../AppContext"
 
 function ContactView({ activeContact }: { activeContact?: Contact }) {
-
+    
     async function loadData() {
         const data = await apiService.getData()
         console.log(data)
     }
+
+    const { setMessage } = useAppContext();
 
     const [firstNameValue, setFirstNameValue] = useState("");
     const [lastNameValue, setLastNameValue] = useState("");
@@ -22,6 +25,18 @@ function ContactView({ activeContact }: { activeContact?: Contact }) {
     const [dateLastInteractedValue, setDateLastInteractedValue] = useState("");
     const [emailValue, setEmailValue] = useState("");
     const [miscJsonValue, setMiscJsonValue] = useState<object>({});
+
+    // TODO: update all based on activeContact
+    useEffect(() => {
+        if (activeContact) {
+            setFirstNameValue(activeContact.firstName || "")
+            setLastNameValue(activeContact.lastName || "")
+            setTitleValue(activeContact.title || "")
+            setNotesValue(activeContact.notes || "")
+            setPhoneNumberValue(activeContact.phoneNumber || "")
+        }
+    }, [activeContact]);
+
 
 
     async function saveContact() {
@@ -40,6 +55,26 @@ function ContactView({ activeContact }: { activeContact?: Contact }) {
             dateLastInteracted: date
         }
         const data = await apiService.insertContact(contact)
+        setMessage("Contact added")
+    }
+
+    async function updateContact() {
+        const date = new Date()
+        const contact = {
+            alias: [firstNameValue + " " + lastNameValue],
+            firstName: firstNameValue,
+            lastName: lastNameValue,
+            personalEmail: emailValue,
+            notes: notesValue,
+            title: titleValue,
+            phoneNumber: phoneNumberValue,
+            relationships: [relationshipsValue],
+            dateAdded: date,
+            dateLastUpdated: date,
+            dateLastInteracted: date
+        }
+        const data = await apiService.updateContact(contact)
+        setMessage("Contact updated")
     }
 
     return (
@@ -48,8 +83,8 @@ function ContactView({ activeContact }: { activeContact?: Contact }) {
             <h1>Contact View</h1>
             <button onClick={() => loadData()}>Print All</button>
             <button onClick={() => saveContact()}>Save Contact</button>
-            <button onClick={() => {console.log("TODO: update")}}>Update Contact</button>
-            <ContactInputBox label={"First Name"} textValue={activeContact?.firstName || "d"} setValue={setFirstNameValue} />
+            <button onClick={() => updateContact()}>Update Contact</button>
+            <ContactInputBox label={"First Name"} textValue={firstNameValue} setValue={setFirstNameValue} />
             <ContactInputBox label={"Last Name"} textValue={lastNameValue} setValue={setLastNameValue} />
             <ContactInputBox label={"Notes"} textValue={notesValue} setValue={setNotesValue} />
             <ContactInputBox label={"Title"} textValue={titleValue} setValue={setTitleValue} />

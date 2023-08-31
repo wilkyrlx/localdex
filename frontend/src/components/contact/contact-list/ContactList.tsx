@@ -14,20 +14,30 @@ function ContactList({ setActiveContact }: { setActiveContact : any }) {
 
     function loadFakeContact() {
         const date = new Date()
-        const fakeContact: Contact = {
-            _id: "fake-id",
-            firstName: "Fake Contact",
-            title: "Fake Contact Title",
+        const Crockett: Contact = {
+            _id: "64f02a80c59c53b737285ac4",
+            firstName: "James",
+            lastName: "Crockett",
+            title: "Detective",
             alias: [],
             dateAdded: date,
             dateLastUpdated: date
         }
-        setContacts([fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact, fakeContact])
+        const Tubbs: Contact = {
+            _id: "fake-id2",
+            firstName: "Ricardo",
+            lastName: "Tubbs",
+            title: "Detective",
+            alias: [],
+            dateAdded: date,
+            dateLastUpdated: date
+        }
+        setContacts([Crockett, Tubbs])
     }
 
     useEffect(() => {
-        //loadData()
-        loadFakeContact()
+        loadData()
+        //loadFakeContact()
     }, [])
 
     return(
