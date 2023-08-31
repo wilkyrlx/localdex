@@ -84,6 +84,7 @@ function ContactView({ activeContact }: { activeContact?: Contact }) {
             <button onClick={() => loadData()}>Print All</button>
             <button onClick={() => saveContact()}>Save Contact</button>
             <button onClick={() => updateContact()}>Update Contact</button>
+            <p>{activeContact?._id}</p>
             <ContactInputBox label={"First Name"} textValue={firstNameValue} setValue={setFirstNameValue} />
             <ContactInputBox label={"Last Name"} textValue={lastNameValue} setValue={setLastNameValue} />
             <ContactInputBox label={"Notes"} textValue={notesValue} setValue={setNotesValue} />

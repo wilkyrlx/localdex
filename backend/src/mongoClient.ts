@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -45,8 +45,8 @@ class DatabaseManager {
         const collection = this.getCollection();
         const data = req.body;
         try {
-            console.log("updating contact");
-            const result = await collection.updateOne({ _id: data._id }, { $set: data });
+            const result = await collection.updateOne({ _id: new ObjectId(data._id) }, { $set: data });
+            console.log(`${result.matchedCount} document(s) matched and ${result.modifiedCount} document(s) modified`);
             res.status(201).json(result);
         } catch (error) {
             res.status(500).json({ error: 'Error updating data' });

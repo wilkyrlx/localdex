@@ -42,6 +42,7 @@ class apiService {
             body: JSON.stringify(contact)
         })
         const data = await response.json()
+        console.log(data)
         return data
     }
 }
