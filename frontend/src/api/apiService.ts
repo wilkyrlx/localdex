@@ -1,4 +1,5 @@
 import dotenv from 'dotenv'
+import Contact from '../../../shared/types/Contact';
 
 /**
  * Service to handle API calls

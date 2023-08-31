@@ -43,13 +43,17 @@ class DatabaseManager {
 
     async updateContact(req: any, res: any) {
 
-        const documentIdToUpdate = '64eac72400e15a6fc87c6fe1';
+        // const documentIdToUpdate: ObjectId = new ObjectId('64eac72400e15a6fc87c6fe1');
+
         const collection = this.getCollection();
         const data = req.body;
+        const documentIdToUpdate: ObjectId = new ObjectId(data._id);
+        const dataToUpdate = data;
+        delete dataToUpdate._id;
+
         try {
-            // issue: _id keeps changing somehow
-            const result = await collection.updateOne({ _id: data._id as ObjectId }, { $set: data });
-            console.log(`${result.matchedCount} document(s) matched and ${result.modifiedCount} document(s) modified, ID was ${new ObjectId(data._id)}`);
+            const result = await collection.updateOne({ _id: documentIdToUpdate }, { $set: dataToUpdate });
+            console.log(`${result.matchedCount} document(s) matched and ${result.modifiedCount} document(s) modified, ID was ${data._id}`);
             res.status(201).json(result);
         } catch (error) {
             res.status(500).json({ error: 'Error updating data' });

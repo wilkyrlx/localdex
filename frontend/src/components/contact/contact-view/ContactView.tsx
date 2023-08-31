@@ -53,7 +53,7 @@ function ContactView({ activeContact }: { activeContact?: Contact }) {
             dateAdded: date,
             dateLastUpdated: date,
             dateLastInteracted: date
-        }
+        } 
         const data = await apiService.insertContact(contact)
         setMessage("Contact added")
     }
@@ -61,6 +61,7 @@ function ContactView({ activeContact }: { activeContact?: Contact }) {
     async function updateContact() {
         const date = new Date()
         const contact = {
+            _id: activeContact?._id,
             alias: [firstNameValue + " " + lastNameValue],
             firstName: firstNameValue,
             lastName: lastNameValue,
