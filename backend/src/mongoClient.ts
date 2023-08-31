@@ -47,7 +47,7 @@ class DatabaseManager {
         const collection = this.getCollection();
         const data = req.body;
         try {
-            const result = await collection.updateOne({ _id: new ObjectId(documentIdToUpdate) }, { $set: data });
+            const result = await collection.updateOne({ _id: new ObjectId(data._id) }, { $set: data });
             console.log(`${result.matchedCount} document(s) matched and ${result.modifiedCount} document(s) modified, ID was ${new ObjectId(data._id)}`);
             res.status(201).json(result);
         } catch (error) {
