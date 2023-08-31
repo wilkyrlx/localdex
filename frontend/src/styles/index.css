@@ -81,35 +81,3 @@
     border: 1px solid #ccc;
     padding: 10px;
 }
-
-.notification {
-    position: fixed;
-    top: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: #3a9455;
-    color: #fff;
-    padding: 10px 20px;
-    border-radius: 5px;
-    animation: slide-in 0.5s forwards, fade-out 0.5s 2.5s forwards;
-}
-
-@keyframes slide-in {
-    0% {
-        transform: translateX(-50%) translateY(-100%);
-    }
-
-    100% {
-        transform: translateX(-50%) translateY(0);
-    }
-}
-
-@keyframes fade-out {
-    0% {
-        opacity: 1;
-    }
-
-    100% {
-        opacity: 0;
-    }
-}

@@ -5,15 +5,16 @@ import AboutPage from './components/pages/AboutPage';
 import ContactsPage from './components/pages/ContactsPage';
 import MapPage from './components/pages/MapPage';
 import ImportPage from './components/pages/ImportPage';
+import NotificationBar from './components/NotificationBar';
+import { useAppContext } from './AppContext';
 
-function loadApp() {
-    // load dotenv
-    console.log("URI: " + process.env.REACT_APP_BACKEND_URI)
-    console.log("Version: " + process.env.NODE_ENV)
-}
+
 
 function App() {
-    loadApp();
+    const { message } = useAppContext();
+
+    console.log("Version: " + process.env.NODE_ENV)
+
 
     return (
         <div className="App">
@@ -34,6 +35,7 @@ function App() {
                     </main>
                 </div>
             </BrowserRouter>
+            <NotificationBar message={message} />
         </div >
     );
 }

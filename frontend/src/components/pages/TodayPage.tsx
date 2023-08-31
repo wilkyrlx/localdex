@@ -1,3 +1,5 @@
+import { useAppContext } from "../../AppContext";
+
 function TodayPage() {
     return (
         <div>
