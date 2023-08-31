@@ -2,7 +2,7 @@ import { useEffect, useState } from "react"
 import ContactListItem from "./ContactListItem"
 import Contact from "../../../../../shared/types/Contact"
 
-function ContactList() {
+function ContactList({ setActiveContact }: { setActiveContact : any }) {
 
     const [contacts, setContacts] = useState<Contact[]>([])
 
@@ -15,6 +15,7 @@ function ContactList() {
     function loadFakeContact() {
         const date = new Date()
         const fakeContact: Contact = {
+            _id: "fake-id",
             firstName: "Fake Contact",
             title: "Fake Contact Title",
             alias: [],
@@ -33,7 +34,7 @@ function ContactList() {
         <div>
             <p>Contact list</p>
             <ul>
-                { contacts.map((contact) => <ContactListItem contact={contact} />) }
+                { contacts.map((contact) => <ContactListItem contact={contact} setActiveContact={setActiveContact} />) }
             </ul>
         </div>
     )

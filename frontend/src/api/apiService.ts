@@ -13,20 +13,24 @@ class apiService {
     }
 
     static async getData() {
-        const response = await fetch(process.env.REACT_APP_BACKEND_URI + '/data', {headers: this.generateHeaders()})
+        const response = await fetch(process.env.REACT_APP_BACKEND_URI + '/data', {
+            headers: this.generateHeaders()
+        });
         const data = await response.json()
         return data
     }
 
-    // TODO: handle headers and return response here
+    // TODO: handle headers
     static async insertContact(contact: any) {
-        fetch(process.env.REACT_APP_BACKEND_URI + '/insertContact', {
+        const response = await fetch(process.env.REACT_APP_BACKEND_URI + '/insertContact', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(contact)
         })
+        const data = await response.json()
+        return data
     }
 }
 

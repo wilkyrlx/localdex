@@ -43,7 +43,8 @@
 .list-item-bar {
     width: 10px;
     height: 60px;
-    background-color: #3498db; /* You can change the color */
+    background-color: #3498db;
+    /* You can change the color */
     margin-right: 10px;
 }
 
@@ -56,7 +57,8 @@
     margin: 0;
     font-size: 18px;
     color: #333333;
-    margin-right: 10px; /* Add some spacing between name and description */
+    margin-right: 10px;
+    /* Add some spacing between name and description */
 }
 
 .list-item-description {
@@ -67,13 +69,47 @@
 
 .contact-page-container {
     display: flex;
-    height: 95vh; /* Take up 95% of the viewport height */
-    overflow: hidden; /* Prevent container from scrolling */
+    height: 95vh;
+    /* Take up 95% of the viewport height */
+    overflow: hidden;
+    /* Prevent container from scrolling */
 }
 
 .scrollable-container {
-    overflow: auto; /* Enable scrolling within the div */
-    border: 1px solid #ccc; 
-    padding: 10px; 
+    overflow: auto;
+    /* Enable scrolling within the div */
+    border: 1px solid #ccc;
+    padding: 10px;
 }
 
+.notification {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #3a9455;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    animation: slide-in 0.5s forwards, fade-out 0.5s 2.5s forwards;
+}
+
+@keyframes slide-in {
+    0% {
+        transform: translateX(-50%) translateY(-100%);
+    }
+
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+@keyframes fade-out {
+    0% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0;
+    }
+}

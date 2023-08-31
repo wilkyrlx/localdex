@@ -4,7 +4,7 @@ import ContactInputBox from "./ContactInputBox"
 // import ReactJson from 'react-json-view'     // potential dependency issue, had to use --force to install
 import apiService from "../../../api/apiService"
 
-function ContactView() {
+function ContactView({ activeContact }: { activeContact?: Contact }) {
 
     async function loadData() {
         const data = await apiService.getData()
@@ -24,7 +24,7 @@ function ContactView() {
     const [miscJsonValue, setMiscJsonValue] = useState<object>({});
 
 
-    function saveContact() {
+    async function saveContact() {
         const date = new Date()
         const contact = {
             alias: [firstNameValue + " " + lastNameValue],
@@ -39,7 +39,7 @@ function ContactView() {
             dateLastUpdated: date,
             dateLastInteracted: date
         }
-        apiService.insertContact(contact)
+        const data = await apiService.insertContact(contact)
     }
 
     return (
@@ -49,7 +49,7 @@ function ContactView() {
             <button onClick={() => loadData()}>Print All</button>
             <button onClick={() => saveContact()}>Save Contact</button>
             <button onClick={() => {console.log("TODO: update")}}>Update Contact</button>
-            <ContactInputBox label={"First Name"} textValue={firstNameValue} setValue={setFirstNameValue} />
+            <ContactInputBox label={"First Name"} textValue={activeContact?.firstName || "d"} setValue={setFirstNameValue} />
             <ContactInputBox label={"Last Name"} textValue={lastNameValue} setValue={setLastNameValue} />
             <ContactInputBox label={"Notes"} textValue={notesValue} setValue={setNotesValue} />
             <ContactInputBox label={"Title"} textValue={titleValue} setValue={setTitleValue} />
