@@ -5,12 +5,7 @@ import ContactInputBox from "./ContactInputBox"
 import apiService from "../../../api/apiService"
 import { useAppContext } from "../../../AppContext"
 
-function ContactView({ activeContact }: { activeContact?: Contact }) {
-    
-    async function loadData() {
-        const data = await apiService.getData()
-        console.log(data)
-    }
+function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Contact, setReloadTrigger: any }) {
 
     const { setMessage } = useAppContext();
 
@@ -34,9 +29,11 @@ function ContactView({ activeContact }: { activeContact?: Contact }) {
             setTitleValue(activeContact.title || "")
             setNotesValue(activeContact.notes || "")
             setPhoneNumberValue(activeContact.phoneNumber || "")
+            setDateAddedValue(activeContact.dateAdded?.toString() || "")
+            setDateLastUpdatedValue(activeContact.dateLastUpdated?.toString() || "")
+            setDateLastInteractedValue(activeContact.dateLastInteracted?.toString() || "")
         }
     }, [activeContact]);
-
 
 
     async function saveContact() {
@@ -56,6 +53,7 @@ function ContactView({ activeContact }: { activeContact?: Contact }) {
         } 
         const data = await apiService.insertContact(contact)
         setMessage("Contact added")
+        setReloadTrigger(Math.random())
     }
 
     async function updateContact() {
@@ -70,19 +68,18 @@ function ContactView({ activeContact }: { activeContact?: Contact }) {
             title: titleValue,
             phoneNumber: phoneNumberValue,
             relationships: [relationshipsValue],
-            dateAdded: date,
             dateLastUpdated: date,
             dateLastInteracted: date
         }
         const data = await apiService.updateContact(contact)
         setMessage("Contact updated")
+        setReloadTrigger(Math.random())
     }
 
     return (
 
         <div>
             <h1>Contact View</h1>
-            <button onClick={() => loadData()}>Print All</button>
             <button onClick={() => saveContact()}>Save Contact</button>
             <button onClick={() => updateContact()}>Update Contact</button>
             <p>{activeContact?._id}</p>
