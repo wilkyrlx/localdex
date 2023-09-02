@@ -2,8 +2,8 @@ import Contact from "../../../../../shared/types/Contact"
 import { useEffect, useState } from "react"
 import ContactInputBox from "./ContactInputBox"
 // import ReactJson from 'react-json-view'     // potential dependency issue, had to use --force to install
-import apiService from "../../../api/apiService"
 import { useAppContext } from "../../../AppContext"
+import apiService from "../../../api/apiService";
 
 function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Contact, setReloadTrigger: any }) {
 
@@ -28,7 +28,7 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
             setLastNameValue(activeContact.lastName || "")
             setTitleValue(activeContact.title || "")
             setNotesValue(activeContact.notes || "")
-            setPhoneNumberValue(activeContact.phoneNumber || "")
+            setPhoneNumberValue(activeContact.primaryPhone || "")
             setDateAddedValue(activeContact.dateAdded?.toString() || "")
             setDateLastUpdatedValue(activeContact.dateLastUpdated?.toString() || "")
             setDateLastInteractedValue(activeContact.dateLastInteracted?.toString() || "")
