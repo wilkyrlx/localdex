@@ -1,9 +1,10 @@
 import Contact from "../../../../../shared/types/Contact"
 import { useEffect, useState } from "react"
 import ContactInputBox from "./ContactInputBox"
-// import ReactJson from 'react-json-view'     // potential dependency issue, had to use --force to install
 import { useAppContext } from "../../../AppContext"
 import apiService from "../../../api/apiService";
+import JsonView from '@uiw/react-json-view';
+
 
 function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Contact, setReloadTrigger: any }) {
 
@@ -32,6 +33,7 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
             setDateAddedValue(activeContact.dateAdded?.toString() || "")
             setDateLastUpdatedValue(activeContact.dateLastUpdated?.toString() || "")
             setDateLastInteractedValue(activeContact.dateLastInteracted?.toString() || "")
+            setMiscJsonValue(activeContact)
         }
     }, [activeContact]);
 
@@ -93,9 +95,7 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
             <ContactInputBox label={"Date Added"} textValue={dateAddedValue} setValue={setDateAddedValue} />
             <ContactInputBox label={"Date Last Updated"} textValue={dateLastUpdatedValue} setValue={setDateLastUpdatedValue} />
             <ContactInputBox label={"Date Last Interacted"} textValue={dateLastInteractedValue} setValue={setDateLastInteractedValue} />
-            {/*
-            TODO: find stable react-json-view dependency or similar
-            <ReactJson src={miscJsonValue} name={false} displayDataTypes={false} collapsed={1} /> */}
+            <JsonView value={miscJsonValue} displayDataTypes={false} collapsed={1} quotes="" />
         </div>
     );
 }
