@@ -4,7 +4,6 @@ function ContactListItem({ contact, setActiveContact }: { contact: Contact , set
 
     function openContactView() {
         console.log("open contact view")
-        // TODO: trigger load in react component
         setActiveContact(contact)
     }
 
