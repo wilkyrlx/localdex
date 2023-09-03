@@ -4,22 +4,40 @@ import ContactInputBox from "./ContactInputBox"
 import { useAppContext } from "../../../AppContext"
 import apiService from "../../../api/apiService";
 import JsonView from '@uiw/react-json-view';
+import { stat } from "fs";
 
 
 function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Contact, setReloadTrigger: any }) {
 
     const { setMessage } = useAppContext();
 
-    const [firstNameValue, setFirstNameValue] = useState("");
-    const [lastNameValue, setLastNameValue] = useState("");
-    const [titleValue, setTitleValue] = useState("");
-    const [notesValue, setNotesValue] = useState("");
-    const [phoneNumberValue, setPhoneNumberValue] = useState("");
-    const [relationshipsValue, setRelationshipsValue] = useState("");
+    const [firstNameValue, setFirstNameValue] = useState<string>("");
+    const [lastNameValue, setLastNameValue] = useState<string>("");
+    const [photoUriValue, setPhotoUriValue] = useState<string>("");
+    const [titleValue, setTitleValue] = useState<string>("");
+    const [notesValue, setNotesValue] = useState<string>("");
+    const [birthdayValue, setBirthdayValue] = useState<Date | undefined>(undefined);
+    
+    const [addressValue, setAddressValue] = useState<string>(""); // TODO: change to Address
+    const [formerAddressesValue, setFormerAddressesValue] = useState<string>(""); // TODO: change to Address
+    
+    const [primaryPhoneValue, setPrimaryPhoneValue] = useState("");     // TODO: change to Phone
+    const [alternatePhone, setAlternatePhone] = useState("");           // TODO: change to Phone
+
+    const [personalEmailValue, setPersonalEmailValue] = useState<string>(""); 
+    const [workEmailValue, setWorkEmailValue] = useState<string>("");        
+
+    // TODO: add social media, education, work
+
+    const [relationshipsValue, setRelationshipsValue] = useState<string[]>([]); // TODO: change to Relationship[]
+
+    const [groupsValue, setGroupsValue] = useState<string[]>([]); // TODO: change to Group[]
+
+    const [interactionsValue, setInteractionsValue] = useState<string[]>([]); // TODO: change to Interaction[]
+
     const [dateAddedValue, setDateAddedValue] = useState("");
     const [dateLastUpdatedValue, setDateLastUpdatedValue] = useState("");
     const [dateLastInteractedValue, setDateLastInteractedValue] = useState("");
-    const [emailValue, setEmailValue] = useState("");
     const [miscJsonValue, setMiscJsonValue] = useState<object>({});
 
     // TODO: update all based on activeContact
@@ -29,7 +47,7 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
             setLastNameValue(activeContact.lastName || "")
             setTitleValue(activeContact.title || "")
             setNotesValue(activeContact.notes || "")
-            setPhoneNumberValue(activeContact.primaryPhone || "")
+            setPrimaryPhoneValue(activeContact.primaryPhone || "")
             setDateAddedValue(activeContact.dateAdded?.toString() || "")
             setDateLastUpdatedValue(activeContact.dateLastUpdated?.toString() || "")
             setDateLastInteractedValue(activeContact.dateLastInteracted?.toString() || "")
@@ -44,10 +62,10 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
             alias: [firstNameValue + " " + lastNameValue],
             firstName: firstNameValue,
             lastName: lastNameValue,
-            personalEmail: emailValue,
+            personalEmail: personalEmailValue,
             notes: notesValue,
             title: titleValue,
-            phoneNumber: phoneNumberValue,
+            phoneNumber: primaryPhoneValue,
             relationships: [relationshipsValue],
             dateAdded: date,
             dateLastUpdated: date,
@@ -58,6 +76,7 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
         setReloadTrigger(Math.random())
     }
 
+
     async function updateContact() {
         const date = new Date()
         const contact = {
@@ -65,10 +84,10 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
             alias: [firstNameValue + " " + lastNameValue],
             firstName: firstNameValue,
             lastName: lastNameValue,
-            personalEmail: emailValue,
+            personalEmail: personalEmailValue,
             notes: notesValue,
             title: titleValue,
-            phoneNumber: phoneNumberValue,
+            phoneNumber: primaryPhoneValue,
             relationships: [relationshipsValue],
             dateLastUpdated: date,
             dateLastInteracted: date
@@ -89,9 +108,8 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
             <ContactInputBox label={"Last Name"} textValue={lastNameValue} setValue={setLastNameValue} />
             <ContactInputBox label={"Notes"} textValue={notesValue} setValue={setNotesValue} />
             <ContactInputBox label={"Title"} textValue={titleValue} setValue={setTitleValue} />
-            <ContactInputBox label={"Phone Number"} textValue={phoneNumberValue} setValue={setPhoneNumberValue} />
-            <ContactInputBox label={"Relationships"} textValue={relationshipsValue} setValue={setRelationshipsValue} />
-            <ContactInputBox label={"Email"} textValue={emailValue} setValue={setEmailValue} />
+            <ContactInputBox label={"Phone Number"} textValue={primaryPhoneValue} setValue={setPrimaryPhoneValue} />
+            <ContactInputBox label={"Email"} textValue={personalEmailValue} setValue={setPersonalEmailValue} />
             <ContactInputBox label={"Date Added"} textValue={dateAddedValue} setValue={setDateAddedValue} />
             <ContactInputBox label={"Date Last Updated"} textValue={dateLastUpdatedValue} setValue={setDateLastUpdatedValue} />
             <ContactInputBox label={"Date Last Interacted"} textValue={dateLastInteractedValue} setValue={setDateLastInteractedValue} />

@@ -6,9 +6,9 @@ interface ContactBase {
     firstName?: string;
     lastName?: string;
     photoUri?: string[];
+    title?: string;         // description of user (i.e. "promoter", "landlord", "swe @ google")
     notes?: string;
     birthday?: Date;
-    title?: string;         // description of user (i.e. "promoter", "landlord", "swe @ google")
 
     // Physical address
     address?: string[];     // TODO: change to address object (string + description tuple)
