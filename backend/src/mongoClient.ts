@@ -41,6 +41,17 @@ class DatabaseManager {
         }
     }
 
+    async insertMultipleContacts(req: any, res: any) {
+        const collection = this.getCollection();
+        const data = req.body;
+        try {
+            const result = await collection.insertMany(data);
+            res.status(201).json(result);
+        } catch (error) {
+            res.status(500).json({ error: 'Error inserting data' });
+        }
+    }
+
     async updateContact(req: any, res: any) {
 
         // const documentIdToUpdate: ObjectId = new ObjectId('64eac72400e15a6fc87c6fe1');
@@ -60,7 +71,19 @@ class DatabaseManager {
         }
     }
 
-
+    async deleteContact(req: any, res: any) {
+        const collection = this.getCollection();
+        const data = req.body;
+        const documentIdToDelete: ObjectId = new ObjectId(data._id);
+        try {
+            const result = await collection.deleteOne({ _id: documentIdToDelete });
+            console.log(`${result.deletedCount} document(s) deleted, ID was ${data._id}`);
+            res.status(201).json(result);
+        } catch (error) {
+            res.status(500).json({ error: 'Error deleting data' });
+        }
+    }
+    
     async getData(req: any, res: any) {
         const collection = this.getCollection();
         try {

@@ -27,12 +27,19 @@ async function main() {
     // remember to make sure IP is whitelisted on mongoDB if running locally - otherwise may see conn error
     await databaseManager.databaseConnect()
 
-    // Insert example data
+    // Insert contact
     app.post('/insertContact', (res, req) => { databaseManager.insertContact(res, req) });
 
+    // Insert multiple contacts
+    app.post('/insertMultipleContacts', (res, req) => { databaseManager.insertMultipleContacts(res, req) });
+
+    // Update contact by ID
     app.post('/updateContact', (res, req) => { databaseManager.updateContact(res, req) });
 
-    // Retrieve example data
+    // Delete contact by ID
+    app.post('/deleteContact', (res, req) => { databaseManager.deleteContact(res, req) });
+
+    // Retrieve data
     app.get('/data', isAuthenticated, (res, req) => { databaseManager.getData(res, req) });
 
     app.get('/helloWorld', isAuthenticated, (req, res) => {

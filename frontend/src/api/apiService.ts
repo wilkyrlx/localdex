@@ -30,7 +30,7 @@ class ApiService {
     }
 
     // TODO: handle headers
-    async insertContact(contact: any) {
+    async insertContact(contact: Contact) {
         const response = await fetch(`${backendUri}/insertContact`, {
             method: 'POST',
             headers: this.generateHeaders(),
@@ -40,7 +40,17 @@ class ApiService {
         return data
     }
 
-    async updateContact(contact: any) {
+    async insertMultipleContacts(contacts: Contact[]) {
+        const response = await fetch(`${backendUri}/insertMultipleContacts`, {
+            method: 'POST',
+            headers: this.generateHeaders(),
+            body: JSON.stringify(contacts)
+        })
+        const data = await response.json()
+        return data
+    }
+
+    async updateContact(contact: Contact) {
         const response = await fetch(`${backendUri}/updateContact`, {
             method: 'POST',
             headers: this.generateHeaders(),
@@ -48,6 +58,16 @@ class ApiService {
         })
         const data = await response.json()
         console.log(data)
+        return data
+    }
+
+    async deleteContact(contact: Contact) {
+        const response = await fetch(`${backendUri}/deleteContact`, {
+            method: 'POST',
+            headers: this.generateHeaders(),
+            body: JSON.stringify(contact)
+        })
+        const data = await response.json()
         return data
     }
 }

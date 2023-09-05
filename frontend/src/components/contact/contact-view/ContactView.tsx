@@ -58,7 +58,7 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
 
     async function saveContact() {
         const date = new Date()
-        const contact = {
+        const contact: Contact = {
             alias: [firstNameValue + " " + lastNameValue],
             firstName: firstNameValue,
             lastName: lastNameValue,
@@ -66,7 +66,7 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
             notes: notesValue,
             title: titleValue,
             phoneNumber: primaryPhoneValue,
-            relationships: [relationshipsValue],
+            relationships: relationshipsValue,
             dateAdded: date,
             dateLastUpdated: date,
             dateLastInteracted: date
@@ -79,7 +79,7 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
 
     async function updateContact() {
         const date = new Date()
-        const contact = {
+        const contact: Contact = {
             _id: activeContact?._id,
             alias: [firstNameValue + " " + lastNameValue],
             firstName: firstNameValue,
@@ -88,7 +88,7 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
             notes: notesValue,
             title: titleValue,
             phoneNumber: primaryPhoneValue,
-            relationships: [relationshipsValue],
+            relationships: relationshipsValue,
             dateLastUpdated: date,
             dateLastInteracted: date
         }
