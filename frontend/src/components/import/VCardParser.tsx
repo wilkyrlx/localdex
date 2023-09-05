@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
 import VCard from 'vcf';
+import VcardImportClient from '../../import-clients/VcardImportClient';
+import Contact from '../../../../shared/types/Contact';
 
 function VCardParser() {
-  const [cards, setCards] = useState<any[]>([]);
+  const [cards, setCards] = useState<Contact[]>([]);
 
   const handleFileChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
 
     if (file) {
       try {
-        const vCardData = await readFileAsync(file);
-        const parsedCards = parseVCardNames(vCardData);
+        const vCardData: string = await readFileAsync(file);
+        const client = new VcardImportClient();
+        const parsedCards = client.importToContacts(vCardData);
         setCards(parsedCards);
       } catch (error) {
         console.error('Error reading or parsing vCard:', error);
@@ -27,15 +30,6 @@ function VCardParser() {
     });
   };
 
-  const parseVCardNames = (vCardData: string): VCard[] => {
-    const vCards = vCardData.split('END:VCARD');
-    return vCards
-      .filter((vCard) => vCard.trim() !== '')
-      .map((vCardData, index) => {
-        const vCard: VCard = new VCard().parse(vCardData + 'END:VCARD');
-        return vCard;
-      });
-  };
 
   return (
     <div>
@@ -44,7 +38,7 @@ function VCardParser() {
       <button onClick={() => console.log(cards)}>Log Cards</button>
         <ul>
             {cards.map((card, index) => (
-                <li key={index}>{card.get('n').valueOf()}</li>
+                <li key={index}>{card.firstName} {card.lastName}</li>
             ))}
         </ul>
     </div>
