@@ -1,6 +1,6 @@
 import SidebarComponent from './components/SidebarComponent';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import TodayPage from './components/pages/TodayPage';
+import HomePage from './components/pages/HomePage';
 import AboutPage from './components/pages/AboutPage';
 import ContactsPage from './components/pages/ContactsPage';
 import MapPage from './components/pages/MapPage';
@@ -25,7 +25,7 @@ function App() {
                 <div className="main-content">
                     <main>
                         <Routes>
-                            <Route path="/" element={<TodayPage />} />
+                            <Route path="/" element={<HomePage />} />
                             <Route path="/contact" element={<ContactsPage />} />
                             <Route path="/map" element={<MapPage />} />
                             <Route path="/import" element={<ImportPage />} />

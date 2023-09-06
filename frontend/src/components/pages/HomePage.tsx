@@ -1,6 +1,6 @@
 import { useAppContext } from "../../AppContext";
 
-function TodayPage() {
+function HomePage() {
     return (
         <div>
             <h1>Home</h1>
@@ -9,4 +9,4 @@ function TodayPage() {
     );
 }
 
-export default TodayPage;
+export default HomePage;
