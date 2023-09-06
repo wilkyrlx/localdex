@@ -15,36 +15,14 @@ function ContactsPage() {
         setContacts(data)
     }
 
-    function loadFakeContact() {
-        const date = new Date()
-        const Crockett: Contact = {
-            _id: "64f02a80c59c53b737285ac4",
-            firstName: "James",
-            lastName: "Crockett",
-            title: "Detective",
-            alias: [],
-            dateAdded: date,
-            dateLastUpdated: date
-        }
-        const Tubbs: Contact = {
-            _id: "fake-id2",
-            firstName: "Ricardo",
-            lastName: "Tubbs",
-            title: "Detective",
-            alias: [],
-            dateAdded: date,
-            dateLastUpdated: date
-        }
-        setContacts([Crockett, Tubbs])
-    }
 
     // load data on page load
     useEffect(() => {
         loadData()
-        //loadFakeContact()
     }, [])
     
     // load data when reloadTrigger changes
+    // TODO: instead of reloadTrigger on every update, what about a "changes have been made" bar that can be clicked to show updates
     useEffect(() => {
         loadData()
     }, [reloadTrigger])
@@ -52,7 +30,7 @@ function ContactsPage() {
     return (
         <div className="contact-page-container">
             <div className="scrollable-container" style={{width: "40%", resize: "horizontal"}}>
-                <ContactList setActiveContact={setActiveContact} contacts={contacts} />
+                <ContactList setActiveContact={setActiveContact} contacts={contacts} setReloadTrigger={setReloadTrigger} />
             </div>
             <div className="scrollable-container" style={{flex: 1}} >
                 <ContactView activeContact={activeContact} setReloadTrigger={setReloadTrigger} />

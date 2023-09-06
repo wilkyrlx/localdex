@@ -21,6 +21,7 @@ class ApiService {
         return headers
     }
 
+    // TODO: data is too big right now to get all of it at once
     async getData() {
         const response = await fetch(`${backendUri}/data`, {
             headers: this.generateHeaders()
@@ -29,7 +30,6 @@ class ApiService {
         return data
     }
 
-    // TODO: handle headers
     async insertContact(contact: Contact) {
         const response = await fetch(`${backendUri}/insertContact`, {
             method: 'POST',

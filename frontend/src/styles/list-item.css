@@ -1,0 +1,53 @@
+.list-item {
+    display: flex;
+    align-items: center;
+    background-color: #ffffff;
+    margin: 10px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative; /* Added for positioning the delete link */
+}
+
+.list-item-bar {
+    width: 10px;
+    height: 60px;
+    background-color: #3498db;
+    /* You can change the color */
+    margin-right: 10px;
+}
+
+.list-item-content {
+    display: flex;
+    align-items: center;
+}
+
+.list-item-name {
+    margin: 0;
+    font-size: 18px;
+    color: #333333;
+    margin-right: 10px;
+    /* Add some spacing between name and description */
+}
+
+.list-item-description {
+    margin: 0;
+    font-size: 14px;
+    color: #777777;
+}
+
+.list-item-delete-link {
+    background-color: rgb(231, 140, 140);
+    color: white;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; 
+    height: 30px; 
+    border-radius: 50%; 
+    position: absolute;
+    top: 50%;
+    right: 10px; 
+    transform: translateY(-50%);
+}
