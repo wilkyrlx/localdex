@@ -69,7 +69,7 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
             relationships: relationshipsValue,
             dateAdded: date,
             dateLastUpdated: date,
-            dateLastInteracted: date
+            source: "added manually"
         } 
         const data = await apiService.insertContact(contact)
         setMessage("Contact added")
@@ -90,7 +90,6 @@ function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Cont
             phoneNumber: primaryPhoneValue,
             relationships: relationshipsValue,
             dateLastUpdated: date,
-            dateLastInteracted: date
         }
         const data = await apiService.updateContact(contact)
         setMessage("Contact updated")

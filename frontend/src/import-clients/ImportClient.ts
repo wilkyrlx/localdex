@@ -6,6 +6,8 @@ abstract class ImportClient {
     // Takes in a string of data and returns an array of contacts
     abstract importToContacts(input: string): Contact[];
 
+    abstract buildContact(rawData: any): Contact;
+
     // TODO: (Diff as any) is a hacky workaround 
     static checkFileDiff(oldFile: string, newFile: string) {
 

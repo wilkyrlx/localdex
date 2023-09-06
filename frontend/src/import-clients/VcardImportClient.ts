@@ -14,22 +14,35 @@ class VcardImportClient extends ImportClient {
             });
 
         return vCardsActual.map((vCard) => {
-            const contact: Contact = {
-                alias: [],
-                personalEmail: vCard.get('email')?.valueOf() as string,
-                primaryPhone: vCard.get('tel')?.valueOf() as string
-            };
-
-            const rawName: string | Object = vCard.get('n')?.valueOf();
-            if (typeof rawName === 'string') {
-                const names = rawName.split(';');
-                contact.firstName = names[1];
-                contact.lastName = names[0];
-            }
-
-            console.log(contact);
-            return contact;
+            return this.buildContact(vCard);
         });
+    }
+
+    buildContact(rawData: VCard): Contact {
+
+        // build from VCard data
+        // TODO: set alias and fix issues with personalEmail and primaryPhone as objects, not strings
+        const contact: Contact = {
+            alias: [],
+            personalEmail: rawData.get('email')?.valueOf() as string,
+            primaryPhone: rawData.get('tel')?.valueOf() as string
+        };
+
+        // set first and last name
+        const rawName: string | Object = rawData.get('n')?.valueOf();
+        if (typeof rawName === 'string') {
+            const names = rawName.split(';');
+            contact.firstName = names[1];
+            contact.lastName = names[0];
+        }
+
+        // set metadata
+        const date = new Date();
+        contact.dateAdded = date;
+        contact.dateLastUpdated = date;
+        contact.source = 'imported from vCard';
+
+        return contact;
     }
 }
 

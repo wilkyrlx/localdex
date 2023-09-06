@@ -13,9 +13,9 @@ class ApiService {
         this.backendUri = backendUri;
     }
 
-    generateHeaders(): any {        
+    generateHeaders(): any {
         const headers = {
-            'localdex-api-key': apiKey, 
+            'localdex-api-key': apiKey,
             'Content-Type': 'application/json'
         };
         return headers
@@ -41,12 +41,20 @@ class ApiService {
     }
 
     async insertMultipleContacts(contacts: Contact[]) {
-        const response = await fetch(`${backendUri}/insertMultipleContacts`, {
-            method: 'POST',
-            headers: this.generateHeaders(),
-            body: JSON.stringify(contacts)
-        })
-        const data = await response.json()
+        const batchCount = Math.ceil(contacts.length / 100);
+        
+        for (let i = 0; i < batchCount; i++) {
+            const batch100 = contacts.slice(i * 100, (i + 1) * 100);
+            
+            await fetch(`${backendUri}/insertMultipleContacts`, {
+                method: 'POST',
+                headers: this.generateHeaders(),
+                body: JSON.stringify(contacts)
+            })
+        }
+
+        // TODO: return data
+        const data = { message: 'insertMultipleContacts called, status unknown'}
         return data
     }
 

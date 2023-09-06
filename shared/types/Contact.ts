@@ -16,6 +16,7 @@ class Contact {
     dateAdded?: Date | undefined;        // date contact was added to database
     dateLastUpdated?: Date | undefined;          // last time any field was updated
     dateLastInteracted?: Date | undefined;   // last time user interacted with contact, either in person or virtually. Generated from log
+    source?: string | undefined;        // where contact came from (i.e. "imported from vCard", "added manually", "imported from LinkedIn")
 
     // Contact information
     alias: string[];    // Array of aliases, if no first + last name, choose first alias

@@ -17,8 +17,9 @@ function VCardParser() {
                 const vCardData: string = await readFileAsync(file);
                 const client = new VcardImportClient();
                 const parsedCards: Contact[] = client.importToContacts(vCardData);
-                const x = await apiService.insertMultipleContacts(parsedCards);
-                console.log(x);
+                
+                await apiService.insertMultipleContacts(parsedCards);
+                
                 setMessage(`Successfully imported ${parsedCards.length} contacts`);
             } catch (error) {
                 console.error('Error reading or parsing vCard:', error);
@@ -34,7 +35,6 @@ function VCardParser() {
             reader.readAsText(file);
         });
     };
-
 
     return (
         <div>
