@@ -5,7 +5,7 @@ dotenv.config();
 
 // TODO: change admin password, move into class
 const mongoUri: string = `mongodb+srv://dbAdmin:${process.env.MONGO_DB_ADMIN_PASSWORD}@localdex-dev-cluster-0.3gefrrj.mongodb.net/?retryWrites=true&w=majority`;
-const dbName: string = 'LocalDex-Dev-Cluster-0';
+const dbName: string = process.env.MONGO_DB_DB_NAME || 'LocalDex-Dev-Cluster-0';
 const collectionName: string = process.env.MONGO_DB_COLLECTION_NAME || "dev_collection";
 
 class DatabaseManager {

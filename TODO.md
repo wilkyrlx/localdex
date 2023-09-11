@@ -14,3 +14,8 @@
 
 ## Backend
 - [ ] deduplicate contacts
+
+## Long term goals
+- [ ] linkedin integration - chrome extension?
+- [ ] facebook, instagram, snapchat integration - api?
+- [ ] twitter integration
