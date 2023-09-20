@@ -40,9 +40,14 @@ class DuplicateProcessor {
             }
         }
     }
+
+    // returns true if both a and b are defined and equal
+    public existsAndEqual(a: any, b: any): Boolean {
+        return (a === undefined && b === undefined) ? false : a === b;
+    } 
+
     
     // TODO: should email, phone, etc be normalized before comparing?
-    // TODO: calibrate similarity thresholds
     /**
      * Checks two contacts and determines if they could be duplicates
      * 
@@ -53,26 +58,29 @@ class DuplicateProcessor {
         let similarity = 0;
 
         // check email (exact match)
-        if (contact.personalEmail === dupe.personalEmail) similarity += 100;
-        if (contact.workEmail === dupe.workEmail) similarity += 100;
+        if (this.existsAndEqual(contact.personalEmail, dupe.personalEmail)) similarity += 100;
+        if (this.existsAndEqual(contact.workEmail, dupe.workEmail)) similarity += 100;
         
         // check phone (exact match)
-        if (contact.personalPhone === dupe.personalPhone) similarity += 100;
-        if (contact.workPhone === dupe.workPhone) similarity += 100;
+        if (this.existsAndEqual(contact.primaryPhone, dupe.primaryPhone)) similarity += 100;
+        if (this.existsAndEqual(contact.workPhone, dupe.workPhone)) similarity += 100;
 
 
         // if no last name, look for matching first name (exact match)
-        if (!contact.lastName) {
-            if (contact.firstName?.normalize() === dupe.firstName?.normalize()) similarity += 50;
+        if (!contact.lastName || !dupe.lastName) {
+            if (this.existsAndEqual(contact.firstName?.normalize(), dupe.firstName?.normalize())) similarity += 50;
         }
 
-        // check full name (fuzzy match)
-        const contactFullName = `${contact.firstName} ${contact.lastName}`;
-        const dupeFullName = `${dupe.firstName} ${dupe.lastName}`;
-        const fullNameSimilarity = fuzz.ratio(contactFullName, dupeFullName);
-        similarity += fullNameSimilarity;
+        // check full name similarity (fuzzy match)
+        const contactFullName = (contact.firstName || '') + (contact.lastName || '');
+        const dupeFullName = (dupe.firstName || '') + (dupe.lastName || '');
+        if (contactFullName !== '' && dupeFullName !== '') {
+            similarity += fuzz.ratio(contactFullName, dupeFullName);
+        }
 
-        if (similarity > 120) {
+        // TODO: make similarity variable
+        if (similarity > 80) {
+            // console.log(`Potential duplicate found: ${contactFullName} and ${dupeFullName} with similarity ${similarity}`);
             return true;
         } else {
             return false;
