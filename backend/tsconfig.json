@@ -13,6 +13,7 @@
     "compileOnSave": true,
     "include": [
         "src",
-        "../shared/types"
+        "../shared/types",
+        "test/duplicateProcessor.test.ts"
     ]
 }

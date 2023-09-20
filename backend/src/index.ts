@@ -2,6 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import DatabaseManager from './mongoClient';
+import DuplicateProcessor from './duplicateProcessor';
+import Contact from '../../shared/types/Contact';
 
 dotenv.config();
 

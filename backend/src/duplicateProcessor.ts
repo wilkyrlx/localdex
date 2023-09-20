@@ -1,5 +1,6 @@
 import Contact from "../../shared/types/Contact";
 import fuzz from "fuzzball";
+import mockContacts from "./mock-data/contacts";
 
 /**
  * Loads and identifies potential duplicates from all contacts in the database
@@ -11,21 +12,20 @@ class DuplicateProcessor {
     // map of contactID to set of contactIDs that are potential duplicates
     private potentialDuplicates: { [contactID: string]: Set<string> } = {}; 
 
-    constructor() {
-        this.loadAllContacts();
+    constructor(contact: Contact[]) {
+        this.contacts = contact;        
         this.deduplicateAllContacts();
     }
 
-    // TODO: Loads contacts from database
-    private loadAllContacts() {
-        
+    public getPotentialDuplicates() {
+        return this.potentialDuplicates;
     }
+
 
     private deduplicateAllContacts() {
         for (let i = 0; i < this.contacts.length; i++) {
             this.deduplicateContact(this.contacts[i], i);
         }
-
     }
 
     private deduplicateContact(contact: Contact, startIndex: number) {
@@ -42,6 +42,7 @@ class DuplicateProcessor {
     }
     
     // TODO: should email, phone, etc be normalized before comparing?
+    // TODO: calibrate similarity thresholds
     /**
      * Checks two contacts and determines if they could be duplicates
      * 
@@ -62,7 +63,7 @@ class DuplicateProcessor {
 
         // if no last name, look for matching first name (exact match)
         if (!contact.lastName) {
-            if (contact.firstName?.normalize() === dupe.firstName?.normalize()) similarity = 50;
+            if (contact.firstName?.normalize() === dupe.firstName?.normalize()) similarity += 50;
         }
 
         // check full name (fuzzy match)
@@ -71,7 +72,7 @@ class DuplicateProcessor {
         const fullNameSimilarity = fuzz.ratio(contactFullName, dupeFullName);
         similarity += fullNameSimilarity;
 
-        if (similarity > 200) {
+        if (similarity > 120) {
             return true;
         } else {
             return false;
@@ -80,3 +81,5 @@ class DuplicateProcessor {
 
 
 }
+
+export default DuplicateProcessor;
