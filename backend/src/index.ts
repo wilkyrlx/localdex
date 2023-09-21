@@ -18,31 +18,67 @@ function isAuthenticated(req: any, res: any, next: any) {
     if (req.headers['localdex-api-key'] == process.env.REACT_APP_LOCALDEX_API_KEY) {
         return next(); // User is authenticated, proceed to the next middleware/route handler
     } else {
-        res.status(401).send({error: `this client does not have access: ${req.headers['localdex-api-key']}`});
+        res.status(401).send({ error: `this client does not have access: ${req.headers['localdex-api-key']}` });
     }
 }
 
 
+
 async function main() {
-    
+
     // Connect to the MongoDB cluster
     // remember to make sure IP is whitelisted on mongoDB if running locally - otherwise may see conn error
     await databaseManager.databaseConnect()
 
     // Insert contact
-    app.post('/insertContact', (res, req) => { databaseManager.insertContact(res, req) });
+    app.post('/insertContact', async (req, res) => {
+        try {
+            const data = await databaseManager.insertContact(req.body);
+            res.status(200).json(data);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    });
 
     // Insert multiple contacts
-    app.post('/insertMultipleContacts', (res, req) => { databaseManager.insertMultipleContacts(res, req) });
+    app.post('/insertMultipleContacts', async (req, res) => {
+        try {
+            const data = await databaseManager.insertMultipleContacts(req.body);
+            res.status(200).json(data);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    });
 
     // Update contact by ID
-    app.post('/updateContact', (res, req) => { databaseManager.updateContact(res, req) });
+    app.post('/updateContact', async (req, res) => {
+        try {
+            const data = await databaseManager.updateContact(req.body);
+            res.status(200).json(data);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    });
 
     // Delete contact by ID
-    app.post('/deleteContact', (res, req) => { databaseManager.deleteContact(res, req) });
+    app.post('/deleteContact', async (req, res) => {
+        try {
+            const data = await databaseManager.deleteContact(req.body);
+            res.status(200).json(data);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    });
 
     // Retrieve data
-    app.get('/data', isAuthenticated, (res, req) => { databaseManager.getData(res, req) });
+    app.get('/data', isAuthenticated, async (req, res) => {
+        try {
+            const data = await databaseManager.getData();
+            res.status(200).json(data);
+        } catch (error) {
+            res.status(500).json(error);
+        }
+    });
 
     app.get('/helloWorld', isAuthenticated, (req, res) => {
         res.status(200).json({ message: 'Hello World!' });

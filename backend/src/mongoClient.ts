@@ -30,34 +30,31 @@ class DatabaseManager {
      * adds a contact to the collection
      * @param req.body - a Contact object 
      */
-    async insertContact(req: any, res: any) {
+    async insertContact(data: any) {
         const collection = this.getCollection();
-        const data = req.body;
         try {
             const result = await collection.insertOne(data);
-            res.status(201).json(result);
+            return result;
         } catch (error) {
-            res.status(500).json({ error: 'Error inserting data' });
+            throw new Error(`Error inserting data: ${error}`);
         }
     }
 
-    async insertMultipleContacts(req: any, res: any) {
+    async insertMultipleContacts(data: any) {
         const collection = this.getCollection();
-        const data = req.body;
         try {
             const result = await collection.insertMany(data);
-            res.status(201).json(result);
+            return result;
         } catch (error) {
-            res.status(500).json({ error: 'Error inserting data' });
+            throw new Error(`Error inserting data: ${error}`);
         }
     }
 
-    async updateContact(req: any, res: any) {
+    async updateContact(data: any) {
 
         // const documentIdToUpdate: ObjectId = new ObjectId('64eac72400e15a6fc87c6fe1');
 
         const collection = this.getCollection();
-        const data = req.body;
         const documentIdToUpdate: ObjectId = new ObjectId(data._id);
         const dataToUpdate = data;
         delete dataToUpdate._id;
@@ -65,32 +62,31 @@ class DatabaseManager {
         try {
             const result = await collection.updateOne({ _id: documentIdToUpdate }, { $set: dataToUpdate });
             console.log(`${result.matchedCount} document(s) matched and ${result.modifiedCount} document(s) modified, ID was ${data._id}`);
-            res.status(201).json(result);
+            return result;
         } catch (error) {
-            res.status(500).json({ error: 'Error updating data' });
+            throw new Error(`Error updating data: ${error}`);
         }
     }
 
-    async deleteContact(req: any, res: any) {
+    async deleteContact(data: any) {
         const collection = this.getCollection();
-        const data = req.body;
         const documentIdToDelete: ObjectId = new ObjectId(data._id);
         try {
             const result = await collection.deleteOne({ _id: documentIdToDelete });
             console.log(`${result.deletedCount} document(s) deleted, ID was ${data._id}`);
-            res.status(201).json(result);
+            return result;
         } catch (error) {
-            res.status(500).json({ error: 'Error deleting data' });
+            throw new Error(`Error deleting data: ${error}`);
         }
     }
     
-    async getData(req: any, res: any) {
+    async getData() {
         const collection = this.getCollection();
         try {
             const data = await collection.find({}).toArray();
-            res.status(200).json(data);
+            return data;
         } catch (error) {
-            res.status(500).json({ error: `Error retrieving data: ${error}` });
+            throw new Error(`Error retrieving data: ${error}`);
         }
     }
 }

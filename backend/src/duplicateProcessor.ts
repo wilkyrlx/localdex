@@ -65,7 +65,6 @@ class DuplicateProcessor {
         if (this.existsAndEqual(contact.primaryPhone, dupe.primaryPhone)) similarity += 100;
         if (this.existsAndEqual(contact.workPhone, dupe.workPhone)) similarity += 100;
 
-
         // if no last name, look for matching first name (exact match)
         if (!contact.lastName || !dupe.lastName) {
             if (this.existsAndEqual(contact.firstName?.normalize(), dupe.firstName?.normalize())) similarity += 50;
