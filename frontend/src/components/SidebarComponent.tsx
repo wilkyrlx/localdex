@@ -9,21 +9,11 @@ function SidebarComponent() {
     return (
         <Sidebar>
             <Menu>
-                <Link className='sidebar-link' to="/">
-                    <MenuItem> Home </MenuItem>
-                </Link>
-                <Link className='sidebar-link' to="/contact">
-                    <MenuItem> Contacts </MenuItem>
-                </Link>
-                <Link className='sidebar-link' to="/map">
-                    <MenuItem> Map </MenuItem>
-                </Link>
-                <Link className='sidebar-link' to="/import">
-                    <MenuItem> Import Contacts </MenuItem>
-                </Link>
-                <Link className='sidebar-link' to="/about">
-                    <MenuItem> About </MenuItem>
-                </Link>
+                <MenuItem component={<Link to="/" />}> Home </MenuItem>
+                <MenuItem component={<Link to="/contact" />}> Contacts </MenuItem>
+                <MenuItem component={<Link to="/map" />}> Map </MenuItem>
+                <MenuItem component={<Link to="/import" />}> Import Contacts </MenuItem>
+                <MenuItem component={<Link to="/about" />}> About </MenuItem>
             </Menu>
         </Sidebar>
     );

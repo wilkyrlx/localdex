@@ -41,19 +41,21 @@ class ApiService {
     }
 
     async insertMultipleContacts(contacts: Contact[]) {
-        const batchCount = Math.ceil(contacts.length / 100);
+
+        const batchSize = 50;
+        const batchCount = Math.ceil(contacts.length / batchSize);
+        
         
         for (let i = 0; i < batchCount; i++) {
-            const batch100 = contacts.slice(i * 100, (i + 1) * 100);
+            const batch100 = contacts.slice(i * batchSize, (i + 1) * batchSize);
             
             await fetch(`${backendUri}/insertMultipleContacts`, {
                 method: 'POST',
                 headers: this.generateHeaders(),
-                body: JSON.stringify(contacts)
+                body: JSON.stringify(batch100)
             })
         }
 
-        // TODO: return data
         const data = { message: 'insertMultipleContacts called, status unknown'}
         return data
     }

@@ -30,6 +30,7 @@ function ContactsPage() {
     return (
         <div className="contact-page-container">
             <div className="scrollable-container" style={{width: "40%", resize: "horizontal"}}>
+                <p> Contacts: {contacts.length}</p>
                 <ContactList setActiveContact={setActiveContact} contacts={contacts} setReloadTrigger={setReloadTrigger} />
             </div>
             <div className="scrollable-container" style={{flex: 1}} >

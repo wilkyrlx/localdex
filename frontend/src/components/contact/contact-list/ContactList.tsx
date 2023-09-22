@@ -6,9 +6,8 @@ function ContactList({ setActiveContact, contacts, setReloadTrigger }: { setActi
 
     return(
         <div>
-            <p>Contact list</p>
             <ul>
-                { contacts.map((contact) => <ContactListItem contact={contact} setActiveContact={setActiveContact} setReloadTrigger={setReloadTrigger} />) }
+                { contacts.map((contact) => <ContactListItem contact={contact} setActiveContact={setActiveContact} setReloadTrigger={setReloadTrigger} key={contact._id}/>) }
             </ul>
         </div>
     )
