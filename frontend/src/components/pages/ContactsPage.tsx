@@ -8,6 +8,7 @@ function ContactsPage() {
 
     const [activeContact, setActiveContact] = useState<Contact | undefined>(undefined)
     const [contacts, setContacts] = useState<Contact[]>([])
+    const [searchQuery, setSearchQuery] = useState("");
     const [reloadTrigger, setReloadTrigger] = useState<Number>(1);
 
     async function loadData() {
@@ -15,26 +16,40 @@ function ContactsPage() {
         setContacts(data)
     }
 
-
     // load data on page load
     useEffect(() => {
         loadData()
     }, [])
-    
+
     // load data when reloadTrigger changes
     // TODO: instead of reloadTrigger on every update, what about a "changes have been made" bar that can be clicked to show updates
     useEffect(() => {
         loadData()
     }, [reloadTrigger])
 
+    const filteredContacts = contacts.filter((contact) =>
+        contact.firstName && contact.firstName.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+
     return (
-        <div className="contact-page-container">
-            <div className="scrollable-container" style={{width: "40%", resize: "horizontal"}}>
-                <p> Contacts: {contacts.length}</p>
-                <ContactList setActiveContact={setActiveContact} contacts={contacts} setReloadTrigger={setReloadTrigger} />
+        <div>
+            {/* TODO: better search bar */}
+            <div className="contacts-search-bar">
+                <input
+                    type="text"
+                    placeholder="Simple search (firstname)"
+                    value={searchQuery}
+                    onChange={(e) => setSearchQuery(e.target.value)}
+                />            
             </div>
-            <div className="scrollable-container" style={{flex: 1}} >
-                <ContactView activeContact={activeContact} setReloadTrigger={setReloadTrigger} />
+            <div className="contact-page-container">
+                <div className="scrollable-container" style={{ width: "40%", resize: "horizontal" }}>
+                    <p> Contacts: {contacts.length}</p>
+                    <ContactList setActiveContact={setActiveContact} contacts={filteredContacts} setReloadTrigger={setReloadTrigger} />
+                </div>
+                <div className="scrollable-container" style={{ flex: 1 }} >
+                    <ContactView activeContact={activeContact} setReloadTrigger={setReloadTrigger} />
+                </div>
             </div>
         </div>
     );
