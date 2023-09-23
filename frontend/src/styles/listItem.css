@@ -35,19 +35,3 @@
     font-size: 14px;
     color: #777777;
 }
-
-.list-item-delete-link {
-    background-color: rgb(231, 140, 140);
-    color: white;
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 30px; 
-    height: 30px; 
-    border-radius: 50%; 
-    position: absolute;
-    top: 50%;
-    right: 10px; 
-    transform: translateY(-50%);
-}

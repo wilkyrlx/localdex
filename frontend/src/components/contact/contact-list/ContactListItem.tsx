@@ -14,12 +14,12 @@ function ContactListItem({ contact, setActiveContact, setReloadTrigger }: { cont
         setActiveContact(contact)
     }
 
-    function deleteContact() {
-        console.log("delete contact")
-        apiService.deleteContact(contact)
-            .then(() => setMessage(`Successfully deleted ${contact.firstName} ${contact.lastName}`))
-        setReloadTrigger(Math.random())
-    }
+    // function deleteContact() {
+    //     console.log("delete contact")
+    //     apiService.deleteContact(contact)
+    //         .then(() => setMessage(`Successfully deleted ${contact.firstName} ${contact.lastName}`))
+    //     setReloadTrigger(Math.random())
+    // }
 
     function handleContextMenu(e: any) {
         e.preventDefault();
@@ -36,7 +36,6 @@ function ContactListItem({ contact, setActiveContact, setReloadTrigger }: { cont
                 <h3 className="list-item-name">{`${contact.firstName} ${contact.lastName || ""}`}</h3>
                 <p className="list-item-description">{contact.title}</p>
             </div>
-            <div className="list-item-delete-link" onClick={() => deleteContact()}>x</div>
         </div>
     )
 }
