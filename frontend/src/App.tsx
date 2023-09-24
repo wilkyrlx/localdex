@@ -6,7 +6,7 @@ import ContactsPage from './components/pages/ContactsPage';
 import MapPage from './components/pages/MapPage';
 import ImportPage from './components/pages/ImportPage';
 import NotificationBar from './components/NotificationBar';
-import { useAppContext, useContextMenuContext } from './AppContext';
+import { useMessageContext, useContextMenuContext } from './AppContext';
 import { useState } from 'react';
 import Contact from '../../shared/types/Contact';
 import ContactListItemContextMenu from './components/contact/contact-list/ContactListItemContextMenu';
@@ -16,7 +16,7 @@ import ContactListItemContextMenu from './components/contact/contact-list/Contac
 function App() {
     
 
-    const { message } = useAppContext();
+    const { message } = useMessageContext();
     const { contextMenuData } = useContextMenuContext() as any;
 
     console.log("Version: " + process.env.REACT_APP_NAME)

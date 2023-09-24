@@ -3,11 +3,11 @@ import VCard from 'vcf';
 import VcardImportClient from '../../import-clients/VcardImportClient';
 import Contact from '../../../../shared/types/Contact';
 import apiService from '../../api/apiService';
-import { useAppContext } from '../../AppContext';
+import { useMessageContext } from '../../AppContext';
 
 function VCardParser() {
 
-    const { setMessage } = useAppContext();
+    const { setMessage } = useMessageContext();
 
     async function handleFileChange (e: React.ChangeEvent<HTMLInputElement>) {
         const file = e.target.files?.[0];

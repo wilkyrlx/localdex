@@ -1,4 +1,4 @@
-import { useAppContext } from "../../AppContext";
+import { useMessageContext } from "../../AppContext";
 
 function HomePage() {
     return (

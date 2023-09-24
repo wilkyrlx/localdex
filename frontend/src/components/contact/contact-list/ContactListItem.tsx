@@ -1,12 +1,10 @@
 import Contact from "../../../../../shared/types/Contact"
-import { useAppContext, useContextMenuContext } from "../../../AppContext";
+import { useMessageContext, useContextMenuContext } from "../../../AppContext";
 import apiService from "../../../api/apiService"
 
 function ContactListItem({ contact, setActiveContact, setReloadTrigger }: { contact: Contact, setActiveContact: any, setReloadTrigger: any }) {
 
-
-    const { setMessage } = useAppContext();
-    const { setContextMenuData } = useContextMenuContext();
+    const { setContextMenu: setContextMenu } = useContextMenuContext();
 
 
     function openContactView() {
@@ -26,7 +24,7 @@ function ContactListItem({ contact, setActiveContact, setReloadTrigger }: { cont
         console.log("handle context menu")
         const xPos: number = e.pageX;
         const yPos: number = e.pageY;
-        setContextMenuData({ x: xPos, y: yPos, contact: contact });
+        setContextMenu({ x: xPos, y: yPos, contact: contact });
     }
 
     return (

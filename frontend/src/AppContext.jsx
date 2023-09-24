@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
 
 // Create a context for the main app
-const AppContext = createContext({
+const MessageContext = createContext({
     message: "",
     setMessage: (message) => { }
 });
@@ -9,36 +9,36 @@ const AppContext = createContext({
 
 // Create a context for the context menu
 const ContextMenuContext = createContext({
-    contextMenuData: null,
-    setContextMenuData: (context) => {},
+    contextMenu: null,
+    setContextMenu: (context) => {},
   });
 
 export function AppProvider({children}) {
     const [message, setMessage] = useState("");
-    const [contextMenuData, setContextMenuData] = useState(null);
+    const [contextMenuData, setContextMenu] = useState(null);
 
 
-    const contextValue = {
+    const messageContextValue = {
         message,
         setMessage
     };
 
     const contextMenuContextValue = {
         contextMenuData,
-        setContextMenuData
+        setContextMenu
     };
 
     return (
-        <AppContext.Provider value={contextValue}>
+        <MessageContext.Provider value={messageContextValue}>
             <ContextMenuContext.Provider value={contextMenuContextValue}>
                 {children}
             </ContextMenuContext.Provider>
-        </AppContext.Provider>
+        </MessageContext.Provider>
     );
 };
 
-export const useAppContext = () => {
-    return useContext(AppContext);
+export const useMessageContext = () => {
+    return useContext(MessageContext);
 };
 
 export const useContextMenuContext = () => {

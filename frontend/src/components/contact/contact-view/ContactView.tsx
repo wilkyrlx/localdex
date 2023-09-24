@@ -1,7 +1,7 @@
 import Contact from "../../../../../shared/types/Contact"
 import { useEffect, useState } from "react"
 import ContactInputBox from "./ContactInputBox"
-import { useAppContext } from "../../../AppContext"
+import { useMessageContext } from "../../../AppContext"
 import apiService from "../../../api/apiService";
 import JsonView from '@uiw/react-json-view';
 import { stat } from "fs";
@@ -9,7 +9,7 @@ import { stat } from "fs";
 
 function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Contact, setReloadTrigger: any }) {
 
-    const { setMessage } = useAppContext();
+    const { setMessage } = useMessageContext();
 
     const [firstNameValue, setFirstNameValue] = useState<string>("");
     const [lastNameValue, setLastNameValue] = useState<string>("");
