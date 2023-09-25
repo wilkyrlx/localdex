@@ -4,8 +4,17 @@ import ImportClient from "./ImportClient";
 import VCard from 'vcf';
 
 class VcardImportClient extends ImportClient {
-    importToContacts(input: string): Contact[] {
-        const vCards: string[] = input.split('END:VCARD');
+    private rawData: string;
+    private source: string;
+    
+    constructor(rawData: string, source?: string) {
+        super();
+        this.rawData = rawData;
+        this.source = source || 'imported from vCard';
+    }
+
+    importToContacts(): Contact[] {
+        const vCards: string[] = this.rawData.split('END:VCARD');
         const vCardsActual: VCard[] = vCards
             .filter((vCard) => vCard.trim() !== '')
             .map((vCardData, index) => {
@@ -40,7 +49,7 @@ class VcardImportClient extends ImportClient {
         const date = new Date();
         contact.dateAdded = date;
         contact.dateLastUpdated = date;
-        contact.source = 'imported from vCard';
+        contact.source = this.source;
 
         return contact;
     }

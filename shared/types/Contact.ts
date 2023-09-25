@@ -1,12 +1,6 @@
 
 /**
- * Contact class with required fields and additional optional fields
- * 
- * required fields:
- *  - _id
- *  - alias
- *  - dateAdded
- *  - dateLastUpdated
+ * Contact class
  */
 class Contact {
 
@@ -19,7 +13,7 @@ class Contact {
     source?: string | undefined;        // where contact came from (i.e. "imported from vCard", "added manually", "imported from LinkedIn")
 
     // Contact information
-    alias: string[];    // Array of aliases, if no first + last name, choose first alias
+    alias?: string[] | undefined;    // Array of aliases, if no first + last name, choose first alias
     firstName?: string | undefined;
     lastName?: string | undefined;
     photoUri?: string[] | undefined;

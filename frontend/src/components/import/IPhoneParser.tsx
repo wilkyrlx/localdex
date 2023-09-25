@@ -5,7 +5,7 @@ import Contact from '../../../../shared/types/Contact';
 import apiService from '../../api/apiService';
 import { useMessageContext } from '../../AppContext';
 
-function VCardParser() {
+function IPhoneParser() {
 
     const { setMessage } = useMessageContext();
 
@@ -15,7 +15,7 @@ function VCardParser() {
         if (file) {
             try {
                 const vCardData: string = await readFileAsync(file);
-                const client = new VcardImportClient(vCardData);
+                const client = new VcardImportClient(vCardData, "iPhone");
                 const parsedCards: Contact[] = client.importToContacts();
                 
                 await apiService.insertMultipleContacts(parsedCards);
@@ -38,10 +38,11 @@ function VCardParser() {
 
     return (
         <div>
-            <h1>Import from Vcard</h1>
+            <h1>Import from iPhone Contacts</h1>
+            <p>Instructions: TODO</p>
             <input type="file" onChange={handleFileChange} accept=".vcf" />
         </div>
     );
 }
 
-export default VCardParser;
+export default IPhoneParser;
