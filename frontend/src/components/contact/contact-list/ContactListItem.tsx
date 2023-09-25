@@ -2,7 +2,7 @@ import Contact from "../../../../../shared/types/Contact"
 import { useMessageContext, useContextMenuContext } from "../../../AppContext";
 import apiService from "../../../api/apiService"
 
-function ContactListItem({ contact, setActiveContact, setReloadTrigger }: { contact: Contact, setActiveContact: any, setReloadTrigger: any }) {
+function ContactListItem({ contact, setActiveContact }: { contact: Contact, setActiveContact: any }) {
 
     const { setContextMenu: setContextMenu } = useContextMenuContext();
 
@@ -11,13 +11,6 @@ function ContactListItem({ contact, setActiveContact, setReloadTrigger }: { cont
         console.log("open contact view")
         setActiveContact(contact)
     }
-
-    // function deleteContact() {
-    //     console.log("delete contact")
-    //     apiService.deleteContact(contact)
-    //         .then(() => setMessage(`Successfully deleted ${contact.firstName} ${contact.lastName}`))
-    //     setReloadTrigger(Math.random())
-    // }
 
     function handleContextMenu(e: any) {
         e.preventDefault();

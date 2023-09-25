@@ -1,15 +1,15 @@
 import Contact from "../../../../../shared/types/Contact"
 import { useEffect, useState } from "react"
 import ContactInputBox from "./ContactInputBox"
-import { useMessageContext } from "../../../AppContext"
+import { useMessageContext, useReloadTriggerContext } from "../../../AppContext"
 import apiService from "../../../api/apiService";
 import JsonView from '@uiw/react-json-view';
-import { stat } from "fs";
 
 
-function ContactView({ activeContact, setReloadTrigger }: { activeContact?: Contact, setReloadTrigger: any }) {
+function ContactView({ activeContact }: { activeContact?: Contact}) {
 
     const { setMessage } = useMessageContext();
+    const { setReloadTrigger } = useReloadTriggerContext();
 
     const [firstNameValue, setFirstNameValue] = useState<string>("");
     const [lastNameValue, setLastNameValue] = useState<string>("");
