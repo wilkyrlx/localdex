@@ -15,7 +15,7 @@ function IPhoneParser() {
         if (file) {
             try {
                 const vCardData: string = await readFileAsync(file);
-                const client = new VcardImportClient(vCardData, "iPhone");
+                const client = new VcardImportClient(vCardData, "imported from iPhone");
                 const parsedCards: Contact[] = client.importToContacts();
                 
                 await apiService.insertMultipleContacts(parsedCards);

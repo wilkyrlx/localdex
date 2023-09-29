@@ -56,6 +56,7 @@ function ContactView({ activeContact }: { activeContact?: Contact}) {
     }, [activeContact]);
 
 
+    // TODO: move out of contact view (contact view should only house the input boxes)
     async function saveContact() {
         const date = new Date()
         const contact: Contact = {
