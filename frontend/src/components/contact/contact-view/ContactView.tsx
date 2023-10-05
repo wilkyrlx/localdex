@@ -56,7 +56,6 @@ function ContactView({ activeContact }: { activeContact?: Contact}) {
     }, [activeContact]);
 
 
-    // TODO: move out of contact view (contact view should only house the input boxes)
     async function saveContact() {
         const date = new Date()
         const contact: Contact = {
@@ -101,6 +100,7 @@ function ContactView({ activeContact }: { activeContact?: Contact}) {
 
         <div>
             <h1>Contact View</h1>
+            {/* TODO: move out of contact view (contact view should only house the input boxes, not update state I think) */}
             <button onClick={() => saveContact()}>Save Contact</button>
             <button onClick={() => updateContact()}>Update Contact</button>
             <p>{activeContact?._id}</p>
