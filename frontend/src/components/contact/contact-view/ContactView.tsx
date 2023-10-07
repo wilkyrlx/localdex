@@ -4,6 +4,7 @@ import ContactInputBox from "./ContactInputBox"
 import { useMessageContext, useReloadTriggerContext } from "../../../AppContext"
 import apiService from "../../../api/apiService";
 import JsonView from '@uiw/react-json-view';
+import InteractionList from "./interaction-list/InteractionList";
 
 
 function ContactView({ activeContact }: { activeContact?: Contact}) {
@@ -110,6 +111,7 @@ function ContactView({ activeContact }: { activeContact?: Contact}) {
             <ContactInputBox label={"Title"} textValue={titleValue} setValue={setTitleValue} />
             <ContactInputBox label={"Phone Number"} textValue={primaryPhoneValue} setValue={setPrimaryPhoneValue} />
             <ContactInputBox label={"Email"} textValue={personalEmailValue} setValue={setPersonalEmailValue} />
+            <InteractionList />
             <ContactInputBox label={"Date Added"} textValue={dateAddedValue} setValue={setDateAddedValue} />
             <ContactInputBox label={"Date Last Updated"} textValue={dateLastUpdatedValue} setValue={setDateLastUpdatedValue} />
             <ContactInputBox label={"Date Last Interacted"} textValue={dateLastInteractedValue} setValue={setDateLastInteractedValue} />

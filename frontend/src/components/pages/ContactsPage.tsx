@@ -13,8 +13,9 @@ function ContactsPage() {
     const [searchQuery, setSearchQuery] = useState("");
 
     async function loadData() {
-        const data = await apiService.getData()
-        setContacts(data)
+        // FIXME: reactivate
+        // const data = await apiService.getData()
+        // setContacts(data)
     }
 
     // load data on page load
