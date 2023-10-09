@@ -1,9 +1,10 @@
 import { useState } from "react";
 import InteractionListItem from "./InteractionListItem";
+import Interaction from "../../../../../../shared/types/Interaction";
 
 function InteractionList() {
 
-    const [interactions, setInteractions] = useState([]);
+    const [interactions, setInteractions] = useState<Interaction[]>([]);
 
 
     return (
