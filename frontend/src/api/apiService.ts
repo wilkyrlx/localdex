@@ -31,6 +31,7 @@ class ApiService {
     }
 
     async insertContact(contact: Contact) {
+        contact.normalize()
         const response = await fetch(`${backendUri}/insertContact`, {
             method: 'POST',
             headers: this.generateHeaders(),
@@ -41,26 +42,23 @@ class ApiService {
     }
 
     async insertMultipleContacts(contacts: Contact[]) {
-
+        contacts.forEach(contact => contact.normalize())
         const batchSize = 50;
         const batchCount = Math.ceil(contacts.length / batchSize);
-        
-        
         for (let i = 0; i < batchCount; i++) {
             const batch100 = contacts.slice(i * batchSize, (i + 1) * batchSize);
-            
             await fetch(`${backendUri}/insertMultipleContacts`, {
                 method: 'POST',
                 headers: this.generateHeaders(),
                 body: JSON.stringify(batch100)
             })
         }
-
         const data = { message: 'insertMultipleContacts called, status unknown'}
         return data
     }
 
     async updateContact(contact: Contact) {
+        contact.normalize()
         const response = await fetch(`${backendUri}/updateContact`, {
             method: 'POST',
             headers: this.generateHeaders(),

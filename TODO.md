@@ -8,7 +8,7 @@
 - [ ] Implement one contact manager, so data can be accessed for contacts page, map, and home without being requested multiple times
 
 ## Frontend
-- [ ] delete contact button must be enabled before visible, also change hover color and cursor
+- [/] delete contact button must be enabled before visible, also change hover color and cursor
 - [ ] map view with mapbox.gl
 - [ ] deduplicate contacts with side by side comparison, field selection, and merge button
 

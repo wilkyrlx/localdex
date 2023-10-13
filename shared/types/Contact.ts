@@ -74,6 +74,14 @@ class Contact {
             }
         }
     }
+
+    // TODO: normalize more fields
+    normalize(): void {
+        if (this.primaryPhone) {
+            // TODO: once this is an NPM package, use a number parser library
+            this.primaryPhone = this.primaryPhone.replace(/\D/g, '');
+        }
+    }
 }
 
 
