@@ -45,7 +45,7 @@ function ContactsPage() {
                     onChange={(e) => setSearchQuery(e.target.value)}
                 />            
             </div>
-            <div className="contact-page-container">
+            <div className="half-page-container">
                 <div className="scrollable-container" style={{ width: "40%", resize: "horizontal" }}>
                     <p> Contacts: {contacts.length}</p>
                     <ContactList setActiveContact={setActiveContact} contacts={filteredContacts} />

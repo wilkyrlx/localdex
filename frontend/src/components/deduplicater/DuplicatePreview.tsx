@@ -5,7 +5,7 @@ function DuplicatePreview({ contact1, contact2 }: { contact1: Contact, contact2:
 
     return (
         <div>
-            <div className="contact-page-container">
+            <div className="half-page-container">
                 <div className="scrollable-container" style={{ width: "50%", resize: "horizontal" }}>
                     <ContactView activeContact={contact1} />
                 </div>

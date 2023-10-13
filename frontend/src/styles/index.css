@@ -26,8 +26,7 @@
 }
 
 
-
-.contact-page-container {
+.half-page-container {
     display: flex;
     height: 95vh;
     /* Take up 95% of the viewport height */
