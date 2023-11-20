@@ -1,5 +1,5 @@
 import Contact from "../../../../../shared/types/Contact"
-import { useEffect, useState } from "react"
+import { forwardRef, useEffect, useImperativeHandle, useState } from "react"
 import ContactInputBox from "./ContactInputBox"
 import { useMessageContext, useReloadTriggerContext } from "../../../AppContext"
 import apiService from "../../../api/apiService";
@@ -7,10 +7,10 @@ import JsonView from '@uiw/react-json-view';
 import InteractionList from "./interaction-list/InteractionList";
 
 
-function ContactView({ activeContact }: { activeContact?: Contact}) {
-
-    const { setMessage } = useMessageContext();
-    const { setReloadTrigger } = useReloadTriggerContext();
+const ContactView =  forwardRef<any, any>((props, ref) => {
+    const { activeContact } = props;
+   
+    useImperativeHandle(ref, () => ({ getContactFieldData }));
 
     const [firstNameValue, setFirstNameValue] = useState<string>("");
     const [lastNameValue, setLastNameValue] = useState<string>("");
@@ -56,30 +56,7 @@ function ContactView({ activeContact }: { activeContact?: Contact}) {
         }
     }, [activeContact]);
 
-
-    async function saveContact() {
-        const date = new Date()
-        const contact: Contact = {
-            alias: [firstNameValue + " " + lastNameValue],
-            firstName: firstNameValue,
-            lastName: lastNameValue,
-            personalEmail: personalEmailValue,
-            notes: notesValue,
-            title: titleValue,
-            phoneNumber: primaryPhoneValue,
-            relationships: relationshipsValue,
-            dateAdded: date,
-            dateLastUpdated: date,
-            source: "added manually"
-        } 
-        const data = await apiService.insertContact(contact)
-        setMessage("Contact added")
-        setReloadTrigger(Math.random())
-    }
-
-
-    async function updateContact() {
-        const date = new Date()
+    function getContactFieldData() {
         const contact: Contact = {
             _id: activeContact?._id,
             alias: [firstNameValue + " " + lastNameValue],
@@ -90,20 +67,14 @@ function ContactView({ activeContact }: { activeContact?: Contact}) {
             title: titleValue,
             phoneNumber: primaryPhoneValue,
             relationships: relationshipsValue,
-            dateLastUpdated: date,
         }
-        const data = await apiService.updateContact(contact)
-        setMessage("Contact updated")
-        setReloadTrigger(Math.random())
+
+        return contact;
     }
 
     return (
 
-        <div>
-            <h1>Contact View</h1>
-            {/* TODO: move out of contact view (contact view should only house the input boxes, not update state I think) */}
-            <button onClick={() => saveContact()}>Save Contact</button>
-            <button onClick={() => updateContact()}>Update Contact</button>
+        <div>            
             <p>{activeContact?._id}</p>
             <ContactInputBox label={"First Name"} textValue={firstNameValue} setValue={setFirstNameValue} />
             <ContactInputBox label={"Last Name"} textValue={lastNameValue} setValue={setLastNameValue} />
@@ -118,6 +89,6 @@ function ContactView({ activeContact }: { activeContact?: Contact}) {
             <JsonView value={miscJsonValue} displayDataTypes={false} collapsed={1} quotes="" />
         </div>
     );
-}
+})
 
 export default ContactView;

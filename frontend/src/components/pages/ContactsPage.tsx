@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import Contact from "../../../../shared/types/Contact";
 import ContactList from "../contact/contact-list/ContactList";
-import ContactView from "../contact/contact-view/ContactView";
 import apiService from "../../api/apiService";
 import { useReloadTriggerContext } from "../../AppContext";
+import BasicContactViewContainer from "../contact/BasicContactViewContainer";
 
 function ContactsPage() {
 
@@ -13,9 +13,8 @@ function ContactsPage() {
     const [searchQuery, setSearchQuery] = useState("");
 
     async function loadData() {
-        // FIXME: reactivate
-        // const data = await apiService.getData()
-        // setContacts(data)
+        const data = await apiService.getData()
+        setContacts(data)
     }
 
     // load data on page load
@@ -51,7 +50,7 @@ function ContactsPage() {
                     <ContactList setActiveContact={setActiveContact} contacts={filteredContacts} />
                 </div>
                 <div className="scrollable-container" style={{ flex: 1 }} >
-                    <ContactView activeContact={activeContact} />
+                    <BasicContactViewContainer activeContact={activeContact} />
                 </div>
             </div>
         </div>
