@@ -1,8 +1,6 @@
 import Contact from "../../../../../shared/types/Contact"
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react"
 import ContactInputBox from "./ContactInputBox"
-import { useMessageContext, useReloadTriggerContext } from "../../../AppContext"
-import apiService from "../../../api/apiService";
 import JsonView from '@uiw/react-json-view';
 import InteractionList from "./interaction-list/InteractionList";
 

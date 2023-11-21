@@ -15,13 +15,15 @@ import apiService from "../../api/apiService";
 function DuplicateContactViewContainer({ contact1, contact2 }: { contact1: Contact, contact2: Contact }) {
 
     // raw data from the ContactView components below
-    const child1: any  = useRef();
-    const child2: any  = useRef();
+    const child1: any = useRef();
+    const child2: any = useRef();
 
     const contact1Identifier = contact1.firstName || "Left Contact";
     const contact2Identifier = contact2.firstName || "Right Contact";
 
     const { setMessage } = useMessageContext();
+
+
 
     function handleDataFromChild(child: any): Contact {
         const data = child.current?.getContactFieldData();
@@ -36,26 +38,28 @@ function DuplicateContactViewContainer({ contact1, contact2 }: { contact1: Conta
 
     /**
      * keeps the left contact and merges the right contact into it
-     * @param child 
      */
     function mergeToLeft() {
         const contact: Contact = handleDataFromChild(child1)
-        mergeContact(contact)
-        // TODO: delete contact2
-        // setMessage("Contact updated")
+        const contactToDelete = handleDataFromChild(child2)
+        mergeContact(contact, contactToDelete)
     }
 
+    /**
+     * keeps the left contact and merges the right contact into it
+     */
     function mergeToRight() {
         const contact: Contact = handleDataFromChild(child2)
-        mergeContact(contact)
-        // TODO: delete contact1
-        // setMessage("Contact updated")
+        const contactToDelete = handleDataFromChild(child1)
+        mergeContact(contact, contactToDelete)
     }
     
-    function mergeContact(contact: Contact) {
+    function mergeContact(merger: Contact, deleted: Contact) {
         const date = new Date()
-        contact['dateLastUpdated'] = date
-        apiService.updateContact(contact)
+        merger['dateLastUpdated'] = date
+        apiService.updateContact(merger)
+        apiService.deleteContact(deleted)
+        setMessage("Contact merged")
     }
     
 
