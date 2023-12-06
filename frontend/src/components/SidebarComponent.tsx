@@ -12,6 +12,7 @@ function SidebarComponent() {
                 <MenuItem component={<Link to="/" />}> Home </MenuItem>
                 <MenuItem component={<Link to="/contact" />}> Contacts </MenuItem>
                 <MenuItem component={<Link to="/map" />}> Map </MenuItem>
+                <MenuItem component={<Link to="/network" />}> Network </MenuItem>
                 <MenuItem component={<Link to="/import" />}> Import Contacts </MenuItem>
                 <MenuItem component={<Link to="/about" />}> About </MenuItem>
             </Menu>

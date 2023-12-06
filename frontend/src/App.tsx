@@ -7,9 +7,9 @@ import MapPage from './components/pages/MapPage';
 import ImportPage from './components/pages/ImportPage';
 import NotificationBar from './components/NotificationBar';
 import { useMessageContext, useContextMenuContext } from './AppContext';
-import { useState } from 'react';
 import Contact from '../../shared/types/Contact';
 import ContactListItemContextMenu from './components/contact/contact-list/ContactListItemContextMenu';
+import NetworkPage from './components/pages/NetworkPage';
 
 
 
@@ -34,6 +34,7 @@ function App() {
                             <Route path="/" element={<HomePage />} />
                             <Route path="/contact" element={<ContactsPage />} />
                             <Route path="/map" element={<MapPage />} />
+                            <Route path='/network' element={<NetworkPage />} />
                             <Route path="/import" element={<ImportPage />} />
                             <Route path="/about" element={<AboutPage />} />
                             <Route path="*" element={<h1>Not Found</h1>} />
