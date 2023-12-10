@@ -1,6 +1,9 @@
-import { GraphCanvas } from 'reagraph';
+import { useState } from 'react';
+import { CameraMode, GraphCanvas } from 'reagraph';
 
 function NetworkPage() {
+
+    const [cameraMode, setCameraMode] = useState<CameraMode>("rotate")
 
     const n = [
         {
@@ -30,13 +33,21 @@ function NetworkPage() {
         }
     ]
 
-
     return (
         <div>
             <h1>Network</h1>
             <p>This is the Network page</p>
+            <button onClick={() => {setCameraMode("rotate")}}>Rotate</button>
+            <button onClick={() => {setCameraMode("pan")}}>Pan</button>
+
             <div style={{ position: "fixed", width: '75%', height: '75%', border: '2px solid red'}}>
-                <GraphCanvas nodes={n} edges={e} layoutType="forceDirected3d" cameraMode="rotate" draggable={true}/>
+                <GraphCanvas nodes={n} 
+                edges={e} 
+                layoutType="forceDirected3d" 
+                cameraMode={cameraMode} 
+                draggable={true}
+                edgeArrowPosition="none"
+                />
             </div>
         </div>
     );

@@ -1,6 +1,6 @@
 import Contact from "../../../../../shared/types/Contact"
 import { useMessageContext, useContextMenuContext } from "../../../AppContext";
-import apiService from "../../../api/apiService"
+import apiService from "../../../util/apiService"
 
 function ContactListItem({ contact, setActiveContact }: { contact: Contact, setActiveContact: any }) {
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Contact from "../../../../shared/types/Contact";
 import { useMessageContext } from "../../AppContext";
-import apiService from "../../api/apiService";
+import apiService from "../../util/apiService";
 import DuplicateContactViewContainer from "../deduplicater/DuplicateContactViewContainer";
 
 function HomePage() {

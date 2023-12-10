@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import Contact from "../../../../shared/types/Contact";
 import ContactView from "./contact-view/ContactView";
 import { useMessageContext, useReloadTriggerContext } from "../../AppContext";
-import apiService from "../../api/apiService";
+import apiService from "../../util/apiService";
 
 /**
  * BasicContactViewContainer holds the state for one ContactView component

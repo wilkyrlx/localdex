@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import VCard from 'vcf';
 import VcardImportClient from '../../import-clients/VcardImportClient';
 import Contact from '../../../../shared/types/Contact';
-import apiService from '../../api/apiService';
+import apiService from '../../util/apiService';
 import { useMessageContext } from '../../AppContext';
 
 function VCardParser() {
