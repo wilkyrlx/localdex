@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Contact from "../../types/Contact";
 import ContactList from "../contact/contact-list/ContactList";
 import BasicContactViewContainer from "../contact/BasicContactViewContainer";
-import dataManager from "../../util/DataManager";
+import dataManager, { useDataManagerEffect } from "../../util/DataManager";
 
 function ContactsPage() {
 
@@ -10,20 +10,7 @@ function ContactsPage() {
     const [contacts, setContacts] = useState<Contact[]>(dataManager.contacts)
     const [searchQuery, setSearchQuery] = useState("");
 
-    // TODO: document this
-    useEffect(() => {
-        const handleDataManagerChange = (newData: any) => {
-            setContacts(newData);
-        };
-
-        // Subscribe to DataManager changes
-        dataManager.subscribe(handleDataManagerChange);
-
-        // Unsubscribe when the component unmounts
-        return () => {
-            dataManager.unsubscribe(handleDataManagerChange);
-        };
-    }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
+    useDataManagerEffect({ dataManager, setContacts });
 
 
     const filteredContacts = contacts.filter((contact) =>

@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import Contact from "../types/Contact";
 import apiService from "./ApiService";
 
@@ -23,7 +24,7 @@ import apiService from "./ApiService";
  * - Notify listeners that the data has changed
  * 
  * Must use some pattern like this to subscribe:
- * useEffect(() => {
+    useEffect(() => {
         const handleDataManagerChange = (newData: any) => {
             setContacts(newData);
         };
@@ -98,10 +99,17 @@ class DataManager {
     }
 
     // -------- read methods --------
+    /**
+     * @returns all contacts in local memory
+     */
     readContacts() {
         return this.contacts;
     }
 
+    /**
+     * @param id the id of the contact to read
+     * @returns the contact with the given id, or undefined if no contact has that id
+     */
     readContactFromId(id: string): Contact | undefined {
         return this.idsToContacts.get(id);
     }
@@ -131,10 +139,25 @@ class DataManager {
         apiService.deleteContact(deletedContact);
         this.notifyListeners();
     }
-
-
 }
+
+const useDataManagerEffect = ({ dataManager, setContacts }: {dataManager: DataManager, setContacts: Function}) => {
+    useEffect(() => {
+      const handleDataManagerChange = (newData: any) => {
+        setContacts(newData);
+      };
+  
+      // Subscribe to DataManager changes
+      dataManager.subscribe(handleDataManagerChange);
+  
+      // Unsubscribe when the component unmounts
+      return () => {
+        dataManager.unsubscribe(handleDataManagerChange);
+      };
+    }, [dataManager, setContacts]);
+  };
 
 // Create and export singleton instance of DatabaseManager
 const dataManager = new DataManager();
 export default dataManager;
+export { useDataManagerEffect };

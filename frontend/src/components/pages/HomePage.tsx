@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Contact from "../../types/Contact";
 import DuplicateContactViewContainer from "../deduplicater/DuplicateContactViewContainer";
-import dataManager from "../../util/DataManager";
+import dataManager, { useDataManagerEffect } from "../../util/DataManager";
 
 function HomePage() {
 
@@ -9,20 +9,8 @@ function HomePage() {
     // TODO: streamline this, maybe contact accessor function? proxy? singleton?
     const [contacts, setContacts] = useState<Contact[]>(dataManager.contacts)
 
-    // TODO: document this
-    useEffect(() => {
-        const handleDataManagerChange = (newData: any) => {
-            setContacts(newData);
-        };
+    useDataManagerEffect({ dataManager, setContacts });
 
-        // Subscribe to DataManager changes
-        dataManager.subscribe(handleDataManagerChange);
-
-        // Unsubscribe when the component unmounts
-        return () => {
-            dataManager.unsubscribe(handleDataManagerChange);
-        };
-    }, []); // Empty dependency array means this effect runs once, similar to componentDidMount
 
     return (
         <div>
