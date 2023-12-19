@@ -72,12 +72,12 @@ class Contact {
     }
 
     // TODO: normalize more fields
-    // normalize(): void {
-    //     if (this.primaryPhone) {
-    //         // TODO: once this is an NPM package, use a number parser library
-    //         this.primaryPhone = this.primaryPhone.replace(/\D/g, '');
-    //     }
-    // }
+    normalize(): void {
+        if (this.primaryPhone) {
+            // TODO: use a number parser library
+            this.primaryPhone = this.primaryPhone
+        }
+    }
 
     addRelationship(relationship: Relationship) {
         this.relationships = this.relationships || [];

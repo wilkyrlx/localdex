@@ -79,7 +79,7 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
             personalEmail: personalEmailValue,
             notes: notesValue,
             title: titleValue,
-            phoneNumber: primaryPhoneValue,
+            primaryPhone: primaryPhoneValue,
             relationships: relationshipsValue,
             interactions: interactionsValue,
         })
