@@ -14,6 +14,7 @@ function RelationshipList({ relationships, setRelationships }: { relationships: 
         setRelationshipValue("")
     }, [relationships])
 
+    // TODO: add relationship should add for both contact and target contact
     function addRelationship() {
         if (contactIDValue === "" || relationshipValue === "") {
             return;
@@ -25,6 +26,7 @@ function RelationshipList({ relationships, setRelationships }: { relationships: 
 
     return (
         <div>
+            <hr></hr>
             <p>Relationship List</p>
             <ContactInputBox label={"Contact ID"} textValue={contactIDValue} setValue={setContactIDValue} />
             <ContactInputBox label={"Relationship"} textValue={relationshipValue} setValue={setRelationshipValue} />
@@ -32,6 +34,7 @@ function RelationshipList({ relationships, setRelationships }: { relationships: 
             <ul className="interaction-list">
                 { relationships.map((r) => <RelationshipListItem relationship={r} /> ) }
             </ul>
+            <hr></hr>
         </div>
     )
 }

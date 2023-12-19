@@ -1,21 +1,38 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InteractionListItem from "./InteractionListItem";
 import Interaction from "../../../../types/Interaction";
+import ContactInputBox from "../ContactInputBox";
 
-// TODO: pass in interactions as props
-function InteractionList() {
+function InteractionList({ interactions, setInteractions }: { interactions: Interaction[], setInteractions: Function}) {
 
-    const interaction1 = new Interaction("test", "notes", new Date())
+    const [interactionTitle, setInteractionTitle] = useState("");
+    const [interactionNotes, setInteractionNotes] = useState("");
 
-    const [interactions, setInteractions] = useState<Interaction[]>([interaction1]);
+    useEffect(() => {
+        setInteractionTitle("")
+        setInteractionNotes("")
+    }, [interactions])
 
+    function addInteraction() {
+        if (interactionTitle === "") {
+            return;
+        }
+        const newInteraction = new Interaction(interactionTitle, interactionNotes, new Date())  // TODO: add date selector
+        setInteractions([...interactions, newInteraction])
+    }
+       
 
     return (
         <div>
-            Interaction List
+            <hr></hr>
+            <p>Interaction List</p>
+            <ContactInputBox label={"Interaction Name"} textValue={interactionTitle} setValue={setInteractionTitle} />
+            <ContactInputBox label={"Notes"} textValue={interactionNotes} setValue={setInteractionNotes} />
+            <button onClick={addInteraction}>Add Interaction</button>
             <ul className="interaction-list">
                 { interactions.map((interaction) => <InteractionListItem interaction={interaction} /> ) }
             </ul>
+            <hr></hr>
         </div>
     )
 }

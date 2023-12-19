@@ -8,6 +8,17 @@ import RelationshipList from "./relationship-list/RelationshipList";
 import Relationship from "../../../types/Relationship";
 
 
+/**
+ * @param activeContact the contact to display
+ * @param ref a ref to the ContactView component
+ * @returns a ContactView component
+ * 
+ * NOTE: when adding functionality for a new field, must add:
+ * 1. useState for the field
+ * 2. useEffect to update the field when activeContact changes
+ * 3. ContactInputBox or likewise to display and edit the field
+ * 4. getContactFieldData to return the field's data
+ */
 const ContactView =  forwardRef<any, any>((props, ref) => {
     const { activeContact } = props;
    
@@ -86,7 +97,7 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
             <ContactInputBox label={"Title"} textValue={titleValue} setValue={setTitleValue} />
             <ContactInputBox label={"Phone Number"} textValue={primaryPhoneValue} setValue={setPrimaryPhoneValue} />
             <ContactInputBox label={"Email"} textValue={personalEmailValue} setValue={setPersonalEmailValue} />
-            <InteractionList />
+            <InteractionList interactions={interactionsValue} setInteractions={setInteractionsValue} />
             <RelationshipList relationships={relationshipsValue} setRelationships={setRelationshipsValue}/>
             <ContactInputBox label={"Date Added"} textValue={dateAddedValue} setValue={setDateAddedValue} />
             <ContactInputBox label={"Date Last Updated"} textValue={dateLastUpdatedValue} setValue={setDateLastUpdatedValue} />
