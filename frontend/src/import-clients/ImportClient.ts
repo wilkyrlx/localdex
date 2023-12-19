@@ -1,4 +1,4 @@
-import Contact from "../../../shared/types/Contact";
+import Contact from "../types/Contact";
 import { Diff } from "diff";
 
 abstract class ImportClient {

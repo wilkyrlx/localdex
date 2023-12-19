@@ -1,4 +1,4 @@
-import Contact from "../../../../../shared/types/Contact"
+import Contact from "../../../types/Contact"
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react"
 import ContactInputBox from "./ContactInputBox"
 import JsonView from '@uiw/react-json-view';
@@ -71,7 +71,7 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
     }, [activeContact]);
 
     function getContactFieldData() {
-        const contact: Contact = {
+        const contact: Contact = new Contact({
             _id: activeContact?._id,
             alias: [firstNameValue + " " + lastNameValue],
             firstName: firstNameValue,
@@ -82,7 +82,7 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
             phoneNumber: primaryPhoneValue,
             relationships: relationshipsValue,
             interactions: interactionsValue,
-        }
+        })
 
         return contact;
     }
@@ -98,7 +98,7 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
             <ContactInputBox label={"Phone Number"} textValue={primaryPhoneValue} setValue={setPrimaryPhoneValue} />
             <ContactInputBox label={"Email"} textValue={personalEmailValue} setValue={setPersonalEmailValue} />
             <InteractionList interactions={interactionsValue} setInteractions={setInteractionsValue} />
-            <RelationshipList relationships={relationshipsValue} setRelationships={setRelationshipsValue}/>
+            <RelationshipList activeContact={activeContact} relationships={relationshipsValue} setRelationships={setRelationshipsValue}/>
             <ContactInputBox label={"Date Added"} textValue={dateAddedValue} setValue={setDateAddedValue} />
             <ContactInputBox label={"Date Last Updated"} textValue={dateLastUpdatedValue} setValue={setDateLastUpdatedValue} />
             <ContactInputBox label={"Date Last Interacted"} textValue={dateLastInteractedValue} setValue={setDateLastInteractedValue} />

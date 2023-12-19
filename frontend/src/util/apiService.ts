@@ -1,5 +1,5 @@
 import dotenv from 'dotenv'
-import Contact from '../../../shared/types/Contact';
+import Contact from '../types/Contact';
 import fakeConstacts from './fakeContacts';
 
 // TODO: some way to normalize contacts, may need refactoring

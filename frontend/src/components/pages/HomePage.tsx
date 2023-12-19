@@ -1,24 +1,15 @@
 import { useEffect, useState } from "react";
-import Contact from "../../../../shared/types/Contact";
+import Contact from "../../types/Contact";
 import { useMessageContext } from "../../AppContext";
 import apiService from "../../util/apiService";
 import DuplicateContactViewContainer from "../deduplicater/DuplicateContactViewContainer";
 
 function HomePage() {
 
-    const contact1 = {
-        "_id": "1",
-        "firstName": "John Doe"
-    }
-
-    const contact2 = {
-        "_id": "2",
-        "firstName": "Jane Doe"
-    }
 
     // TODO: streamline this, maybe contact accessor function? proxy? singleton?
 
-    const [contacts, setContacts] = useState<Contact[]>([contact1, contact2])
+    const [contacts, setContacts] = useState<Contact[]>([])
 
     async function loadData() {
         const data = await apiService.getData()

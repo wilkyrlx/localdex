@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import Contact from "../../../../shared/types/Contact";
+import Contact from "../../types/Contact";
 import ContactView from "./contact-view/ContactView";
 import { useMessageContext, useReloadTriggerContext } from "../../AppContext";
 import apiService from "../../util/apiService";

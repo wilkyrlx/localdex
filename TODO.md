@@ -10,7 +10,7 @@
 ## Frontend
 - [/] delete contact button must be enabled before visible, also change hover color and cursor
 - [ ] map view with mapbox.gl
-- [ ] deduplicate contacts with side by side comparison, field selection, and merge button
+- [/] deduplicate contacts with side by side comparison, field selection, and merge button
 
 ## Backend
 - [ ] deduplicate contacts

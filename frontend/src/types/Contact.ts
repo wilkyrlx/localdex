@@ -1,7 +1,5 @@
-import Interaction from "../../frontend/src/types/Interaction";
-import Relationship from "../../frontend/src/types/Relationship";
-
-// FIXME: move to frontend
+import Interaction from "./Interaction";
+import Relationship from "./Relationship";
 
 /**
  * Contact class
@@ -65,12 +63,7 @@ class Contact {
 
     [key: string]: any; // Index signature for dynamic properties
 
-    constructor(miscFields: { [key: string]: any }) {
-        this._id = miscFields._id;
-        this.alias = miscFields.alias;
-        this.dateAdded = miscFields.dateAdded;
-        this.dateLastUpdated = miscFields.dateLastUpdated;
-
+    constructor(miscFields: { [key: string]: any }) {       
         for (const key in miscFields) {
             if (miscFields.hasOwnProperty(key)) {
                 this[key] = miscFields[key];
@@ -85,6 +78,11 @@ class Contact {
     //         this.primaryPhone = this.primaryPhone.replace(/\D/g, '');
     //     }
     // }
+
+    addRelationship(relationship: Relationship) {
+        this.relationships = this.relationships || [];
+        this.relationships.push(relationship);
+    }
 }
 
 

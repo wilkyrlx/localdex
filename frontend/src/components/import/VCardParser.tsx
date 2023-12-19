@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import VCard from 'vcf';
 import VcardImportClient from '../../import-clients/VcardImportClient';
-import Contact from '../../../../shared/types/Contact';
+import Contact from '../../types/Contact';
 import apiService from '../../util/apiService';
 import { useMessageContext } from '../../AppContext';
 

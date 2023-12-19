@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Contact from "../../../../shared/types/Contact";
+import Contact from "../../types/Contact";
 import ContactList from "../contact/contact-list/ContactList";
 import apiService from "../../util/apiService";
 import { useReloadTriggerContext } from "../../AppContext";

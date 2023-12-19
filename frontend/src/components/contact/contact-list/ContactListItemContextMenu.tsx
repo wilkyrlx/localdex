@@ -1,4 +1,4 @@
-import Contact from "../../../../../shared/types/Contact";
+import Contact from "../../../types/Contact";
 import { useMessageContext, useContextMenuContext, useReloadTriggerContext } from "../../../AppContext";
 import apiService from "../../../util/apiService";
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import ContactListItem from "./ContactListItem"
-import Contact from "../../../../../shared/types/Contact"
+import Contact from "../../../types/Contact"
 
 function ContactList({ setActiveContact, contacts }: { setActiveContact: any, contacts: Contact[] }) {
 

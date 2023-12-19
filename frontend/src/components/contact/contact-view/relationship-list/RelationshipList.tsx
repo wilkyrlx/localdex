@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import Relationship from "../../../../types/Relationship";
 import RelationshipListItem from "./RelationshipListItem";
 import ContactInputBox from "../ContactInputBox";
+import apiService from "../../../../util/apiService";
+import Contact from "../../../../types/Contact";
 
 // TODO: give it its own CSS
-function RelationshipList({ relationships, setRelationships }: { relationships: Relationship[], setRelationships: Function }) {
+function RelationshipList({ activeContact, relationships, setRelationships }: { activeContact: Contact, relationships: Relationship[], setRelationships: Function }) {
 
     const [contactIDValue, setContactIDValue] = useState("");
     const [relationshipValue, setRelationshipValue] = useState("");
@@ -16,11 +18,16 @@ function RelationshipList({ relationships, setRelationships }: { relationships: 
 
     // TODO: add relationship should add for both contact and target contact
     function addRelationship() {
-        if (contactIDValue === "" || relationshipValue === "") {
-            return;
-        }
-        const newRelationship = new Relationship(contactIDValue, relationshipValue)
-        setRelationships([...relationships, newRelationship])
+        // if (contactIDValue === "" || relationshipValue === "") {
+        //     return;
+        // }
+        // const aNewRelationship = new Relationship(activeContact._id, contactIDValue, relationshipValue)
+        // const bNewRelationship = new Relationship(contactIDValue, activeContact._id, relationshipValue)
+        // setRelationships([...relationships, aNewRelationship])
+
+        // // FIXME: buggy mess, doesn't add just replaces
+        // const contact = new Contact({_id: contactIDValue, relationships: [bNewRelationship]})
+        // apiService.updateContact(contact)
     }
 
 

@@ -1,5 +1,4 @@
-import e, { raw } from "express";
-import Contact from "../../../shared/types/Contact";
+import Contact from "../types/Contact";
 import ImportClient from "./ImportClient";
 import VCard from 'vcf';
 
@@ -31,11 +30,11 @@ class VcardImportClient extends ImportClient {
 
         // build from VCard data
         // TODO: set alias and fix issues with personalEmail and primaryPhone as objects, not strings
-        const contact: Contact = {
+        const contact: Contact = new Contact({
             alias: [],
             personalEmail: rawData.get('email')?.valueOf() as string,
             primaryPhone: rawData.get('tel')?.valueOf() as string
-        };
+        });
 
         // set first and last name
         const rawName: string | Object = rawData.get('n')?.valueOf();

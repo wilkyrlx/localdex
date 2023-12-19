@@ -1,6 +1,7 @@
-import Contact from "../../shared/types/Contact";
 import fuzz from "fuzzball";
 import mockContacts from "./mock-data/contacts";
+// FIXME: add contact type
+
 
 /**
  * Loads and identifies potential duplicates from all contacts in the database
@@ -8,11 +9,11 @@ import mockContacts from "./mock-data/contacts";
 class DuplicateProcessor {
 
     // all contacts in the database
-    private contacts: Contact[] = [];   
+    private contacts: any[] = [];   
     // map of contactID to set of contactIDs that are potential duplicates
     private potentialDuplicates: { [contactID: string]: Set<string> } = {}; 
 
-    constructor(contact: Contact[]) {
+    constructor(contact: any[]) {
         this.contacts = contact;        
         this.deduplicateAllContacts();
     }
@@ -28,7 +29,7 @@ class DuplicateProcessor {
         }
     }
 
-    private deduplicateContact(contact: Contact, startIndex: number) {
+    private deduplicateContact(contact: any, startIndex: number) {
         for (let i = startIndex + 1; i < this.contacts.length; i++) {
             if (this.isPotentialDuplicate(contact, this.contacts[i])) {
                 const contactID: string | undefined = contact._id;
@@ -54,7 +55,7 @@ class DuplicateProcessor {
      * @param contact first contact to compare
      * @param dupe second contact to compare
      */
-    public isPotentialDuplicate(contact: Contact, dupe: Contact): Boolean {
+    public isPotentialDuplicate(contact: any, dupe: any): Boolean {
         let similarity = 0;
 
         // check email (exact match)

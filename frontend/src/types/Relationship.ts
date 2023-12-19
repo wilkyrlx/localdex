@@ -8,11 +8,13 @@
  */
 class Relationship {
     // TODO: add source contact too 
-    contactID: string;
+    contactSrc: string;
+    contactDest: string;
     relationship: string;
 
-    constructor(contactID: string, relationship: string) {
-        this.contactID = contactID;
+    constructor(contactSrc: string, contactDest: string, relationship: string) {
+        this.contactSrc = contactSrc;
+        this.contactDest = contactDest;
         this.relationship = relationship;
     }
 }
