@@ -1,8 +1,8 @@
 import { useRef, useState } from "react";
 import Contact from "../../types/Contact";
 import ContactView from "../contact/contact-view/ContactView";
-import { useMessageContext, useReloadTriggerContext } from "../../AppContext";
-import apiService from "../../util/ApiService";
+import { useMessageContext } from "../../AppContext";
+import dataManager from "../../util/DataManager";
 
 /**
  * DuplicateContactViewContainer holds the state for two ContactView components being compared
@@ -57,8 +57,8 @@ function DuplicateContactViewContainer({ contact1, contact2 }: { contact1: Conta
     function mergeContact(merger: Contact, deleted: Contact) {
         const date = new Date()
         merger['dateLastUpdated'] = date
-        apiService.updateContact(merger)
-        apiService.deleteContact(deleted)
+        dataManager.updateContact(merger)
+        dataManager.deleteContact(deleted)
         setMessage("Contact merged")
     }
     

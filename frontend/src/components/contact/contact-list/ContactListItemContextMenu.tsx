@@ -1,12 +1,11 @@
 import Contact from "../../../types/Contact";
-import { useMessageContext, useContextMenuContext, useReloadTriggerContext } from "../../../AppContext";
-import apiService from "../../../util/ApiService";
+import { useMessageContext, useContextMenuContext } from "../../../AppContext";
+import dataManager from "../../../util/DataManager";
 
 function ContactListItemContextMenu({ x, y, contact }: { x: number, y: number, contact: Contact }) {
 
     const { setMessage } = useMessageContext();
     const { setContextMenu: setContextMenu } = useContextMenuContext();
-    const { setReloadTrigger } = useReloadTriggerContext();
         
     // closes context menu when user clicks anywhere
     window.addEventListener("click", () => {setContextMenu(null)});
@@ -18,8 +17,8 @@ function ContactListItemContextMenu({ x, y, contact }: { x: number, y: number, c
 
     function deleteContact() {
         console.log("deleting contact " + contact.firstName)
-        apiService.deleteContact(contact).then(() => setMessage(`Successfully deleted ${contact.firstName} ${contact.lastName}`))
-        setReloadTrigger(Math.random())
+        dataManager.deleteContact(contact)
+        setMessage(`Successfully deleted ${contact.firstName} ${contact.lastName}`)
     }
 
     function copyContactID() {

@@ -11,16 +11,9 @@ const ContextMenuContext = createContext({
     setContextMenu: (context) => {},
 });
 
-const ReloadTriggerContext = createContext({
-    reloadTrigger: 0,
-    setReloadTrigger: (reloadTrigger) => {},
-});
-
 export function AppProvider({children}) {
     const [message, setMessage] = useState("");
     const [contextMenuData, setContextMenu] = useState(null);
-    const [reloadTrigger, setReloadTrigger] = useState(0);
-
 
     const messageContextValue = {
         message,
@@ -32,17 +25,12 @@ export function AppProvider({children}) {
         setContextMenu
     };
 
-    const reloadTriggerContextValue = {
-        reloadTrigger,
-        setReloadTrigger
-    };
+
 
     return (
         <MessageContext.Provider value={messageContextValue}>
             <ContextMenuContext.Provider value={contextMenuContextValue}>
-                <ReloadTriggerContext.Provider value={reloadTriggerContextValue}>
                     {children}
-                </ReloadTriggerContext.Provider>
             </ContextMenuContext.Provider>
         </MessageContext.Provider>
     );
@@ -54,10 +42,6 @@ export const useMessageContext = () => {
 
 export const useContextMenuContext = () => {
     return useContext(ContextMenuContext);
-};
-
-export const useReloadTriggerContext = () => {
-    return useContext(ReloadTriggerContext);
 };
 
 

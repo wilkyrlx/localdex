@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import VCard from 'vcf';
 import VcardImportClient from '../../import-clients/VcardImportClient';
 import Contact from '../../types/Contact';
-import apiService from '../../util/ApiService';
 import { useMessageContext } from '../../AppContext';
+import dataManager from '../../util/DataManager';
 
 function VCardParser() {
 
@@ -18,8 +18,7 @@ function VCardParser() {
                 const client = new VcardImportClient(vCardData);
                 const parsedCards: Contact[] = client.importToContacts();
                 
-                await apiService.insertMultipleContacts(parsedCards);
-                
+                dataManager.createMultipleContacts(parsedCards);
                 setMessage(`Successfully imported ${parsedCards.length} contacts`);
             } catch (error) {
                 console.error('Error reading or parsing vCard:', error);

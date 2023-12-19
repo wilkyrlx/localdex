@@ -1,7 +1,5 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Contact from "../../types/Contact";
-import { useMessageContext } from "../../AppContext";
-import apiService from "../../util/ApiService";
 import DuplicateContactViewContainer from "../deduplicater/DuplicateContactViewContainer";
 import dataManager from "../../util/DataManager";
 

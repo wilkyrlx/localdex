@@ -1,15 +1,13 @@
 import { useRef, useState } from "react";
 import Contact from "../../types/Contact";
 import ContactView from "./contact-view/ContactView";
-import { useMessageContext, useReloadTriggerContext } from "../../AppContext";
-import apiService from "../../util/ApiService";
+import { useMessageContext } from "../../AppContext";
 import dataManager from "../../util/DataManager";
 
 /**
  * BasicContactViewContainer holds the state for one ContactView component
  * ContactView is a form that holds contact data
  * 
- * Save and Update buttons call the apiService to save/update the contact
  * Passes data through ref to parent via getContactFieldData()
  * 
  * @param activeContact - current contact to display, if any
@@ -20,7 +18,6 @@ function BasicContactViewContainer({ activeContact }: { activeContact?: Contact 
     const childRef: any  = useRef();
 
     const { setMessage } = useMessageContext();
-    const { setReloadTrigger } = useReloadTriggerContext();
 
 
     function handleDataFromChild(): Contact {
@@ -36,11 +33,11 @@ function BasicContactViewContainer({ activeContact }: { activeContact?: Contact 
         contact['dateLastUpdated'] = date
         contact['source'] = "added manually"
 
-        apiService.insertContact(contact)
+        dataManager.createContact(contact)
         setMessage("Contact added")
-        setReloadTrigger(Math.random())
     }
 
+    // TODO: make automatic
     function updateContact() {
         const contact: Contact = handleDataFromChild()
         const date = new Date()
@@ -48,7 +45,6 @@ function BasicContactViewContainer({ activeContact }: { activeContact?: Contact 
 
         dataManager.updateContact(contact)
         setMessage("Contact updated")
-        setReloadTrigger(Math.random())
     }
     
     
