@@ -2,7 +2,8 @@ import { useRef, useState } from "react";
 import Contact from "../../types/Contact";
 import ContactView from "./contact-view/ContactView";
 import { useMessageContext, useReloadTriggerContext } from "../../AppContext";
-import apiService from "../../util/apiService";
+import apiService from "../../util/ApiService";
+import dataManager from "../../util/DataManager";
 
 /**
  * BasicContactViewContainer holds the state for one ContactView component
@@ -45,7 +46,7 @@ function BasicContactViewContainer({ activeContact }: { activeContact?: Contact 
         const date = new Date()
         contact['dateLastUpdated'] = date
 
-        apiService.updateContact(contact)
+        dataManager.updateContact(contact)
         setMessage("Contact updated")
         setReloadTrigger(Math.random())
     }

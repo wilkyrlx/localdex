@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import VCard from 'vcf';
 import VcardImportClient from '../../import-clients/VcardImportClient';
 import Contact from '../../types/Contact';
-import apiService from '../../util/apiService';
+import apiService from '../../util/ApiService';
 import { useMessageContext } from '../../AppContext';
 
 function IPhoneParser() {

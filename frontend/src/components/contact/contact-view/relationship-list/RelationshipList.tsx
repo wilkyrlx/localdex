@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Relationship from "../../../../types/Relationship";
 import RelationshipListItem from "./RelationshipListItem";
 import ContactInputBox from "../ContactInputBox";
-import apiService from "../../../../util/apiService";
+import apiService from "../../../../util/ApiService";
 import Contact from "../../../../types/Contact";
 
 // TODO: give it its own CSS

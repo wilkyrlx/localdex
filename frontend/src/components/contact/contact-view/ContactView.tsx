@@ -58,6 +58,7 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
         if (activeContact) {
             setFirstNameValue(activeContact.firstName || "")
             setLastNameValue(activeContact.lastName || "")
+            setPersonalEmailValue(activeContact.personalEmail || "")
             setTitleValue(activeContact.title || "")
             setNotesValue(activeContact.notes || "")
             setPrimaryPhoneValue(activeContact.primaryPhone || "")

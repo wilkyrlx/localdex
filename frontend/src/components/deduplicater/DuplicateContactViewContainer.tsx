@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import Contact from "../../types/Contact";
 import ContactView from "../contact/contact-view/ContactView";
 import { useMessageContext, useReloadTriggerContext } from "../../AppContext";
-import apiService from "../../util/apiService";
+import apiService from "../../util/ApiService";
 
 /**
  * DuplicateContactViewContainer holds the state for two ContactView components being compared

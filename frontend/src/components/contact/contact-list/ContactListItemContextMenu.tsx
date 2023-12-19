@@ -1,6 +1,6 @@
 import Contact from "../../../types/Contact";
 import { useMessageContext, useContextMenuContext, useReloadTriggerContext } from "../../../AppContext";
-import apiService from "../../../util/apiService";
+import apiService from "../../../util/ApiService";
 
 function ContactListItemContextMenu({ x, y, contact }: { x: number, y: number, contact: Contact }) {
 
