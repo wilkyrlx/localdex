@@ -1,4 +1,7 @@
-import Interaction from "./Interaction";
+import Interaction from "../../frontend/src/types/Interaction";
+import Relationship from "../../frontend/src/types/Relationship";
+
+// FIXME: move to frontend
 
 /**
  * Contact class
@@ -52,7 +55,7 @@ class Contact {
     pastJobs?: string[] | undefined;        // TODO: change to job object
 
     // Relationships
-    relationships?: string[] | undefined;   // TODO: change to relationship object
+    relationships?: Relationship[] | undefined;   
 
     // Groups
     groups?: string[] | undefined;

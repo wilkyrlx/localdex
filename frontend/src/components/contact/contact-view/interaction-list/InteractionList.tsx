@@ -1,10 +1,13 @@
 import { useState } from "react";
 import InteractionListItem from "./InteractionListItem";
-import Interaction from "../../../../../../shared/types/Interaction";
+import Interaction from "../../../../types/Interaction";
 
+// TODO: pass in interactions as props
 function InteractionList() {
 
-    const [interactions, setInteractions] = useState<Interaction[]>([]);
+    const interaction1 = new Interaction("test", "notes", new Date())
+
+    const [interactions, setInteractions] = useState<Interaction[]>([interaction1]);
 
 
     return (

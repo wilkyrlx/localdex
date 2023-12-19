@@ -3,6 +3,9 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from "react"
 import ContactInputBox from "./ContactInputBox"
 import JsonView from '@uiw/react-json-view';
 import InteractionList from "./interaction-list/InteractionList";
+import Interaction from "../../../types/Interaction";
+import RelationshipList from "./relationship-list/RelationshipList";
+import Relationship from "../../../types/Relationship";
 
 
 const ContactView =  forwardRef<any, any>((props, ref) => {
@@ -28,11 +31,11 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
 
     // TODO: add social media, education, work
 
-    const [relationshipsValue, setRelationshipsValue] = useState<string[]>([]); // TODO: change to Relationship[]
+    const [relationshipsValue, setRelationshipsValue] = useState<Relationship[]>([]); 
 
     const [groupsValue, setGroupsValue] = useState<string[]>([]); // TODO: change to Group[]
 
-    const [interactionsValue, setInteractionsValue] = useState<string[]>([]); // TODO: change to Interaction[]
+    const [interactionsValue, setInteractionsValue] = useState<Interaction[]>([]); 
 
     const [dateAddedValue, setDateAddedValue] = useState("");
     const [dateLastUpdatedValue, setDateLastUpdatedValue] = useState("");
@@ -47,6 +50,8 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
             setTitleValue(activeContact.title || "")
             setNotesValue(activeContact.notes || "")
             setPrimaryPhoneValue(activeContact.primaryPhone || "")
+            setInteractionsValue(activeContact.interactions || [])
+            setRelationshipsValue(activeContact.relationships || [])
             setDateAddedValue(activeContact.dateAdded?.toString() || "")
             setDateLastUpdatedValue(activeContact.dateLastUpdated?.toString() || "")
             setDateLastInteractedValue(activeContact.dateLastInteracted?.toString() || "")
@@ -65,6 +70,7 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
             title: titleValue,
             phoneNumber: primaryPhoneValue,
             relationships: relationshipsValue,
+            interactions: interactionsValue,
         }
 
         return contact;
@@ -81,6 +87,7 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
             <ContactInputBox label={"Phone Number"} textValue={primaryPhoneValue} setValue={setPrimaryPhoneValue} />
             <ContactInputBox label={"Email"} textValue={personalEmailValue} setValue={setPersonalEmailValue} />
             <InteractionList />
+            <RelationshipList relationships={relationshipsValue} setRelationships={setRelationshipsValue}/>
             <ContactInputBox label={"Date Added"} textValue={dateAddedValue} setValue={setDateAddedValue} />
             <ContactInputBox label={"Date Last Updated"} textValue={dateLastUpdatedValue} setValue={setDateLastUpdatedValue} />
             <ContactInputBox label={"Date Last Interacted"} textValue={dateLastInteractedValue} setValue={setDateLastInteractedValue} />

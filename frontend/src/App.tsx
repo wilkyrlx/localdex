@@ -7,7 +7,6 @@ import MapPage from './components/pages/MapPage';
 import ImportPage from './components/pages/ImportPage';
 import NotificationBar from './components/NotificationBar';
 import { useMessageContext, useContextMenuContext } from './AppContext';
-import Contact from '../../shared/types/Contact';
 import ContactListItemContextMenu from './components/contact/contact-list/ContactListItemContextMenu';
 import NetworkPage from './components/pages/NetworkPage';
 
