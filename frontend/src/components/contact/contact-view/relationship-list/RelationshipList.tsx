@@ -18,16 +18,16 @@ function RelationshipList({ activeContact, relationships, setRelationships }: { 
 
     // TODO: add relationship should add for both contact and target contact
     function addRelationship() {
-        // if (contactIDValue === "" || relationshipValue === "") {
-        //     return;
-        // }
-        // const aNewRelationship = new Relationship(activeContact._id, contactIDValue, relationshipValue)
-        // const bNewRelationship = new Relationship(contactIDValue, activeContact._id, relationshipValue)
-        // setRelationships([...relationships, aNewRelationship])
+        if (contactIDValue === "" || relationshipValue === "" || activeContact._id === undefined) {
+            return;
+        }
+        const aNewRelationship = new Relationship(activeContact._id, contactIDValue, relationshipValue)
+        const bNewRelationship = new Relationship(contactIDValue, activeContact._id, relationshipValue)
+        setRelationships([...relationships, aNewRelationship])
 
-        // // FIXME: buggy mess, doesn't add just replaces
-        // const contact = new Contact({_id: contactIDValue, relationships: [bNewRelationship]})
-        // apiService.updateContact(contact)
+        // FIXME: buggy mess, doesn't add just replaces
+        const contact = new Contact({_id: contactIDValue, relationships: [bNewRelationship]})
+        apiService.updateContact(contact)
     }
 
 

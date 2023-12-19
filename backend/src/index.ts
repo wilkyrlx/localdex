@@ -82,7 +82,7 @@ async function main() {
     // Retrieve potential duplicates
     app.get('/getPotentialDuplicates', async (req, res) => {
         try {
-            const data = await databaseManager.getData();
+            const data = await databaseManager.getData();   // FIXME Is only passing in first 50 contacts
             const duplicateProcessor = new DuplicateProcessor(data);
             const potentialDuplicates = duplicateProcessor.getPotentialDuplicates();
             res.status(200).json({potentialDuplicates: potentialDuplicates});
@@ -100,7 +100,8 @@ async function main() {
 
 }
 
-// FIXME: for some reason this is necessary for render deploy to work, used to be in main()
+// FIXME: for some reason this is necessary for render deploy to work
+// TODO: verify still works, used to be in main()
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
 });

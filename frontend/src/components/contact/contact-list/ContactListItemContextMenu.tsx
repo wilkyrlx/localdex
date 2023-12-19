@@ -22,10 +22,16 @@ function ContactListItemContextMenu({ x, y, contact }: { x: number, y: number, c
         setReloadTrigger(Math.random())
     }
 
+    function copyContactID() {
+        console.log("copying contact ID: " + contact._id)
+        navigator.clipboard.writeText(contact._id || "none")
+    }
+
     return (
         <div style={style} className="context-menu">
             <div className="context-menu-item" onClick={() => {console.log("TODO: archive")}}>Archive</div>
-            <div className="context-menu-item" onClick={() => {deleteContact()}}>Delete</div>
+            <div className="context-menu-item" onClick={deleteContact}>Delete</div>
+            <div className="context-menu-item" onClick={copyContactID}>Copy ID</div>
         </div>
     );
 }

@@ -5,7 +5,8 @@ function RelationshipListItem({ relationship }: { relationship: Relationship }) 
     return (
         <div className="interaction-list-item">
             <div className="interaction-header"> 
-                <p className="interaction-title">{ relationship.contactDest }</p>
+                {/* TODO: look up contactDest ID to get name/alias */}
+                <p className="interaction-title">{ relationship.contactDest }</p>  
                 <p className="interaction-content">{ relationship.relationship }</p>
             </div>
         </div>
