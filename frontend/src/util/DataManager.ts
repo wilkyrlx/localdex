@@ -21,6 +21,17 @@ import apiService from "./ApiService";
  * - Update the data in memory
  * - Update the backend
  * - Notify listeners that the data has changed
+ * 
+ * Must use some pattern like this to subscribe:
+ * useEffect(() => {
+        const handleDataManagerChange = (newData: any) => {
+            setContacts(newData);
+        };
+        dataManager.subscribe(handleDataManagerChange);
+        return () => {
+            dataManager.unsubscribe(handleDataManagerChange);
+        };
+    }, []); 
  */
 class DataManager {
 
@@ -35,6 +46,7 @@ class DataManager {
         this.loadData();
     }
 
+    // FIXME: does not load immediately
     async loadData() {
         // TODO: add a map of ID to contact
         const contacts: Contact[] = await apiService.getData();

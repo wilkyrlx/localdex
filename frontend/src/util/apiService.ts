@@ -1,6 +1,5 @@
 import dotenv from 'dotenv'
 import Contact from '../types/Contact';
-import fakeConstacts from './fakeContacts';
 
 // TODO: some way to normalize contacts, may need refactoring
 
@@ -25,9 +24,8 @@ class ApiService {
     }
 
     // TODO: data is too big right now to get all of it at once
-    // FIXME: revert to normal after testing
+    // FIXME: revert to normal try-catch after testing
     async getData() {
-        // return fakeConstacts
         const response = await fetch(`${backendUri}/data`, {
             headers: this.generateHeaders()
         })

@@ -18,8 +18,8 @@ function DuplicateContactViewContainer({ contact1, contact2 }: { contact1: Conta
     const child1: any = useRef();
     const child2: any = useRef();
 
-    const contact1Identifier = contact1.firstName || "Left Contact";
-    const contact2Identifier = contact2.firstName || "Right Contact";
+    const contact1Identifier = "Left Contact";
+    const contact2Identifier = "Right Contact";
 
     const { setMessage } = useMessageContext();
 

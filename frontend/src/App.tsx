@@ -9,12 +9,12 @@ import NotificationBar from './components/NotificationBar';
 import { useMessageContext, useContextMenuContext } from './AppContext';
 import ContactListItemContextMenu from './components/contact/contact-list/ContactListItemContextMenu';
 import NetworkPage from './components/pages/NetworkPage';
+import dataManager from './util/DataManager';
 
 
 
 function App() {
     
-
     const { message } = useMessageContext();
     const { contextMenuData } = useContextMenuContext() as any;
 

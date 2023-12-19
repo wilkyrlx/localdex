@@ -1,52 +1,49 @@
 import { useState } from 'react';
-import { CameraMode, GraphCanvas } from 'reagraph';
+import { CameraMode, GraphCanvas, LayoutTypes } from 'reagraph';
+import generateNetworkEdges from '../../util/contactNetwork/generateEdges';
+import dataManager from '../../util/DataManager';
+import generateNetworkNodes from '../../util/contactNetwork/generateNodes';
 
 function NetworkPage() {
 
+    const [layoutType, setLayoutType] = useState<LayoutTypes>("forceDirected3d")
     const [cameraMode, setCameraMode] = useState<CameraMode>("rotate")
 
-    const n = [
-        {
-            id: 'n-1',
-            label: '1'
-        },
-        {
-            id: 'n-2',
-            label: '2'
-        },
-        {
-            id: 'n-3',
-            label: '3'
-        },
-        {
-            id: 'n-4',
-            label: '4'
-        }
-    ]
+    // TODO: filter better for performance
+    const edges = generateNetworkEdges(dataManager.readContacts())
+    const nodes = generateNetworkNodes(dataManager.readContacts()).slice(0, 50)
 
-    const e = [
-        {
-            id: '1->2',
-            source: 'n-1',
-            target: 'n-2',
-            label: 'Edge 1-2'
+    function toggle3D() {
+        if (layoutType === "forceDirected3d") {
+            setLayoutType("forceDirected2d")
+        } else {
+            setLayoutType("forceDirected3d")
         }
-    ]
+    }
+
+    function toggleCameraMode() {
+        if (cameraMode === "rotate") {
+            setCameraMode("pan")
+        } else {
+            setCameraMode("rotate")
+        }
+    }
 
     return (
         <div>
             <h1>Network</h1>
             <p>This is the Network page</p>
-            <button onClick={() => {setCameraMode("rotate")}}>Rotate</button>
-            <button onClick={() => {setCameraMode("pan")}}>Pan</button>
+            <button onClick={toggleCameraMode}>Toggle Camera: {cameraMode}</button>
+            <button onClick={toggle3D}>Toggle 3D: {layoutType}</button>
 
             <div style={{ position: "fixed", width: '75%', height: '75%', border: '2px solid red'}}>
-                <GraphCanvas nodes={n} 
-                edges={e} 
-                layoutType="forceDirected3d" 
+                <GraphCanvas nodes={nodes} 
+                edges={edges} 
+                layoutType={layoutType} 
                 cameraMode={cameraMode} 
                 draggable={true}
                 edgeArrowPosition="none"
+                labelType='nodes'
                 />
             </div>
         </div>
