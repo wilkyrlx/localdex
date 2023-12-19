@@ -7,7 +7,7 @@
         "start": "npm run build && npm run serve",
         "config:dev": "node ../shared/config/config-writer.js dev",
         "config:prod": "node ../shared/config/config-writer.js prod",
-        "serve": "node lib/backend/src/index.js",
+        "serve": "node lib/src/index.js",
         "build": "tsc",
         "build:render": "npm install && tsc",
         "build:watch": "tsc --watch",

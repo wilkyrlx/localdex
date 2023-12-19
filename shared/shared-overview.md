@@ -5,6 +5,4 @@ config-writer writes to a .env file at any number of specified paths. It can be 
 
 Refer to the `.env.dummy` to look at the desired layout for .env files
 
-# types
-- Contact: contact class, used by react frontend and node.js backend. Can contain additional, non-specified fields (i.e. fields not defined in base class) 
-- Interaction: interaction class, used by react frontend and node.js backend. Describes an interaction between a contact and a user. Contains a title, notes, and date
+

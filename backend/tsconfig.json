@@ -3,7 +3,7 @@
         "module": "commonjs",
         "noImplicitReturns": true,
         "noUnusedLocals": false,
-        "outDir": "lib",
+        "outDir": "./lib",
         "sourceMap": true,
         "strict": true,
         "target": "es2017",
@@ -13,7 +13,6 @@
     "compileOnSave": true,
     "include": [
         "src",
-        "../shared/types",
         "test/duplicateProcessor.test.ts"
     ]
 }

@@ -13,6 +13,7 @@ function HomePage() {
 
     async function loadData() {
         const data = await apiService.getData()
+        const dupes = await apiService.getPotentialDuplicates() // TODO: filter out duplicates IDs from data
         setContacts(data)
     }
 
@@ -24,7 +25,7 @@ function HomePage() {
         <div>
             <h1>Home</h1>
             <p>This is the home page</p>
-            <DuplicateContactViewContainer contact1={contacts[0]} contact2={contacts[1]} />
+            {/*<DuplicateContactViewContainer contact1={contacts[0]} contact2={contacts[1]} />*/}
         </div>
     );
 }

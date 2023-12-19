@@ -79,14 +79,30 @@ async function main() {
         }
     });
 
+    // Retrieve potential duplicates
+    app.get('/getPotentialDuplicates', async (req, res) => {
+        try {
+            const data = await databaseManager.getData();
+            const duplicateProcessor = new DuplicateProcessor(data);
+            const potentialDuplicates = duplicateProcessor.getPotentialDuplicates();
+            res.status(200).json({potentialDuplicates: potentialDuplicates});
+        } catch (error) {
+            res.status(500).json(error);
+        }
+        
+    });
+
+
     app.get('/helloWorld', isAuthenticated, (req, res) => {
         res.status(200).json({ message: 'Hello World!' });
     });
 
-    // FIXME: for some reason this is necessary for render deploy to work
-    app.listen(port, () => {
-        console.log(`Server is running on port ${port}`);
-    });
 
 }
+
+// FIXME: for some reason this is necessary for render deploy to work, used to be in main()
+app.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
+
 main().catch(console.error);

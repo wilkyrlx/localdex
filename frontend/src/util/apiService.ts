@@ -100,6 +100,19 @@ class ApiService {
             console.log(error)
         }
     }
+
+    async getPotentialDuplicates() {
+
+        try{
+            const response = await fetch(`${backendUri}/getPotentialDuplicates`, {
+                headers: this.generateHeaders()
+            })
+            const data = await response.json()
+            return data
+        } catch (error) {
+            console.log(error)
+        }
+    }
 }
 
 // Create and export a singleton instance of ApiService

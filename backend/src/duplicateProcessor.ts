@@ -5,6 +5,9 @@ import mockContacts from "./mock-data/contacts";
 
 /**
  * Loads and identifies potential duplicates from all contacts in the database
+ * 
+ * @param contacts array of contacts to process
+ * @returns map of contactID to set of contactIDs that are potential duplicates
  */
 class DuplicateProcessor {
 
@@ -43,7 +46,7 @@ class DuplicateProcessor {
     }
 
     // returns true if both a and b are defined and equal
-    public existsAndEqual(a: any, b: any): Boolean {
+    private existsAndEqual(a: any, b: any): Boolean {
         return (a === undefined && b === undefined) ? false : a === b;
     } 
 
@@ -55,7 +58,7 @@ class DuplicateProcessor {
      * @param contact first contact to compare
      * @param dupe second contact to compare
      */
-    public isPotentialDuplicate(contact: any, dupe: any): Boolean {
+    private isPotentialDuplicate(contact: any, dupe: any): Boolean {
         let similarity = 0;
 
         // check email (exact match)
@@ -78,7 +81,7 @@ class DuplicateProcessor {
             similarity += fuzz.ratio(contactFullName, dupeFullName);
         }
 
-        // TODO: make similarity variable
+        // TODO: make similarity changeable based on user preferences
         if (similarity > 80) {
             // console.log(`Potential duplicate found: ${contactFullName} and ${dupeFullName} with similarity ${similarity}`);
             return true;

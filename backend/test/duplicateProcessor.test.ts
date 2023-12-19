@@ -1,39 +1,38 @@
-import Contact from "../../shared/types/Contact";
 import DuplicateProcessor from '../src/duplicateProcessor';
 
-let contactsJohnMock1: Contact[] = [];
-let undefinedNameMock1: Contact[] = [];
+let contactsJohnMock1: any[] = [];
+let undefinedNameMock1: any[] = [];
 beforeAll(() => {
-    const contact1: Contact = {
+    const contact1: any = {
         _id: '1',
         firstName: 'John',
         lastName: 'Smith',
         alias: [],
         primaryPhone: '1234567890',
     };
-    const contact2: Contact = {
+    const contact2: any = {
         _id: '2',
         firstName: 'John',
         lastName: 'Ray',
         alias: []
     };
-    const contact3: Contact = {
+    const contact3: any = {
         _id: '3',
         firstName: 'John',
         alias: [],
         primaryPhone: '1234567890',
     };
-    const contact4: Contact = {
+    const contact4: any = {
         _id: '4',
         firstName: 'John',
         lastName: 'Ray',
         alias: []
     };
-    const contact5: Contact = {
+    const contact5: any = {
         _id: '5',
         alias: []
     };
-    const contact6: Contact = {
+    const contact6: any = {
         _id: '6',
         alias: []
     };
