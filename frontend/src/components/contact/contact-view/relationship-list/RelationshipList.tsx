@@ -8,6 +8,8 @@ import dataManager from "../../../../util/DataManager";
 // TODO: give it its own CSS
 function RelationshipList({ activeContact, relationships, setRelationships }: { activeContact: Contact, relationships: Relationship[], setRelationships: Function }) {
 
+    const id = activeContact._id
+
     const [contactIDValue, setContactIDValue] = useState("");
     const [relationshipValue, setRelationshipValue] = useState("");
 
@@ -16,19 +18,31 @@ function RelationshipList({ activeContact, relationships, setRelationships }: { 
         setRelationshipValue("")
     }, [relationships])
 
-    // TODO: add relationship should add for both contact and target contact
-    function addRelationship() {
-        // if (contactIDValue === "" || relationshipValue === "" || activeContact._id === undefined) {
-        //     return;
-        // }
-        // const aNewRelationship = new Relationship(activeContact._id, contactIDValue, relationshipValue)
-        // const bNewRelationship = new Relationship(contactIDValue, activeContact._id, relationshipValue)
-        // setRelationships([...relationships, aNewRelationship])
+    useEffect(() => {
+        const handleDataManagerChange = (newData: any) => {
+            activeContact = newData.find((c: Contact) => c._id === id)
+        };
+        dataManager.subscribe(handleDataManagerChange);
+        return () => {
+            dataManager.unsubscribe(handleDataManagerChange);
+        };
+    }, []); 
 
-        // // FIXME: buggy mess, doesn't add just replaces
-        // const contact = new Contact({_id: contactIDValue, relationships: [bNewRelationship]})
-        // dataManager.updateContact(contact)
-        console.warn("addRelationship() not implemented")
+    // TODO: fix, buggy as fuck
+    function addRelationship() {
+        if (contactIDValue === "" || relationshipValue === "" || activeContact._id === undefined) {
+            return;
+        }
+        const aNewRelationship = new Relationship(activeContact._id, contactIDValue, relationshipValue)
+        const bNewRelationship = new Relationship(contactIDValue, activeContact._id, relationshipValue)
+
+        const aContact = new Contact(activeContact)
+        const bContact = new Contact(dataManager.readContactFromId(contactIDValue))
+        aContact.addRelationship(aNewRelationship)
+        bContact.addRelationship(bNewRelationship)
+
+        dataManager.updateContact(aContact)
+        dataManager.updateContact(bContact)    
     }
 
 

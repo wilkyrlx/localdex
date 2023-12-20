@@ -1,3 +1,4 @@
+import Group from "./Group";
 import Interaction from "./Interaction";
 import Relationship from "./Relationship";
 
@@ -13,6 +14,7 @@ class Contact {
     dateLastUpdated?: Date | undefined;          // last time any field was updated
     dateLastInteracted?: Date | undefined;   // last time user interacted with contact, either in person or virtually. Generated from log
     source?: string | undefined;        // where contact came from (i.e. "imported from vCard", "added manually", "imported from LinkedIn")
+    serviceFlags?: string[] | undefined;    // TODO: warning flags ("malformed data", "no name" etc.)
 
     // Contact information
     alias?: string[] | undefined;    // Array of aliases, if no first + last name, choose first alias
@@ -56,13 +58,12 @@ class Contact {
     relationships?: Relationship[] | undefined;   
 
     // Groups
-    groups?: string[] | undefined;
+    groups?: Group[] | undefined;          
 
     // Interactions
     interactions?: Interaction[] | undefined;
 
     [key: string]: any; // Index signature for dynamic properties
-
     constructor(miscFields: { [key: string]: any }) {       
         for (const key in miscFields) {
             if (miscFields.hasOwnProperty(key)) {
@@ -83,6 +84,8 @@ class Contact {
         this.relationships = this.relationships || [];
         this.relationships.push(relationship);
     }
+
+   
 }
 
 

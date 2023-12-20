@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Contact from "../../types/Contact";
 import DuplicateContactViewContainer from "../deduplicater/DuplicateContactViewContainer";
-import dataManager, { useDataManagerEffect } from "../../util/DataManager";
+import dataManager from "../../util/DataManager";
 
 function HomePage() {
 
@@ -9,8 +9,15 @@ function HomePage() {
     // TODO: streamline this, maybe contact accessor function? proxy? singleton?
     const [contacts, setContacts] = useState<Contact[]>(dataManager.contacts)
 
-    useDataManagerEffect({ dataManager, setContacts });
-
+    useEffect(() => {
+        const handleDataManagerChange = (newData: any) => {
+            setContacts(newData);
+        };
+        dataManager.subscribe(handleDataManagerChange);
+        return () => {
+            dataManager.unsubscribe(handleDataManagerChange);
+        };
+    }, []); 
 
     return (
         <div>

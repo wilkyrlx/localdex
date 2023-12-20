@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Contact from "../../types/Contact";
 import ContactList from "../contact/contact-list/ContactList";
 import BasicContactViewContainer from "../contact/BasicContactViewContainer";
-import dataManager, { useDataManagerEffect } from "../../util/DataManager";
+import dataManager from "../../util/DataManager";
 
 function ContactsPage() {
 
@@ -10,8 +10,15 @@ function ContactsPage() {
     const [contacts, setContacts] = useState<Contact[]>(dataManager.contacts)
     const [searchQuery, setSearchQuery] = useState("");
 
-    useDataManagerEffect({ dataManager, setContacts });
-
+    useEffect(() => {
+        const handleDataManagerChange = (newData: any) => {
+            setContacts(newData);
+        };
+        dataManager.subscribe(handleDataManagerChange);
+        return () => {
+            dataManager.unsubscribe(handleDataManagerChange);
+        };
+    }, []); 
 
     const filteredContacts = contacts.filter((contact) =>
         contact.firstName && contact.firstName.toLowerCase().includes(searchQuery.toLowerCase())
