@@ -6,9 +6,10 @@ import Contact from "../../../../types/Contact";
 import dataManager from "../../../../util/DataManager";
 
 // TODO: give it its own CSS
+// FIXME: fix, does not work with new contacts
 function RelationshipList({ activeContact, relationships, setRelationships }: { activeContact: Contact, relationships: Relationship[], setRelationships: Function }) {
 
-    const id = activeContact._id
+    const id = activeContact?._id
 
     const [contactIDValue, setContactIDValue] = useState("");
     const [relationshipValue, setRelationshipValue] = useState("");
@@ -28,9 +29,8 @@ function RelationshipList({ activeContact, relationships, setRelationships }: { 
         };
     }, []); 
 
-    // TODO: fix, buggy as fuck
     function addRelationship() {
-        if (contactIDValue === "" || relationshipValue === "" || activeContact._id === undefined) {
+        if (contactIDValue === "" || relationshipValue === "" || activeContact?._id === undefined) {
             return;
         }
         const aNewRelationship = new Relationship(activeContact._id, contactIDValue, relationshipValue)
