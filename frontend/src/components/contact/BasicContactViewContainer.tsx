@@ -12,7 +12,7 @@ import dataManager from "../../util/DataManager";
  * 
  * @param activeContact - current contact to display, if any
  */
-function BasicContactViewContainer({ activeContact }: { activeContact?: Contact }) {
+function BasicContactViewContainer({ activeContact }: { activeContact: Contact }) {
 
     // raw data from the ContactView component below
     const childRef: any  = useRef();

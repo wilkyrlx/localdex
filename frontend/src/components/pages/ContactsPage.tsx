@@ -6,7 +6,7 @@ import dataManager from "../../util/DataManager";
 
 function ContactsPage() {
 
-    const [activeContact, setActiveContact] = useState<Contact | undefined>(undefined)
+    const [activeContact, setActiveContact] = useState<Contact>(new Contact())
     const [contacts, setContacts] = useState<Contact[]>(dataManager.contacts)
     const [searchQuery, setSearchQuery] = useState("");
 

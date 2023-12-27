@@ -19,9 +19,13 @@ import Relationship from "../../../types/Relationship";
  * 3. ContactInputBox or likewise to display and edit the field
  * 4. getContactFieldData to return the field's data
  */
-const ContactView =  forwardRef<any, any>((props, ref) => {
+interface ContactViewProps {
+    activeContact: Contact;
+}
+
+const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
     const { activeContact } = props;
-   
+
     useImperativeHandle(ref, () => ({ getContactFieldData }));
 
     const [firstNameValue, setFirstNameValue] = useState<string>("");
@@ -30,23 +34,23 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
     const [titleValue, setTitleValue] = useState<string>("");
     const [notesValue, setNotesValue] = useState<string>("");
     const [birthdayValue, setBirthdayValue] = useState<Date | undefined>(undefined);
-    
+
     const [addressValue, setAddressValue] = useState<string>(""); // TODO: change to Address
     const [formerAddressesValue, setFormerAddressesValue] = useState<string>(""); // TODO: change to Address
-    
+
     const [primaryPhoneValue, setPrimaryPhoneValue] = useState("");     // TODO: change to Phone
     const [alternatePhone, setAlternatePhone] = useState("");           // TODO: change to Phone
 
-    const [personalEmailValue, setPersonalEmailValue] = useState<string>(""); 
-    const [workEmailValue, setWorkEmailValue] = useState<string>("");        
+    const [personalEmailValue, setPersonalEmailValue] = useState<string>("");
+    const [workEmailValue, setWorkEmailValue] = useState<string>("");
 
     // TODO: add social media, education, work
 
-    const [relationshipsValue, setRelationshipsValue] = useState<Relationship[]>([]); 
+    const [relationshipsValue, setRelationshipsValue] = useState<Relationship[]>([]);
 
     const [groupsValue, setGroupsValue] = useState<string[]>([]); // TODO: change to Group[]
 
-    const [interactionsValue, setInteractionsValue] = useState<Interaction[]>([]); 
+    const [interactionsValue, setInteractionsValue] = useState<Interaction[]>([]);
 
     const [dateAddedValue, setDateAddedValue] = useState("");
     const [dateLastUpdatedValue, setDateLastUpdatedValue] = useState("");
@@ -73,7 +77,7 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
 
     function getContactFieldData() {
         const contact: Contact = new Contact({
-            _id: activeContact?._id,
+            _id: activeContact._id,
             alias: [firstNameValue + " " + lastNameValue],
             firstName: firstNameValue,
             lastName: lastNameValue,
@@ -90,7 +94,7 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
 
     return (
 
-        <div>            
+        <div>
             <p>{activeContact?._id}</p>
             <ContactInputBox label={"First Name"} textValue={firstNameValue} setValue={setFirstNameValue} />
             <ContactInputBox label={"Last Name"} textValue={lastNameValue} setValue={setLastNameValue} />
@@ -99,7 +103,7 @@ const ContactView =  forwardRef<any, any>((props, ref) => {
             <ContactInputBox label={"Phone Number"} textValue={primaryPhoneValue} setValue={setPrimaryPhoneValue} />
             <ContactInputBox label={"Email"} textValue={personalEmailValue} setValue={setPersonalEmailValue} />
             <InteractionList interactions={interactionsValue} setInteractions={setInteractionsValue} />
-            <RelationshipList activeContact={activeContact} relationships={relationshipsValue} setRelationships={setRelationshipsValue}/>
+            <RelationshipList activeContact={activeContact} relationships={relationshipsValue} setRelationships={setRelationshipsValue} />
             <ContactInputBox label={"Date Added"} textValue={dateAddedValue} setValue={setDateAddedValue} />
             <ContactInputBox label={"Date Last Updated"} textValue={dateLastUpdatedValue} setValue={setDateLastUpdatedValue} />
             <ContactInputBox label={"Date Last Interacted"} textValue={dateLastInteractedValue} setValue={setDateLastInteractedValue} />

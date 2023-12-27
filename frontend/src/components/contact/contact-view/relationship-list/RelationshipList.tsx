@@ -29,20 +29,19 @@ function RelationshipList({ activeContact, relationships, setRelationships }: { 
         };
     }, []); 
 
+    // TODO: very buggy, add error checking
     function addRelationship() {
-        if (contactIDValue === "" || relationshipValue === "" || activeContact?._id === undefined) {
+        if (contactIDValue === "") {
             return;
         }
         const aNewRelationship = new Relationship(activeContact._id, contactIDValue, relationshipValue)
         const bNewRelationship = new Relationship(contactIDValue, activeContact._id, relationshipValue)
 
-        const aContact = new Contact(activeContact)
         const bContact = new Contact(dataManager.readContactFromId(contactIDValue))
-        aContact.addRelationship(aNewRelationship)
         bContact.addRelationship(bNewRelationship)
 
-        dataManager.updateContact(aContact)
-        dataManager.updateContact(bContact)    
+        dataManager.updateContact(bContact)  
+        setRelationships([...relationships, aNewRelationship])  
     }
 
 
