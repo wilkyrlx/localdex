@@ -31,7 +31,7 @@ function RelationshipList({ activeContact, relationships, setRelationships }: { 
 
     // TODO: very buggy, add error checking
     function addRelationship() {
-        if (contactIDValue === "") {
+        if (contactIDValue === "" || activeContact._id === undefined) {
             return;
         }
         const aNewRelationship = new Relationship(activeContact._id, contactIDValue, relationshipValue)

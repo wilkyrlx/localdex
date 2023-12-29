@@ -81,6 +81,11 @@ class DataManager {
        
     // -------- create methods --------
     createContact(contact: Contact) {
+        
+        const date = new Date()
+        contact['dateLastUpdated'] = date
+        contact['dateAdded'] = date
+
         // update memory
         this.contacts.push(contact);
 
@@ -90,6 +95,13 @@ class DataManager {
     }
 
     createMultipleContacts(contacts: Contact[]) {
+
+        const date = new Date()
+        contacts.forEach(contact => {
+            contact['dateLastUpdated'] = date
+            contact['dateAdded'] = date
+        })
+
         // update memory
         this.contacts = this.contacts.concat(contacts);
 
@@ -108,8 +120,9 @@ class DataManager {
 
     /**
      * @param id the id of the contact to read
-     * @returns the contact with the given id, or undefined if no contact has that id
+     * @returns the contact with the given id, throws an error if no contact with that id exists
      */
+    // TODO: should this throw an error?
     readContactFromId(id: string): Contact {
         const c = this.idsToContacts.get(id);
         if (c) {
@@ -119,8 +132,16 @@ class DataManager {
         }
     }
 
+    contactExists(id: string): boolean {
+        return this.idsToContacts.has(id);
+    }
+
     // -------- update methods --------
     updateContact(updatedContact: Contact) {
+
+        const date = new Date()
+        updatedContact['dateLastUpdated'] = date
+
         // update memory
         this.contacts = this.contacts.map(contact => {
             if (contact._id === updatedContact._id) {

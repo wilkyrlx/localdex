@@ -11,8 +11,11 @@ function ContactsPage() {
     const [searchQuery, setSearchQuery] = useState("");
 
     useEffect(() => {
-        const handleDataManagerChange = (newData: any) => {
+        const handleDataManagerChange = (newData: Contact[]) => {
             setContacts(newData);
+            // if (activeContact._id !== undefined) {
+            //     setActiveContact(dataManager.readContactFromId(activeContact._id))
+            // } 
         };
         dataManager.subscribe(handleDataManagerChange);
         return () => {
@@ -41,7 +44,7 @@ function ContactsPage() {
                     <ContactList setActiveContact={setActiveContact} contacts={filteredContacts} />
                 </div>
                 <div className="scrollable-container" style={{ flex: 1 }} >
-                    <BasicContactViewContainer activeContact={activeContact} />
+                    <BasicContactViewContainer activeContact={activeContact} /> 
                 </div>
             </div>
         </div>

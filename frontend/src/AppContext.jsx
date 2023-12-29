@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction, createContext, useContext, useState } from 'react';
 
+// TODO: include some changing aspect so even if the context is the same, it will still re-render
 const MessageContext = createContext({
     message: "",
     setMessage: (message) => { }

@@ -3,6 +3,7 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import DatabaseManager from './mongoClient';
 import DuplicateProcessor from './duplicateProcessor';
+import { ObjectId } from 'mongodb';
 
 dotenv.config();
 
@@ -32,7 +33,15 @@ async function main() {
     // Insert contact
     app.post('/insertContact', async (req, res) => {
         try {
-            const data = await databaseManager.insertContact(req.body);
+            const contact = req.body;
+            if (contact._id) {
+                contact._id = new ObjectId(contact._id);
+            }
+            else {
+                contact._id = new ObjectId();
+            }
+            console.log("contact: ", contact);
+            const data = await databaseManager.insertContact(contact);
             res.status(200).json(data);
         } catch (error) {
             res.status(500).json(error);
@@ -42,6 +51,7 @@ async function main() {
     // Insert multiple contacts
     app.post('/insertMultipleContacts', async (req, res) => {
         try {
+            // TODO: generate IDs for contacts
             const data = await databaseManager.insertMultipleContacts(req.body);
             res.status(200).json(data);
         } catch (error) {

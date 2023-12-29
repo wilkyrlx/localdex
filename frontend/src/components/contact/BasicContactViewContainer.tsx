@@ -26,25 +26,16 @@ function BasicContactViewContainer({ activeContact }: { activeContact: Contact }
         return data;
     }
 
-    function saveContact() {   
+    function syncContact() {
         const contact: Contact = handleDataFromChild()
-        const date = new Date()
-        contact['dateAdded'] = date
-        contact['dateLastUpdated'] = date
-        contact['source'] = "added manually"
 
-        dataManager.createContact(contact)
-        setMessage("Contact added")
-    }
-
-    // TODO: make automatic
-    function updateContact() {
-        const contact: Contact = handleDataFromChild()
-        const date = new Date()
-        contact['dateLastUpdated'] = date
-
-        dataManager.updateContact(contact)
-        setMessage("Contact updated")
+        if(dataManager.contactExists(contact._id)) {
+            dataManager.updateContact(contact)
+            setMessage("Contact updated")
+        } else {    
+            dataManager.createContact(contact)
+            setMessage("Contact added")
+        }
     }
     
     
@@ -52,8 +43,7 @@ function BasicContactViewContainer({ activeContact }: { activeContact: Contact }
     return (
         <div>
             <h1>Simple Contact View</h1>
-            <button onClick={ saveContact }>Save Contact</button>
-            <button onClick={ updateContact }>Update Contact</button>
+            <button onClick={ syncContact }>Sync Contact</button>
             <ContactView ref={childRef} activeContact={activeContact} />
         </div>
     );
