@@ -4,6 +4,7 @@ import ContactView from "./contact-view/ContactView";
 import { useMessageContext } from "../../AppContext";
 import dataManager from "../../util/DataManager";
 import { createNotificationMessage } from "../NotificationBar";
+import { relative } from "path";
 
 /**
  * BasicContactViewContainer holds the state for one ContactView component
@@ -49,7 +50,7 @@ function BasicContactViewContainer({ activeContact }: { activeContact: Contact }
     return (
         <div>
             <h1>Simple Contact View</h1>
-            <button onClick={ syncContact }>Sync Contact</button>
+            <button onClick={ syncContact } className="sync-button">Sync Contact</button>
             <ContactView ref={childRef} activeContact={activeContact} />
         </div>
     );

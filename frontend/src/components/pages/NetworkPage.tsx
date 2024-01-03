@@ -6,8 +6,8 @@ import generateNetworkNodes from '../../util/contactNetwork/generateNodes';
 
 function NetworkPage() {
 
-    const [layoutType, setLayoutType] = useState<LayoutTypes>("forceDirected3d")
-    const [cameraMode, setCameraMode] = useState<CameraMode>("rotate")
+    const [layoutType, setLayoutType] = useState<LayoutTypes>("forceDirected2d")
+    const [cameraMode, setCameraMode] = useState<CameraMode>("pan")
 
     // TODO: filter better for performance
     const edges = generateNetworkEdges(dataManager.readContacts())
