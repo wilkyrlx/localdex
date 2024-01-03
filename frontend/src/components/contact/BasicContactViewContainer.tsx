@@ -3,6 +3,7 @@ import Contact from "../../types/Contact";
 import ContactView from "./contact-view/ContactView";
 import { useMessageContext } from "../../AppContext";
 import dataManager from "../../util/DataManager";
+import { createNotificationMessage } from "../NotificationBar";
 
 /**
  * BasicContactViewContainer holds the state for one ContactView component
@@ -30,11 +31,16 @@ function BasicContactViewContainer({ activeContact }: { activeContact: Contact }
         const contact: Contact = handleDataFromChild()
 
         if(dataManager.contactExists(contact._id)) {
+            // update contact
             dataManager.updateContact(contact)
-            setMessage("Contact updated")
+            const message = createNotificationMessage("Contact updated")
+            setMessage(message)
         } else {    
+            // create contact
             dataManager.createContact(contact)
-            setMessage("Contact added")
+            const message = {payload: "Contact added", salt: Math.random()}
+
+            setMessage(message)
         }
     }
     

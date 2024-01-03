@@ -3,6 +3,7 @@ import VcardImportClient from '../../import-clients/VcardImportClient';
 import Contact from '../../types/Contact';
 import { useMessageContext } from '../../AppContext';
 import dataManager from '../../util/DataManager';
+import { createNotificationMessage } from '../NotificationBar';
 
 function IPhoneParser() {
 
@@ -18,7 +19,7 @@ function IPhoneParser() {
                 const parsedCards: Contact[] = client.importToContacts();
                 
                 dataManager.createMultipleContacts(parsedCards);                
-                setMessage(`Successfully imported ${parsedCards.length} contacts`);
+                setMessage(createNotificationMessage(`Successfully imported ${parsedCards.length} contacts`));
             } catch (error) {
                 console.error('Error reading or parsing vCard:', error);
             }

@@ -3,6 +3,8 @@ import Contact from "../../types/Contact";
 import ContactView from "../contact/contact-view/ContactView";
 import { useMessageContext } from "../../AppContext";
 import dataManager from "../../util/DataManager";
+import { create } from "domain";
+import { createNotificationMessage } from "../NotificationBar";
 
 /**
  * DuplicateContactViewContainer holds the state for two ContactView components being compared
@@ -59,7 +61,7 @@ function DuplicateContactViewContainer({ contact1, contact2 }: { contact1: Conta
         merger['dateLastUpdated'] = date
         dataManager.updateContact(merger)
         dataManager.deleteContact(deleted)
-        setMessage("Contact merged")
+        setMessage(createNotificationMessage('Contact merged'))
     }
     
 

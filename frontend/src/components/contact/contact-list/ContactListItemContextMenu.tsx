@@ -1,6 +1,7 @@
 import Contact from "../../../types/Contact";
 import { useMessageContext, useContextMenuContext } from "../../../AppContext";
 import dataManager from "../../../util/DataManager";
+import { createNotificationMessage } from "../../NotificationBar";
 
 function ContactListItemContextMenu({ x, y, contact }: { x: number, y: number, contact: Contact }) {
 
@@ -18,7 +19,7 @@ function ContactListItemContextMenu({ x, y, contact }: { x: number, y: number, c
     function deleteContact() {
         console.log("deleting contact " + contact.firstName)
         dataManager.deleteContact(contact)
-        setMessage(`Successfully deleted ${contact.firstName} ${contact.lastName}`)
+        setMessage(createNotificationMessage(`Successfully deleted ${contact.firstName} ${contact.lastName}`))
     }
 
     function copyContactID() {
