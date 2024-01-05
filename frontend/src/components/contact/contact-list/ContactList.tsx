@@ -2,12 +2,18 @@ import { useEffect, useState } from "react"
 import ContactListItem from "./ContactListItem"
 import Contact from "../../../types/Contact"
 
-function ContactList({ setActiveContact, contacts }: { setActiveContact: any, contacts: Contact[] }) {
+function ContactList({ activeContact, setActiveContact, contacts }: { activeContact: Contact, setActiveContact: any, contacts: Contact[] }) {
 
-    return(
+    return (
         <div>
             <ul>
-                { contacts.map((contact) => <ContactListItem contact={contact} setActiveContact={setActiveContact} key={contact._id}/>) }
+                {contacts.map((contact) =>
+                    <ContactListItem
+                        activeContact={activeContact}
+                        contact={contact}
+                        setActiveContact={setActiveContact}
+                        key={contact._id} />
+                )}
             </ul>
         </div>
     )

@@ -41,7 +41,7 @@ function ContactsPage() {
             <div className="half-page-container">
                 <div className="scrollable-container" style={{ width: "40%", resize: "horizontal" }}>
                     <p> Contacts: {contacts.length}</p>
-                    <ContactList setActiveContact={setActiveContact} contacts={filteredContacts} />
+                    <ContactList activeContact={activeContact} setActiveContact={setActiveContact} contacts={filteredContacts} />
                 </div>
                 <div className="scrollable-container" style={{ flex: 1 }} >
                     <BasicContactViewContainer activeContact={activeContact} /> 

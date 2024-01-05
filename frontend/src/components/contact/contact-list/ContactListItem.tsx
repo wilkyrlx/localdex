@@ -1,7 +1,7 @@
 import Contact from "../../../types/Contact"
 import { useMessageContext, useContextMenuContext } from "../../../AppContext";
 
-function ContactListItem({ contact, setActiveContact }: { contact: Contact, setActiveContact: any }) {
+function ContactListItem({ activeContact, contact, setActiveContact }: { activeContact: Contact, contact: Contact, setActiveContact: any }) {
 
     const { setContextMenu: setContextMenu } = useContextMenuContext();
 
@@ -19,13 +19,17 @@ function ContactListItem({ contact, setActiveContact }: { contact: Contact, setA
         setContextMenu({ x: xPos, y: yPos, contact: contact });
     }
 
+    function isActiveContact() {
+        return activeContact._id === contact._id;
+    }
+
     return (
         <div className="list-item" onClick={() => openContactView()} onContextMenu={handleContextMenu} >
             <div className="list-item-bar"></div>
+            { isActiveContact() && <div className="list-item-bar-red"></div>}
             <div className="list-item-content">
                 <h3 className="list-item-name">{`${contact.firstName} ${contact.lastName || ""}`}</h3>
                 <p className="list-item-description">{contact.title}</p>
-                {/* <p className="list-item-description">{contact._id}</p> */}
             </div>
         </div>
     )

@@ -17,6 +17,11 @@
     margin-right: 10px;
 }
 
+.list-item-bar-red {
+    @extend .list-item-bar;
+    background-color: #e74c3c !important;
+}   
+
 .list-item-content {
     display: flex;
     align-items: center;
