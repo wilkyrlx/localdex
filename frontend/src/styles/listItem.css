@@ -2,7 +2,7 @@
     display: flex;
     align-items: center;
     background-color: #ffffff;
-    margin: 10px;
+    margin: 2px;
     padding: 10px;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -11,7 +11,7 @@
 
 .list-item-bar {
     width: 10px;
-    height: 60px;
+    height: 20px;
     background-color: #3498db;
     /* You can change the color */
     margin-right: 10px;

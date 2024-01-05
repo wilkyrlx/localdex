@@ -62,7 +62,6 @@ class Contact {
     groups?: Group[] | undefined;
 
     // Interactions
-
     interactions?: Interaction[] | undefined;
 
 
