@@ -1,4 +1,4 @@
-import { Interaction } from "../../../../types/Interaction"
+import Interaction from "../../../../types/Interaction"
 
 function InteractionListItem({ interaction }: { interaction: Interaction }) {
 

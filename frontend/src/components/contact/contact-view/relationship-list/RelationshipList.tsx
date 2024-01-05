@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Relationship } from "../../../../types/Relationship";
+import Relationship from "../../../../types/Relationship";
 import RelationshipListItem from "./RelationshipListItem";
 import ContactInputBox from "../reusable/ContactInputBox";
 import Contact from "../../../../types/Contact";

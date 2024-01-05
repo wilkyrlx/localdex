@@ -3,8 +3,8 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from "react"
 import ContactInputBox from "./reusable/ContactInputBox"
 import JsonView from '@uiw/react-json-view';
 import InteractionList from "./interaction-list/InteractionList";
-import { Interaction } from "../../../types/Interaction";
-import { Relationship } from "../../../types/Relationship";
+import Interaction from "../../../types/Interaction";
+import Relationship from "../../../types/Relationship";
 import RelationshipList from "./relationship-list/RelationshipList";
 import CollapsibleRegion from "./reusable/CollapsibleRegion";
 import Group from "../../../types/Group";

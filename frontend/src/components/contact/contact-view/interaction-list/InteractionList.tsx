@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import InteractionListItem from "./InteractionListItem";
-import { Interaction } from "../../../../types/Interaction";
+import Interaction from "../../../../types/Interaction";
 import ContactInputBox from "../reusable/ContactInputBox";
 
 function InteractionList({ interactions, setInteractions }: { interactions: Interaction[], setInteractions: Function }) {

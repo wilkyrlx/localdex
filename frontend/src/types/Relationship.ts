@@ -6,9 +6,11 @@
  * 
  * NOTE: does not keep track of contactName since that may change.
  */
-export interface Relationship {
+interface Relationship {
     contactSrc: string;
     contactDest: string;
     relationship?: string;
 }
+
+export default Relationship;
 
