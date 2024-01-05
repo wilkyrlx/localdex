@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import Contact from "../../types/Contact";
-import DuplicateContactViewContainer from "../deduplicater/DuplicateContactViewContainer";
-import dataManager from "../../util/DataManager";
+import Contact from "../types/Contact";
+import DuplicateContactViewContainer from "../components/deduplicater/DuplicateContactViewContainer";
+import dataManager from "../util/DataManager";
 
 function HomePage() {
 

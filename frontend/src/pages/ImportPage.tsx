@@ -1,5 +1,5 @@
-import IPhoneParser from "../import/IPhoneParser";
-import VCardParser from "../import/VCardParser";
+import IPhoneParser from "../components/import/IPhoneParser";
+import VCardParser from "../components/import/VCardParser";
 
 function ImportPage() {
     return (

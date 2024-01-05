@@ -38,6 +38,7 @@ function IPhoneParser() {
     return (
         <div>
             <h1>Import from iPhone Contacts</h1>
+            {/* TODO: instructions */}
             <p>Instructions: TODO</p>
             <input type="file" onChange={handleFileChange} accept=".vcf" />
         </div>

@@ -1,14 +1,14 @@
 import SidebarComponent from './components/SidebarComponent';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import HomePage from './components/pages/HomePage';
-import AboutPage from './components/pages/AboutPage';
-import ContactsPage from './components/pages/ContactsPage';
-import MapPage from './components/pages/MapPage';
-import ImportPage from './components/pages/ImportPage';
+import HomePage from './pages/HomePage';
+import AboutPage from './pages/AboutPage';
+import ContactsPage from './pages/ContactsPage';
+import MapPage from './pages/MapPage';
+import ImportPage from './pages/ImportPage';
 import NotificationBar from './components/NotificationBar';
 import { useMessageContext, useContextMenuContext } from './AppContext';
 import ContactListItemContextMenu from './components/contact/contact-list/ContactListItemContextMenu';
-import NetworkPage from './components/pages/NetworkPage';
+import NetworkPage from './pages/NetworkPage';
 
 function App() {
     

@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import Contact from "../../types/Contact";
-import ContactList from "../contact/contact-list/ContactList";
-import BasicContactViewContainer from "../contact/BasicContactViewContainer";
-import dataManager from "../../util/DataManager";
+import Contact from "../types/Contact";
+import ContactList from "../components/contact/contact-list/ContactList";
+import BasicContactViewContainer from "../components/contact/BasicContactViewContainer";
+import dataManager from "../util/DataManager";
 
 function ContactsPage() {
 
