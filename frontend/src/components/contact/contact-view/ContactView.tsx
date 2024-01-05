@@ -32,7 +32,7 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
     useImperativeHandle(ref, () => ({ getContactFieldData }));
 
     const [firstNameValue, setFirstNameValue] = useState<string|undefined>(undefined);
-    const [lastNameValue, setLastNameValue] = useState<string|undefined>("");
+    const [lastNameValue, setLastNameValue] = useState<string|undefined>(undefined);
     const [photoUriValue, setPhotoUriValue] = useState<string>("");
     const [titleValue, setTitleValue] = useState<string|undefined>("");
     const [notesValue, setNotesValue] = useState<string|undefined>("");

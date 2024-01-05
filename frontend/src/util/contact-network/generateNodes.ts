@@ -11,9 +11,10 @@ function generateNetworkNodes(contacts: Contact[]): Node[] {
 
     contacts.forEach((contact) => {
         if (contact._id) {
+            const label = (contact.firstName || "") + " " + (contact.lastName || "");
             nodes.push({
                 id: contact._id,
-                label: contact.firstName + " " + contact.lastName,
+                label: label,
             });
         }
     });
