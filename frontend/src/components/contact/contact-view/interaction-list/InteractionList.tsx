@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import InteractionListItem from "./InteractionListItem";
 import { Interaction } from "../../../../types/Interaction";
-import ContactInputBox from "../ContactInputBox";
+import ContactInputBox from "../reusable/ContactInputBox";
 
 function InteractionList({ interactions, setInteractions }: { interactions: Interaction[], setInteractions: Function }) {
 
@@ -28,7 +28,6 @@ function InteractionList({ interactions, setInteractions }: { interactions: Inte
 
     return (
         <div>
-            <hr></hr>
             <p>Interaction List</p>
             <ContactInputBox label={"Interaction Name"} textValue={interactionTitle} setValue={setInteractionTitle} />
             <ContactInputBox label={"Notes"} textValue={interactionNotes} setValue={setInteractionNotes} />
@@ -36,7 +35,6 @@ function InteractionList({ interactions, setInteractions }: { interactions: Inte
             <ul className="interaction-list">
                 {interactions.map((interaction) => <InteractionListItem interaction={interaction} />)}
             </ul>
-            <hr></hr>
         </div>
     )
 }

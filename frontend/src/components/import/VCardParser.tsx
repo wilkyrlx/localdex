@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import VCard from 'vcf';
 import VcardImportClient from '../../import-clients/VcardImportClient';
 import Contact from '../../types/Contact';
 import { useMessageContext } from '../../AppContext';

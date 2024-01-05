@@ -1,10 +1,10 @@
 
 interface Address {
-
-    address: string;
-    coordinates?: string; // TODO: change to coordinates object
-
-    
+    address: string;        
+    description?: string;   
+    coordinates?: string; 
+    startDate?: Date;
+    endDate?: Date;
 }
 
 export default Address;

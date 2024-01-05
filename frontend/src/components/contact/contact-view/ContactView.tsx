@@ -1,11 +1,12 @@
 import Contact from "../../../types/Contact"
 import { forwardRef, useEffect, useImperativeHandle, useState } from "react"
-import ContactInputBox from "./ContactInputBox"
+import ContactInputBox from "./reusable/ContactInputBox"
 import JsonView from '@uiw/react-json-view';
 import InteractionList from "./interaction-list/InteractionList";
 import { Interaction } from "../../../types/Interaction";
 import { Relationship } from "../../../types/Relationship";
 import RelationshipList from "./relationship-list/RelationshipList";
+import CollapsibleRegion from "./reusable/CollapsibleRegion";
 
 interface ContactViewProps {
     activeContact: Contact;
@@ -91,6 +92,9 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
         return contact;
     }
 
+    const [isButtonCollapseOpen, setIsButtonCollapseOpen] = useState(false);
+
+
 
     // TODO: make some sections collapsible
     return (
@@ -103,11 +107,17 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
             <ContactInputBox label={"Title"} textValue={titleValue} setValue={setTitleValue} />
             <ContactInputBox label={"Phone Number"} textValue={primaryPhoneValue} setValue={setPrimaryPhoneValue} />
             <ContactInputBox label={"Email"} textValue={personalEmailValue} setValue={setPersonalEmailValue} />
-            <InteractionList interactions={interactionsValue} setInteractions={setInteractionsValue} />
-            <RelationshipList activeContact={activeContact} relationships={relationshipsValue} setRelationships={setRelationshipsValue} />
-            <ContactInputBox label={"Date Added"} textValue={dateAddedValue} setValue={setDateAddedValue} />
-            <ContactInputBox label={"Date Last Updated"} textValue={dateLastUpdatedValue} setValue={setDateLastUpdatedValue} />
-            <ContactInputBox label={"Date Last Interacted"} textValue={dateLastInteractedValue} setValue={setDateLastInteractedValue} />
+            <CollapsibleRegion regionName="Interactions">
+                <InteractionList interactions={interactionsValue} setInteractions={setInteractionsValue} />
+            </CollapsibleRegion>
+            <CollapsibleRegion regionName="Relationships">
+                <RelationshipList activeContact={activeContact} relationships={relationshipsValue} setRelationships={setRelationshipsValue} />
+            </CollapsibleRegion>
+            <CollapsibleRegion regionName="Metadata">
+                <ContactInputBox label={"Date Added"} textValue={dateAddedValue} setValue={setDateAddedValue} />
+                <ContactInputBox label={"Date Last Updated"} textValue={dateLastUpdatedValue} setValue={setDateLastUpdatedValue} />
+                <ContactInputBox label={"Date Last Interacted"} textValue={dateLastInteractedValue} setValue={setDateLastInteractedValue} />
+            </CollapsibleRegion>
             <JsonView value={miscJsonValue} displayDataTypes={false} collapsed={1} quotes="" />
         </div>
     );

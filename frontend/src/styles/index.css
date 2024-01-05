@@ -48,3 +48,18 @@
     left: 80%;
     z-index: 1;
 }
+
+.collapsible-container {
+    overflow: hidden;
+}
+
+.collapsed {
+    max-height: 0;
+    transition: max-height 0.5s ease-out;
+}
+
+.expanded {
+    max-height: 1000px;
+    /* Adjust to a sufficiently large value or use 'max-content' if supported */
+    transition: max-height 1s ease-in-out;
+}

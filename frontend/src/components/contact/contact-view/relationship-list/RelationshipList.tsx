@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Relationship } from "../../../../types/Relationship";
 import RelationshipListItem from "./RelationshipListItem";
-import ContactInputBox from "../ContactInputBox";
+import ContactInputBox from "../reusable/ContactInputBox";
 import Contact from "../../../../types/Contact";
 import dataManager from "../../../../util/DataManager";
 
@@ -47,7 +47,6 @@ function RelationshipList({ activeContact, relationships, setRelationships }: { 
 
     return (
         <div>
-            <hr></hr>
             <p>Relationship List</p>
             <ContactInputBox label={"Contact ID"} textValue={contactIDValue} setValue={setContactIDValue} />
             <ContactInputBox label={"Relationship"} textValue={relationshipValue} setValue={setRelationshipValue} />
@@ -55,7 +54,6 @@ function RelationshipList({ activeContact, relationships, setRelationships }: { 
             <ul className="interaction-list">
                 { relationships.map((r) => <RelationshipListItem relationship={r} /> ) }
             </ul>
-            <hr></hr>
         </div>
     )
 }
