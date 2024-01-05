@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { CameraMode, GraphCanvas, LayoutTypes } from 'reagraph';
-import generateNetworkEdges from '../../util/contactNetwork/generateEdges';
+import generateNetworkEdges from '../../util/contact-network/generateEdges';
 import dataManager from '../../util/DataManager';
-import generateNetworkNodes from '../../util/contactNetwork/generateNodes';
+import generateNetworkNodes from '../../util/contact-network/generateNodes';
 
 function NetworkPage() {
 

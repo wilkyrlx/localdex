@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import VcardImportClient from '../../import-clients/VcardImportClient';
+import VcardImportClient from '../../util/import-clients/VcardImportClient';
 import Contact from '../../types/Contact';
 import { useMessageContext } from '../../AppContext';
 import dataManager from '../../util/DataManager';

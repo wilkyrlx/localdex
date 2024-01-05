@@ -1,4 +1,4 @@
-import Contact from "../types/Contact";
+import Contact from "../../types/Contact";
 import ImportClient from "./ImportClient";
 import VCard from 'vcf';
 
