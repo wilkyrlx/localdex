@@ -1,9 +1,10 @@
 
-class Address {
+interface Address {
 
-    constructor() {
+    address: string;
+    coordinates?: string; // TODO: change to coordinates object
 
-    }
+    
 }
 
 export default Address;

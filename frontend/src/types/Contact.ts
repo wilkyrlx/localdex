@@ -1,7 +1,7 @@
 import ObjectId from "../util/ObjectId";
 import Group from "./Group";
-import Interaction from "./Interaction";
-import Relationship from "./Relationship";
+import { Interaction } from "./Interaction";
+import { Relationship } from "./Relationship";
 
 /**
  * Contact class

@@ -1,9 +1,7 @@
 
-class Job {
+interface Job {
 
-    constructor() {
 
-    }
 }
 
 export default Job;

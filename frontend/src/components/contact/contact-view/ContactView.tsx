@@ -3,9 +3,9 @@ import { forwardRef, useEffect, useImperativeHandle, useState } from "react"
 import ContactInputBox from "./ContactInputBox"
 import JsonView from '@uiw/react-json-view';
 import InteractionList from "./interaction-list/InteractionList";
-import Interaction from "../../../types/Interaction";
+import { Interaction } from "../../../types/Interaction";
+import { Relationship } from "../../../types/Relationship";
 import RelationshipList from "./relationship-list/RelationshipList";
-import Relationship from "../../../types/Relationship";
 
 interface ContactViewProps {
     activeContact: Contact;

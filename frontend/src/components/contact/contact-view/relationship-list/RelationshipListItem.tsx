@@ -1,4 +1,4 @@
-import Relationship from "../../../../types/Relationship"
+import { Relationship } from "../../../../types/Relationship"
 
 // TODO: give it its own CSS
 function RelationshipListItem({ relationship }: { relationship: Relationship }) {

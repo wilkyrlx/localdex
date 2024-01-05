@@ -6,17 +6,9 @@
  * 
  * NOTE: does not keep track of contactName since that may change.
  */
-class Relationship {
-    // TODO: add source contact too 
+export interface Relationship {
     contactSrc: string;
     contactDest: string;
     relationship: string;
-
-    constructor(contactSrc: string, contactDest: string, relationship: string) {
-        this.contactSrc = contactSrc;
-        this.contactDest = contactDest;
-        this.relationship = relationship;
-    }
 }
 
-export default Relationship;

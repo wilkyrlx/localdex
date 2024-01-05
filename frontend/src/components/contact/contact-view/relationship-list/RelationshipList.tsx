@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import Relationship from "../../../../types/Relationship";
+import { Relationship } from "../../../../types/Relationship";
 import RelationshipListItem from "./RelationshipListItem";
 import ContactInputBox from "../ContactInputBox";
 import Contact from "../../../../types/Contact";
@@ -34,8 +34,8 @@ function RelationshipList({ activeContact, relationships, setRelationships }: { 
         if (contactIDValue === "" || activeContact._id === undefined) {
             return;
         }
-        const aNewRelationship = new Relationship(activeContact._id, contactIDValue, relationshipValue)
-        const bNewRelationship = new Relationship(contactIDValue, activeContact._id, relationshipValue)
+        const aNewRelationship: Relationship = { contactSrc: activeContact._id, contactDest: contactIDValue, relationship: relationshipValue} 
+        const bNewRelationship: Relationship = { contactSrc: contactIDValue, contactDest: activeContact._id, relationship: relationshipValue }
 
         const bContact = new Contact(dataManager.readContactFromId(contactIDValue))
         bContact.addRelationship(bNewRelationship)
