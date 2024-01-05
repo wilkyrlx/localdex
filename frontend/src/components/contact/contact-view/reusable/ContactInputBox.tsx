@@ -1,9 +1,9 @@
 import { SetStateAction } from "react";
 
 interface ContactInputBoxProps {
-    label: string;
-    textValue: string;
-    setValue: (value: SetStateAction<string>) => void;
+    label: string|undefined;
+    textValue: string|undefined;
+    setValue: (value: SetStateAction<string|undefined>) => void;
 }
 
 function ContactInputBox({label, textValue, setValue}: ContactInputBoxProps) {

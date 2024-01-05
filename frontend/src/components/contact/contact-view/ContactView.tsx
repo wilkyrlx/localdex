@@ -7,6 +7,9 @@ import { Interaction } from "../../../types/Interaction";
 import { Relationship } from "../../../types/Relationship";
 import RelationshipList from "./relationship-list/RelationshipList";
 import CollapsibleRegion from "./reusable/CollapsibleRegion";
+import Group from "../../../types/Group";
+import Address from "../../../types/Address";
+import DateSelector from "./reusable/DateSelector";
 
 interface ContactViewProps {
     activeContact: Contact;
@@ -28,49 +31,50 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
 
     useImperativeHandle(ref, () => ({ getContactFieldData }));
 
-    const [firstNameValue, setFirstNameValue] = useState<string>("");
-    const [lastNameValue, setLastNameValue] = useState<string>("");
+    const [firstNameValue, setFirstNameValue] = useState<string|undefined>(undefined);
+    const [lastNameValue, setLastNameValue] = useState<string|undefined>("");
     const [photoUriValue, setPhotoUriValue] = useState<string>("");
-    const [titleValue, setTitleValue] = useState<string>("");
-    const [notesValue, setNotesValue] = useState<string>("");
-    const [birthdayValue, setBirthdayValue] = useState<Date | undefined>(undefined);
+    const [titleValue, setTitleValue] = useState<string|undefined>("");
+    const [notesValue, setNotesValue] = useState<string|undefined>("");
+    const [birthdayValue, setBirthdayValue] = useState<Date|undefined>(undefined);
 
-    const [addressValue, setAddressValue] = useState<string>(""); // TODO: change to Address
-    const [formerAddressesValue, setFormerAddressesValue] = useState<string>(""); // TODO: change to Address
+    const [addressValue, setAddressValue] = useState<Address[]>([]);
+    const [formerAddressesValue, setFormerAddressesValue] = useState<Address[]>([]); 
 
-    const [primaryPhoneValue, setPrimaryPhoneValue] = useState("");     // TODO: change to Phone
+    const [primaryPhoneValue, setPrimaryPhoneValue] = useState<string|undefined>("");     // TODO: change to Phone
     const [alternatePhone, setAlternatePhone] = useState("");           // TODO: change to Phone
 
-    const [personalEmailValue, setPersonalEmailValue] = useState<string>("");
+    const [personalEmailValue, setPersonalEmailValue] = useState<string|undefined>("");
     const [workEmailValue, setWorkEmailValue] = useState<string>("");
 
     // TODO: add social media, education, work
 
     const [relationshipsValue, setRelationshipsValue] = useState<Relationship[]>([]);
 
-    const [groupsValue, setGroupsValue] = useState<string[]>([]); // TODO: change to Group[]
+    const [groupsValue, setGroupsValue] = useState<Group[]>([]);
 
     const [interactionsValue, setInteractionsValue] = useState<Interaction[]>([]);
 
-    const [dateAddedValue, setDateAddedValue] = useState("");
-    const [dateLastUpdatedValue, setDateLastUpdatedValue] = useState("");
-    const [dateLastInteractedValue, setDateLastInteractedValue] = useState("");
+    const [dateAddedValue, setDateAddedValue] = useState<string|undefined>("");
+    const [dateLastUpdatedValue, setDateLastUpdatedValue] = useState<string|undefined>("");
+    const [dateLastInteractedValue, setDateLastInteractedValue] = useState<string|undefined>("");
     const [miscJsonValue, setMiscJsonValue] = useState<object>({});
 
     // TODO: update all based on activeContact
     useEffect(() => {
         if (activeContact) {
-            setFirstNameValue(activeContact.firstName || "")
-            setLastNameValue(activeContact.lastName || "")
-            setPersonalEmailValue(activeContact.personalEmail || "")
-            setTitleValue(activeContact.title || "")
-            setNotesValue(activeContact.notes || "")
-            setPrimaryPhoneValue(activeContact.primaryPhone || "")
+            setFirstNameValue(activeContact.firstName || undefined)
+            setLastNameValue(activeContact.lastName || undefined)
+            setPersonalEmailValue(activeContact.personalEmail || undefined)
+            setTitleValue(activeContact.title || undefined)
+            setNotesValue(activeContact.notes || undefined)
+            setBirthdayValue(activeContact.birthday || undefined)
+            setPrimaryPhoneValue(activeContact.primaryPhone || undefined)
             setInteractionsValue(activeContact.interactions || [])
             setRelationshipsValue(activeContact.relationships || [])
-            setDateAddedValue(activeContact.dateAdded?.toString() || "")
-            setDateLastUpdatedValue(activeContact.dateLastUpdated?.toString() || "")
-            setDateLastInteractedValue(activeContact.dateLastInteracted?.toString() || "")
+            setDateAddedValue(activeContact.dateAdded?.toString() || undefined)
+            setDateLastUpdatedValue(activeContact.dateLastUpdated?.toString() || undefined)
+            setDateLastInteractedValue(activeContact.dateLastInteracted?.toString() || undefined)
             setMiscJsonValue(activeContact)
         }
     }, [activeContact]);
@@ -83,6 +87,7 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
             lastName: lastNameValue,
             personalEmail: personalEmailValue,
             notes: notesValue,
+            birthday: birthdayValue,
             title: titleValue,
             primaryPhone: primaryPhoneValue,
             relationships: relationshipsValue,
@@ -91,8 +96,6 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
 
         return contact;
     }
-
-    const [isButtonCollapseOpen, setIsButtonCollapseOpen] = useState(false);
 
 
 
@@ -107,6 +110,11 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
             <ContactInputBox label={"Title"} textValue={titleValue} setValue={setTitleValue} />
             <ContactInputBox label={"Phone Number"} textValue={primaryPhoneValue} setValue={setPrimaryPhoneValue} />
             <ContactInputBox label={"Email"} textValue={personalEmailValue} setValue={setPersonalEmailValue} />
+            <DateSelector date={birthdayValue} setDate={setBirthdayValue} />
+            <CollapsibleRegion regionName="Addresses">
+                {/* TODO: <p>TODO</p> */}
+                <p>TODO</p>
+            </CollapsibleRegion>
             <CollapsibleRegion regionName="Interactions">
                 <InteractionList interactions={interactionsValue} setInteractions={setInteractionsValue} />
             </CollapsibleRegion>

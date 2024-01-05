@@ -11,8 +11,8 @@ function RelationshipList({ activeContact, relationships, setRelationships }: { 
 
     const id = activeContact?._id
 
-    const [contactIDValue, setContactIDValue] = useState("");
-    const [relationshipValue, setRelationshipValue] = useState("");
+    const [contactIDValue, setContactIDValue] = useState<string|undefined>(undefined);
+    const [relationshipValue, setRelationshipValue] = useState<string|undefined>(undefined);
 
     useEffect(() => {
         setContactIDValue("")
@@ -31,10 +31,11 @@ function RelationshipList({ activeContact, relationships, setRelationships }: { 
 
     // TODO: very buggy, add error checking
     function addRelationship() {
-        if (contactIDValue === "" || activeContact._id === undefined) {
+        if (contactIDValue === undefined || activeContact._id === undefined) {
             return;
         }
-        const aNewRelationship: Relationship = { contactSrc: activeContact._id, contactDest: contactIDValue, relationship: relationshipValue} 
+
+        const aNewRelationship: Relationship = { contactSrc: activeContact._id, contactDest: contactIDValue, relationship: relationshipValue } 
         const bNewRelationship: Relationship = { contactSrc: contactIDValue, contactDest: activeContact._id, relationship: relationshipValue }
 
         const bContact = new Contact(dataManager.readContactFromId(contactIDValue))

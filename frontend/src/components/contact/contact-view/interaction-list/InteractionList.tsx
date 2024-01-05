@@ -5,8 +5,8 @@ import ContactInputBox from "../reusable/ContactInputBox";
 
 function InteractionList({ interactions, setInteractions }: { interactions: Interaction[], setInteractions: Function }) {
 
-    const [interactionTitle, setInteractionTitle] = useState("");
-    const [interactionNotes, setInteractionNotes] = useState("");
+    const [interactionTitle, setInteractionTitle] = useState<string|undefined>("");
+    const [interactionNotes, setInteractionNotes] = useState<string|undefined>("");
 
     useEffect(() => {
         setInteractionTitle("")
@@ -18,8 +18,8 @@ function InteractionList({ interactions, setInteractions }: { interactions: Inte
             return;
         }
         const newInteraction: Interaction = {
-            title: interactionTitle,
-            notes: interactionNotes,
+            title: interactionTitle as string,
+            notes: interactionNotes as string,
             date: new Date()
         }  // TODO: add date selector
         setInteractions([...interactions, newInteraction])

@@ -9,6 +9,6 @@
 export interface Relationship {
     contactSrc: string;
     contactDest: string;
-    relationship: string;
+    relationship?: string;
 }
 
