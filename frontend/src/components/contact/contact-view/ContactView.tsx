@@ -7,6 +7,9 @@ import Interaction from "../../../types/Interaction";
 import RelationshipList from "./relationship-list/RelationshipList";
 import Relationship from "../../../types/Relationship";
 
+interface ContactViewProps {
+    activeContact: Contact;
+}
 
 /**
  * @param activeContact the contact to display
@@ -19,10 +22,6 @@ import Relationship from "../../../types/Relationship";
  * 3. ContactInputBox or likewise to display and edit the field
  * 4. getContactFieldData to return the field's data
  */
-interface ContactViewProps {
-    activeContact: Contact;
-}
-
 const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
     const { activeContact } = props;
 
@@ -92,6 +91,8 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
         return contact;
     }
 
+
+    // TODO: make some sections collapsible
     return (
 
         <div>
