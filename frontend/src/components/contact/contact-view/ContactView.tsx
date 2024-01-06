@@ -31,6 +31,8 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
 
     useImperativeHandle(ref, () => ({ getContactFieldData }));
 
+    // TODO: may be better to not use 'value' naming scheme, also verify names are same as fields
+    /* STEP 1: add useState for the field */
     const [firstNameValue, setFirstNameValue] = useState<string|undefined>(undefined);
     const [lastNameValue, setLastNameValue] = useState<string|undefined>(undefined);
     const [photoUriValue, setPhotoUriValue] = useState<string>("");
@@ -60,7 +62,7 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
     const [dateLastInteractedValue, setDateLastInteractedValue] = useState<string|undefined>("");
     const [miscJsonValue, setMiscJsonValue] = useState<object>({});
 
-    // TODO: update all based on activeContact
+    /* STEP 2: add useEffect to update the field when activeContact changes */
     useEffect(() => {
         if (activeContact) {
             setFirstNameValue(activeContact.firstName || undefined)
@@ -79,6 +81,7 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
         }
     }, [activeContact]);
 
+    /* STEP 4: getContactFieldData to return the field's data */
     function getContactFieldData() {
         const contact: Contact = new Contact({
             _id: activeContact._id,
@@ -97,9 +100,6 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
         return contact;
     }
 
-
-
-    // TODO: make some sections collapsible
     return (
 
         <div>
