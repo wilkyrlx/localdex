@@ -10,6 +10,7 @@ import CollapsibleRegion from "./reusable/CollapsibleRegion";
 import Group from "../../../types/Group";
 import Address from "../../../types/Address";
 import DateSelector from "./reusable/DateSelector";
+import AddressList from "./address-list/AddressList";
 
 interface ContactViewProps {
     activeContact: Contact;
@@ -36,8 +37,8 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
     const [firstNameValue, setFirstNameValue] = useState<string|undefined>(undefined);
     const [lastNameValue, setLastNameValue] = useState<string|undefined>(undefined);
     const [photoUriValue, setPhotoUriValue] = useState<string>("");
-    const [titleValue, setTitleValue] = useState<string|undefined>("");
-    const [notesValue, setNotesValue] = useState<string|undefined>("");
+    const [titleValue, setTitleValue] = useState<string|undefined>(undefined);
+    const [notesValue, setNotesValue] = useState<string|undefined>(undefined);
     const [birthdayValue, setBirthdayValue] = useState<Date|undefined>(undefined);
 
     const [addressValue, setAddressValue] = useState<Address[]>([]);
@@ -46,7 +47,7 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
     const [primaryPhoneValue, setPrimaryPhoneValue] = useState<string|undefined>("");     // TODO: change to Phone
     const [alternatePhone, setAlternatePhone] = useState("");           // TODO: change to Phone
 
-    const [personalEmailValue, setPersonalEmailValue] = useState<string|undefined>("");
+    const [personalEmailValue, setPersonalEmailValue] = useState<string|undefined>(undefined);
     const [workEmailValue, setWorkEmailValue] = useState<string>("");
 
     // TODO: add social media, education, work
@@ -71,6 +72,7 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
             setTitleValue(activeContact.title || undefined)
             setNotesValue(activeContact.notes || undefined)
             setBirthdayValue(activeContact.birthday || undefined)
+            setAddressValue(activeContact.addresses || [])
             setPrimaryPhoneValue(activeContact.primaryPhone || undefined)
             setInteractionsValue(activeContact.interactions || [])
             setRelationshipsValue(activeContact.relationships || [])
@@ -91,6 +93,7 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
             personalEmail: personalEmailValue,
             notes: notesValue,
             birthday: birthdayValue,
+            addresses: addressValue,
             title: titleValue,
             primaryPhone: primaryPhoneValue,
             relationships: relationshipsValue,
@@ -112,8 +115,7 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
             <ContactInputBox label={"Email"} textValue={personalEmailValue} setValue={setPersonalEmailValue} />
             <DateSelector date={birthdayValue} setDate={setBirthdayValue} />
             <CollapsibleRegion regionName="Addresses">
-                {/* TODO: <p>TODO</p> */}
-                <p>TODO</p>
+                <AddressList addresses={addressValue} setAddresses={setAddressValue} />
             </CollapsibleRegion>
             <CollapsibleRegion regionName="Interactions">
                 <InteractionList interactions={interactionsValue} setInteractions={setInteractionsValue} />

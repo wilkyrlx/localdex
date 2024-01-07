@@ -1,6 +1,8 @@
 import exp from "constants";
 import { useState } from "react";
 
+// FIXME: some dates are off by a few hours, probably due to timezone issues
+
 /**
  * Allows user to select a date between 1900 and today
  */
