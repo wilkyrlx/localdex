@@ -26,7 +26,6 @@ function AddressList({ addresses, setAddresses }: { addresses: Address[], setAdd
         setAddresses([...addresses, newAddress])
     }
 
-    // TODO
     return (
         <div>
             <h1>Address List</h1>

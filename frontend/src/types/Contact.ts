@@ -1,4 +1,5 @@
 import ObjectId from "../util/ObjectId";
+import Address from "./Address";
 import Group from "./Group";
 import Interaction from "./Interaction";
 import Relationship from "./Relationship";
@@ -20,6 +21,7 @@ class Contact {
     serviceFlags?: string[] | undefined;        // TODO: warning flags ("malformed data", "no name" etc.)
 
     // Contact information
+    // TODO: should use alias more, instead of firstname+lastname. This helps if someone is only known by their username, nickname etc.
     alias?: string[] | undefined;    // Array of aliases, if no first + last name, choose first alias
     firstName?: string;
     lastName?: string;
@@ -29,8 +31,8 @@ class Contact {
     birthday?: Date | undefined;
 
     // Physical addresses
-    address?: string[] | undefined;     // TODO: change to address object (string + description + time there) // current addresses (can have multiple)
-    formerAddresses?: string[] | undefined;    // TODO: change to address object (string + description + time there) // former addresses
+    address?: Address[] | undefined;            // current addresses (can have multiple)
+    formerAddresses?: Address[] | undefined;    // former addresses
 
     // Phone numbers
     primaryPhone?: string | undefined;      // TODO: change to phone object

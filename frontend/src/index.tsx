@@ -5,6 +5,7 @@ import './styles/notification.css';
 import './styles/listItem.scss';
 import './styles/interactionItem.css';
 import './styles/contextMenu.css';
+import 'mapbox-gl/dist/mapbox-gl.css';
 import App from './App';
 import { AppProvider } from './AppContext';
 
