@@ -34,52 +34,52 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
 
     // TODO: may be better to not use 'value' naming scheme, also verify names are same as fields
     /* STEP 1: add useState for the field */
-    const [firstNameValue, setFirstNameValue] = useState<string|undefined>(undefined);
-    const [lastNameValue, setLastNameValue] = useState<string|undefined>(undefined);
-    const [photoUriValue, setPhotoUriValue] = useState<string>("");
-    const [titleValue, setTitleValue] = useState<string|undefined>(undefined);
-    const [notesValue, setNotesValue] = useState<string|undefined>(undefined);
-    const [birthdayValue, setBirthdayValue] = useState<Date|undefined>(undefined);
+    const [firstName, setFirstName] = useState<string|undefined>(undefined);
+    const [lastName, setLastName] = useState<string|undefined>(undefined);
+    const [photoUri, setPhotoUri] = useState<string>("");
+    const [title, setTitle] = useState<string|undefined>(undefined);
+    const [notes, setNotes] = useState<string|undefined>(undefined);
+    const [birthday, setBirthday] = useState<Date|undefined>(undefined);
 
-    const [addressValue, setAddressValue] = useState<Address[]>([]);
-    const [formerAddressesValue, setFormerAddressesValue] = useState<Address[]>([]); 
+    const [addresses, setAddresses] = useState<Address[]>([]);
+    const [formerAddresses, setFormerAddresses] = useState<Address[]>([]); 
 
-    const [primaryPhoneValue, setPrimaryPhoneValue] = useState<string|undefined>("");     // TODO: change to Phone
+    const [primaryPhone, setPrimaryPhone] = useState<string|undefined>("");     // TODO: change to Phone
     const [alternatePhone, setAlternatePhone] = useState("");           // TODO: change to Phone
 
-    const [personalEmailValue, setPersonalEmailValue] = useState<string|undefined>(undefined);
-    const [workEmailValue, setWorkEmailValue] = useState<string>("");
+    const [personalEmail, setPersonalEmail] = useState<string|undefined>(undefined);
+    const [workEmail, setWorkEmail] = useState<string>("");
 
     // TODO: add social media, education, work
 
-    const [relationshipsValue, setRelationshipsValue] = useState<Relationship[]>([]);
+    const [relationships, setRelationships] = useState<Relationship[]>([]);
 
-    const [groupsValue, setGroupsValue] = useState<Group[]>([]);
+    const [groups, setGroups] = useState<Group[]>([]);
 
-    const [interactionsValue, setInteractionsValue] = useState<Interaction[]>([]);
+    const [interactions, setInteractions] = useState<Interaction[]>([]);
 
-    const [dateAddedValue, setDateAddedValue] = useState<string|undefined>("");
-    const [dateLastUpdatedValue, setDateLastUpdatedValue] = useState<string|undefined>("");
-    const [dateLastInteractedValue, setDateLastInteractedValue] = useState<string|undefined>("");
-    const [miscJsonValue, setMiscJsonValue] = useState<object>({});
+    const [dateAdded, setDateAdded] = useState<string|undefined>("");
+    const [dateLastUpdated, setDateLastUpdated] = useState<string|undefined>("");
+    const [dateLastInteracted, setDateLastInteracted] = useState<string|undefined>("");
+    const [miscJson, setMiscJson] = useState<object>({});
 
     /* STEP 2: add useEffect to update the field when activeContact changes */
     useEffect(() => {
         if (activeContact) {
-            setFirstNameValue(activeContact.firstName || undefined)
-            setLastNameValue(activeContact.lastName || undefined)
-            setPersonalEmailValue(activeContact.personalEmail || undefined)
-            setTitleValue(activeContact.title || undefined)
-            setNotesValue(activeContact.notes || undefined)
-            setBirthdayValue(activeContact.birthday || undefined)
-            setAddressValue(activeContact.addresses || [])
-            setPrimaryPhoneValue(activeContact.primaryPhone || undefined)
-            setInteractionsValue(activeContact.interactions || [])
-            setRelationshipsValue(activeContact.relationships || [])
-            setDateAddedValue(activeContact.dateAdded?.toString() || undefined)
-            setDateLastUpdatedValue(activeContact.dateLastUpdated?.toString() || undefined)
-            setDateLastInteractedValue(activeContact.dateLastInteracted?.toString() || undefined)
-            setMiscJsonValue(activeContact)
+            setFirstName(activeContact.firstName || undefined)
+            setLastName(activeContact.lastName || undefined)
+            setPersonalEmail(activeContact.personalEmail || undefined)
+            setTitle(activeContact.title || undefined)
+            setNotes(activeContact.notes || undefined)
+            setBirthday(activeContact.birthday || undefined)
+            setAddresses(activeContact.addresses || [])
+            setPrimaryPhone(activeContact.primaryPhone || undefined)
+            setInteractions(activeContact.interactions || [])
+            setRelationships(activeContact.relationships || [])
+            setDateAdded(activeContact.dateAdded?.toString() || undefined)
+            setDateLastUpdated(activeContact.dateLastUpdated?.toString() || undefined)
+            setDateLastInteracted(activeContact.dateLastInteracted?.toString() || undefined)
+            setMiscJson(activeContact)
         }
     }, [activeContact]);
 
@@ -87,17 +87,17 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
     function getContactFieldData() {
         const contact: Contact = new Contact({
             _id: activeContact._id,
-            alias: [firstNameValue + " " + lastNameValue],
-            firstName: firstNameValue,
-            lastName: lastNameValue,
-            personalEmail: personalEmailValue,
-            notes: notesValue,
-            birthday: birthdayValue,
-            addresses: addressValue,
-            title: titleValue,
-            primaryPhone: primaryPhoneValue,
-            relationships: relationshipsValue,
-            interactions: interactionsValue,
+            alias: [firstName + " " + lastName],
+            firstName: firstName,
+            lastName: lastName,
+            personalEmail: personalEmail,
+            notes: notes,
+            birthday: birthday,
+            addresses: addresses,
+            title: title,
+            primaryPhone: primaryPhone,
+            relationships: relationships,
+            interactions: interactions,
         })
 
         return contact;
@@ -107,28 +107,28 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
 
         <div>
             <p>{activeContact?._id}</p>
-            <ContactInputBox label={"First Name"} textValue={firstNameValue} setValue={setFirstNameValue} />
-            <ContactInputBox label={"Last Name"} textValue={lastNameValue} setValue={setLastNameValue} />
-            <ContactInputBox label={"Notes"} textValue={notesValue} setValue={setNotesValue} />
-            <ContactInputBox label={"Title"} textValue={titleValue} setValue={setTitleValue} />
-            <ContactInputBox label={"Phone Number"} textValue={primaryPhoneValue} setValue={setPrimaryPhoneValue} />
-            <ContactInputBox label={"Email"} textValue={personalEmailValue} setValue={setPersonalEmailValue} />
-            <DateSelector date={birthdayValue} setDate={setBirthdayValue} />
+            <ContactInputBox label={"First Name"} textValue={firstName} setValue={setFirstName} />
+            <ContactInputBox label={"Last Name"} textValue={lastName} setValue={setLastName} />
+            <ContactInputBox label={"Notes"} textValue={notes} setValue={setNotes} />
+            <ContactInputBox label={"Title"} textValue={title} setValue={setTitle} />
+            <ContactInputBox label={"Phone Number"} textValue={primaryPhone} setValue={setPrimaryPhone} />
+            <ContactInputBox label={"Email"} textValue={personalEmail} setValue={setPersonalEmail} />
+            <DateSelector date={birthday} setDate={setBirthday} />
             <CollapsibleRegion regionName="Addresses">
-                <AddressList addresses={addressValue} setAddresses={setAddressValue} />
+                <AddressList addresses={addresses} setAddresses={setAddresses} />
             </CollapsibleRegion>
             <CollapsibleRegion regionName="Interactions">
-                <InteractionList interactions={interactionsValue} setInteractions={setInteractionsValue} />
+                <InteractionList interactions={interactions} setInteractions={setInteractions} />
             </CollapsibleRegion>
             <CollapsibleRegion regionName="Relationships">
-                <RelationshipList activeContact={activeContact} relationships={relationshipsValue} setRelationships={setRelationshipsValue} />
+                <RelationshipList activeContact={activeContact} relationships={relationships} setRelationships={setRelationships} />
             </CollapsibleRegion>
             <CollapsibleRegion regionName="Metadata">
-                <ContactInputBox label={"Date Added"} textValue={dateAddedValue} setValue={setDateAddedValue} />
-                <ContactInputBox label={"Date Last Updated"} textValue={dateLastUpdatedValue} setValue={setDateLastUpdatedValue} />
-                <ContactInputBox label={"Date Last Interacted"} textValue={dateLastInteractedValue} setValue={setDateLastInteractedValue} />
+                <ContactInputBox label={"Date Added"} textValue={dateAdded} setValue={setDateAdded} />
+                <ContactInputBox label={"Date Last Updated"} textValue={dateLastUpdated} setValue={setDateLastUpdated} />
+                <ContactInputBox label={"Date Last Interacted"} textValue={dateLastInteracted} setValue={setDateLastInteracted} />
             </CollapsibleRegion>
-            <JsonView value={miscJsonValue} displayDataTypes={false} collapsed={1} quotes="" />
+            <JsonView value={miscJson} displayDataTypes={false} collapsed={1} quotes="" />
         </div>
     );
 })
