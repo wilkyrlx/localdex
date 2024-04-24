@@ -19,3 +19,4 @@
 - [ ] linkedin integration - chrome extension?
 - [ ] facebook, instagram, snapchat integration - api?
 - [ ] twitter integration
+- data and analytics 
