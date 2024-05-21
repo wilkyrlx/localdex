@@ -8,7 +8,7 @@ import Relationship from "../../../types/Relationship";
 import RelationshipList from "./relationship-list/RelationshipList";
 import CollapsibleRegion from "./reusable/CollapsibleRegion";
 import Group from "../../../types/Group";
-import Address from "../../../types/Address";
+import Address from "../../../types/location/Address";
 import DateSelector from "./reusable/DateSelector";
 import AddressList from "./address-list/AddressList";
 

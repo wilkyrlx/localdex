@@ -1,7 +1,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import Map, { ViewStateChangeEvent, MapLayerMouseEvent, Source, Layer, PointLike, MapRef } from "react-map-gl"
 
-function BasicMapView() {
+// TODO: currently uses MapboxGl, Leaflet is free and may be an easier option
+function MapboxMapView() {
 
     const [viewState, setViewState] = useState({
         longitude: -71.4040,
@@ -45,4 +46,4 @@ function BasicMapView() {
     )
 }
 
-export default BasicMapView
+export default MapboxMapView

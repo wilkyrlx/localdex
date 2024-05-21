@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Address from "../../../../types/Address";
+import Address from "../../../../types/location/Address";
 import ContactInputBox from "../reusable/ContactInputBox";
 import DateSelector from "../reusable/DateSelector";
 import AddressListItem from "./AddressListItem";
@@ -20,6 +20,7 @@ function AddressList({ addresses, setAddresses }: { addresses: Address[], setAdd
             address: addressLocation,
             description: addressDescription,
             // TODO: figure out coordinates
+            // TODO: should geocoding happen here?
             startDate: addressStartDate,
             endDate: addressEndDate
         }

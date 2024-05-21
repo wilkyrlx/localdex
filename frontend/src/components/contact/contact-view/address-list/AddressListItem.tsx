@@ -1,4 +1,4 @@
-import Address from "../../../../types/Address";
+import Address from "../../../../types/location/Address";
 
 function AddressListItem({ address }: { address: Address }) {
 

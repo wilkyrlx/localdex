@@ -1,8 +1,9 @@
 import ObjectId from "../util/ObjectId";
-import Address from "./Address";
+import Address from "./location/Address";
 import Group from "./Group";
 import Interaction from "./Interaction";
 import Relationship from "./Relationship";
+import standardNormalize from "../util/normalization/StandardNormalize";
 
 /**
  * Contact class
@@ -31,7 +32,7 @@ class Contact {
     birthday?: Date | undefined;
 
     // Physical addresses
-    address?: Address[] | undefined;            // current addresses (can have multiple)
+    addresses?: Address[] | undefined;            // current addresses (can have multiple)
     formerAddresses?: Address[] | undefined;    // former addresses
 
     // Phone numbers
@@ -87,17 +88,13 @@ class Contact {
 
     // TODO: normalize more fields
     normalize(): void {
-        if (this.primaryPhone) {
-            // TODO: use a number parser library
-            this.primaryPhone = this.primaryPhone
-        }
+       standardNormalize(this);
     }
 
     addRelationship(relationship: Relationship) {
         this.relationships = this.relationships || [];
         this.relationships.push(relationship);
     }
-
 
 }
 
