@@ -1,7 +1,6 @@
 import SidebarComponent from './components/SidebarComponent';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import HomePage from './pages/HomePage';
-import AboutPage from './pages/AboutPage';
 import ContactsPage from './pages/ContactsPage';
 import MapPage from './pages/MapPage';
 import ImportPage from './pages/ImportPage';
@@ -32,7 +31,6 @@ function App() {
                             <Route path="/map" element={<MapPage />} />
                             <Route path='/network' element={<NetworkPage />} />
                             <Route path="/import" element={<ImportPage />} />
-                            <Route path="/about" element={<AboutPage />} />
                             <Route path="*" element={<h1>Not Found</h1>} />
                         </Routes>
                     </main>

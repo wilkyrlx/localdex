@@ -11,6 +11,9 @@
 - [ ] ~~delete contact button must be enabled before visible, also change hover color and cursor~~
 - [ ] map view with mapbox.gl
 - [x] deduplicate contacts with side by side comparison, field selection, and merge button
+- [ ] landing page should be the about page - provide background on the project, how to use it. Also, load a dummy dataset with relationships, fields etc. to demo how localdex can be used
+- [ ] The CLI idea would be really cool. It could expand out of the bottom left corner.
+- [ ] Select which collection (i.e. demo, main, business/social)
 
 ## Backend
 - [ ] deduplicate contacts

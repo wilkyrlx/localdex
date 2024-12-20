@@ -67,7 +67,7 @@ const ContactView = forwardRef<any, ContactViewProps>((props, ref) => {
     useEffect(() => {
         if (activeContact) {
             setFirstName(activeContact.firstName || undefined)
-            setLastName(activeContact.lastName || undefined)
+            setLastName(activeContact.lastName || undefined)    // FIXME: must be empty string, not undefined
             setPersonalEmail(activeContact.personalEmail || undefined)
             setTitle(activeContact.title || undefined)
             setNotes(activeContact.notes || undefined)

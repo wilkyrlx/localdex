@@ -1,5 +1,4 @@
 import fuzz from "fuzzball";
-import mockContacts from "./mock-data/contacts";
 // FIXME: add contact type
 
 

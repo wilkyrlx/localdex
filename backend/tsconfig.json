@@ -14,5 +14,5 @@
     "include": [
         "src",
         "test/duplicateProcessor.test.ts"
-    ]
+, "../datasets/personal-data/mock-data", "../datasets/personal-data/contacts.ts"    ]
 }

@@ -1,0 +1,149 @@
+BEGIN:VCARD
+VERSION:3.0
+FN:John Doe
+N:Doe;John;;;
+EMAIL:john.doe@example.com
+TEL:+1234567890
+ORG:Example Corp
+TITLE:Software Engineer
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Jane Smith
+N:Smith;Jane;;;
+EMAIL:jane.smith@example.com
+TEL:+9876543210
+ORG:Tech Solutions
+TITLE:Project Manager
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Michael Johnson
+N:Johnson;Michael;;;
+EMAIL:michael.johnson@example.com
+TEL:+1928374650
+ORG:Innovate Inc
+TITLE:Data Scientist
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Emily Davis
+N:Davis;Emily;;;
+EMAIL:emily.davis@example.com
+TEL:+1987654321
+ORG:Creative Agency
+TITLE:Graphic Designer
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Chris Brown
+N:Brown;Chris;;;
+EMAIL:chris.brown@example.com
+TEL:+1230984567
+ORG:Brown Industries
+TITLE:Chief Technology Officer
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Sarah Wilson
+N:Wilson;Sarah;;;
+EMAIL:sarah.wilson@example.com
+TEL:+1234509876
+ORG:HealthCo
+TITLE:Medical Researcher
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:David Martinez
+N:Martinez;David;;;
+EMAIL:david.martinez@example.com
+TEL:+1098765432
+ORG:Global Solutions
+TITLE:Operations Manager
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Laura Garcia
+N:Garcia;Laura;;;
+EMAIL:laura.garcia@example.com
+TEL:+1234567098
+ORG:GreenTech
+TITLE:Environmental Scientist
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Daniel Lee
+N:Lee;Daniel;;;
+EMAIL:daniel.lee@example.com
+TEL:+1123456789
+ORG:City Works
+TITLE:Civil Engineer
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Jessica Taylor
+N:Taylor;Jessica;;;
+EMAIL:jessica.taylor@example.com
+TEL:+9871234567
+ORG:TechForward
+TITLE:UX Designer
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Matthew Harris
+N:Harris;Matthew;;;
+EMAIL:matthew.harris@example.com
+TEL:+7654321987
+ORG:NextGen Robotics
+TITLE:Robotics Engineer
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Ashley White
+N:White;Ashley;;;
+EMAIL:ashley.white@example.com
+TEL:+1123987654
+ORG:BuildSmart
+TITLE:Architect
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Joshua Clark
+N:Clark;Joshua;;;
+EMAIL:joshua.clark@example.com
+TEL:+1029384756
+ORG:FinancePro
+TITLE:Accountant
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Amanda Robinson
+N:Robinson;Amanda;;;
+EMAIL:amanda.robinson@example.com
+TEL:+1203984765
+ORG:EduCare
+TITLE:Teacher
+END:VCARD
+
+BEGIN:VCARD
+VERSION:3.0
+FN:Brian Thompson
+N:Thompson;Brian;;;
+EMAIL:brian.thompson@example.com
+TEL:+1234560987
+ORG:SecureTech
+TITLE:Cybersecurity Analyst
+END:VCARD
