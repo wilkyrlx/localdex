@@ -107,6 +107,10 @@ async function main() {
         res.status(200).json({ message: 'Hello World!' });
     });
 
+    app.get('/helloWorldUnAuth', (req, res) => {
+        res.status(200).json({ message: 'Hello World (unauthenticated)!' });
+    });
+
 
 }
 
